@@ -31,34 +31,20 @@
             text-shadow: 2px 2px 4px rgba(255,255,255,0.5);
         }
 
-        /* --- СЕРАЯ ПОЛОСКА (МЕНЮ + НОВЫЙ ТЕКСТ) --- */
         nav {
             background: rgba(51, 51, 51, 0.95);
             backdrop-filter: blur(10px);
             position: sticky; top: 0; z-index: 1000;
             padding: 12px 20px;
             display: flex;
-            justify-content: space-between; /* Навигация слева, текст справа */
+            justify-content: space-between;
             align-items: center;
             flex-wrap: wrap;
             gap: 15px;
         }
 
-        .nav-links {
-            display: flex;
-            gap: 20px;
-            flex-wrap: wrap;
-        }
-
-        nav a {
-            color: white;
-            text-decoration: none;
-            font-size: 0.85rem;
-            font-weight: 600;
-            text-transform: uppercase;
-            transition: 0.3s;
-        }
-
+        .nav-links { display: flex; gap: 20px; flex-wrap: wrap; }
+        nav a { color: white; text-decoration: none; font-size: 0.85rem; font-weight: 600; text-transform: uppercase; transition: 0.3s; }
         nav a:hover { color: #ffce00; }
 
         .nav-status-text {
@@ -69,9 +55,8 @@
             padding-left: 10px;
         }
 
-        /* --- КОНТЕНТ --- */
         .container {
-            max-width: 1000px;
+            max-width: 1100px;
             margin: 20px auto; padding: 25px;
             background: rgba(255, 255, 255, 0.7);
             backdrop-filter: blur(5px);
@@ -84,9 +69,10 @@
         h2 { color: #34495e; position: relative; padding-bottom: 10px; margin-top: 30px; }
         h2::after { content: ''; position: absolute; bottom: 0; left: 0; width: 50px; height: 4px; background: #ffce00; border-radius: 2px; }
 
+        /* Галерея */
         .duck-gallery { 
             display: grid; 
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); 
+            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); 
             gap: 25px; 
             margin-top: 25px; 
         }
@@ -97,7 +83,7 @@
             border-radius: 15px; 
             text-align: center; 
             box-shadow: 0 4px 6px rgba(0,0,0,0.05); 
-            transition: transform 0.3s ease; 
+            transition: transform 0.3s ease, box-shadow 0.3s ease; 
         }
 
         .duck-card:hover { transform: rotate(-3deg) scale(1.02); }
@@ -107,23 +93,9 @@
             object-fit: contain; border-radius: 10px; cursor: zoom-in; 
         }
 
-        /* Списки людей и команды */
-        .people-section { 
-            display: flex; 
-            justify-content: center; 
-            gap: 40px; 
-            flex-wrap: wrap; 
-            margin-top: 25px; 
-        }
-
-        .person-card, .author-card { 
-            text-align: center; 
-            width: 160px; 
-            display: flex; 
-            flex-direction: column; 
-            align-items: center;    
-            gap: 5px;               
-        }
+        /* Списки людей */
+        .people-section { display: flex; justify-content: center; gap: 40px; flex-wrap: wrap; margin-top: 25px; }
+        .person-card, .author-card { text-align: center; width: 160px; display: flex; flex-direction: column; align-items: center; gap: 5px; }
 
         .avatar-circle {
             width: 100px; height: 100px;
@@ -132,19 +104,40 @@
         }
         .avatar-circle:hover { transform: scale(1.1); }
 
-        .person-name { font-weight: bold; font-size: 1rem; color: #2c3e50; }
-        .author-role { font-size: 0.85rem; color: #7f8c8d; }
+        .social-buttons { display: flex; gap: 10px; align-items: center; }
 
-        .tg-button { 
-            display: inline-flex; 
-            align-items: center; 
-            justify-content: center; 
+        .tg-button, .more-button { 
+            display: inline-flex; align-items: center; justify-content: center; 
             width: 32px; height: 32px; 
-            background-color: #26A5E4; 
-            border-radius: 50%; 
-            transition: 0.3s;
+            border-radius: 50%; border: none; cursor: pointer; transition: 0.3s;
         }
+        .tg-button { background-color: #26A5E4; }
         .tg-button svg { width: 16px; height: 16px; fill: white; }
+        
+        .more-button { background-color: #95a5a6; color: white; font-weight: bold; font-size: 1.2rem; }
+        .more-button:hover { background-color: #7f8c8d; }
+
+        /* Контактная информация */
+        .contact-info {
+            display: none;
+            margin-top: 10px;
+            background: #fff;
+            padding: 10px;
+            border-radius: 10px;
+            font-size: 0.8rem;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+            border: 1px solid #ffce00;
+            text-align: center;
+            animation: fadeIn 0.3s;
+        }
+
+        .pixel-mosaic {
+            filter: url(#pixelate);
+            user-select: none;
+            pointer-events: none;
+        }
+
+        @keyframes fadeIn { from {opacity: 0;} to {opacity: 1;} }
 
         /* Модалка */
         #imageModal {
@@ -152,8 +145,10 @@
             left: 0; top: 0; width: 100%; height: 100%;
             background-color: rgba(0,0,0,0.9);
             cursor: zoom-out; align-items: center; justify-content: center;
+            flex-direction: column;
         }
-        #fullImage { max-width: 95%; max-height: 95%; border-radius: 5px; object-fit: contain; }
+        #fullImage { max-width: 95%; max-height: 85%; border-radius: 5px; object-fit: contain; }
+        #modalCaption { color: white; margin-top: 15px; font-size: 1.2rem; font-weight: bold; }
 
         /* Футер */
         footer {
@@ -184,14 +179,19 @@
             padding: 8px 15px; border-radius: 5px;
             opacity: 0; transition: 0.3s; z-index: 5000;
         }
-
-        @media (max-width: 600px) {
-            nav { justify-content: center; }
-            .nav-status-text { border-left: none; border-top: 1px solid #ffce00; padding: 5px 0 0 0; margin-top: 5px; }
-        }
     </style>
 </head>
 <body>
+
+<svg width="0" height="0" style="position:absolute;">
+  <filter id="pixelate" x="0" y="0">
+    <feFlood x="4" y="4" height="2" width="2" />
+    <feComposite width="10" height="10" />
+    <feTile result="a" />
+    <feComposite in="SourceGraphic" in2="a" operator="in" />
+    <feMorphology operator="dilate" radius="5" />
+  </filter>
+</svg>
 
 <audio id="quack-sound" src="https://pdftolink.io/file/r2_dXNlcnMvZ3Vlc3QvZTBkOWI4ZjYtZGIxMi00NmViLTg5MTYtZDcyZGVlMjhhNjk1Lm1wMw" preload="auto"></audio>
 <div id="copy-toast" class="copy-toast">Почта скопирована!</div>
@@ -208,14 +208,17 @@
         <a href="#cool-people">Люди</a>
         <a href="#authors">Команда</a>
     </div>
-    
-    <!-- Твой новый текст справа на серой полоске -->
-    <div class="nav-status-text">
-        сайт новый может быть он будет развиваться
-    </div>
+    <div class="nav-status-text">сайт новый может быть он будет развиваться</div>
 </nav>
 
 <div class="container">
+    <!-- СЕКЦИЯ ОБ УТКАХ (МИННИ ОПИСАНИЕ) -->
+    <section id="about">
+        <h2>Кто такие утки?</h2>
+        <p>Утки — это удивительные водоплавающие птицы, которые встречаются практически в любой точке мира, где есть вода. Они мастера на все крылья: умеют летать, плавать и даже ходить (хоть и немного вразвалочку). А еще они бывают невероятно стильными, как те, что представлены в нашей коллекции ниже!</p>
+    </section>
+
+    <!-- СЕКЦИЯ ГАЛЕРЕИ -->
     <section id="gallery">
         <h2 style="text-align: center; display: block;">Галерея</h2>
         <div class="duck-gallery">
@@ -230,6 +233,10 @@
             <div class="duck-card">
                 <img src="https://static.tildacdn.pub/tild6130-3462-4436-a662-323131636366/image.png" alt="Человек держит утку" class="duck-image" onclick="openModal(this.src)">
                 <p>Человек держит утку</p>
+            </div>
+            <div class="duck-card">
+                <img src="https://tr.rbxcdn.com/180DAY-b4fe968f6db521051bdbfd49ae7f05cd/420/420/Hat/Webp/noFilter" alt="Утка в шляпе" class="duck-image" onclick="openModal(this.src)">
+                <p>Утка в шляпе</p>
             </div>
         </div>
     </section>
@@ -258,20 +265,39 @@
         <h2 style="text-align: center; display: block;">Команда проекта</h2>
         <div class="people-section">
             <div class="author-card">
-                <img src="https://noikcloud.xyz/fSjunJz" class="avatar-circle" onclick="openModal(this.src)">
+                <img src="https://noikcloud.xyz/fSjunJz" class="avatar-circle" onclick="handleEmilClick(this)">
                 <span class="person-name">emil768</span>
                 <span class="author-role">Создатель</span>
-                <a href="https://t.me/emil768tg" target="_blank" class="tg-button">
-                    <svg viewBox="0 0 24 24"><path d="M12 0c-6.627 0-12 5.373-12 12s5.373 12 12 12 12-5.373 12-12-5.373-12-12-12zm5.891 8.146l-1.931 9.102c-.144.646-.528.805-1.069.5l-2.94-2.167-1.418 1.365c-.157.157-.289.289-.591.289l.211-2.992 5.446-4.921c.237-.211-.051-.328-.368-.117l-6.732 4.239-2.901-.908c-.63-.197-.643-.63.131-.931l11.34-4.371c.525-.192.985.122.822.912z"/></svg>
-                </a>
+                <div class="social-buttons">
+                    <a href="https://t.me/emil768tg" target="_blank" class="tg-button">
+                        <svg viewBox="0 0 24 24"><path d="M12 0c-6.627 0-12 5.373-12 12s5.373 12 12 12 12-5.373 12-12-5.373-12-12-12zm5.891 8.146l-1.931 9.102c-.144.646-.528.805-1.069.5l-2.94-2.167-1.418 1.365c-.157.157-.289.289-.591.289l.211-2.992 5.446-4.921c.237-.211-.051-.328-.368-.117l-6.732 4.239-2.901-.908c-.63-.197-.643-.63.131-.931l11.34-4.371c.525-.192.985.122.822.912z"/></svg>
+                    </a>
+                    <button class="more-button" onclick="toggleInfo('emil-contacts')">...</button>
+                </div>
+                <div id="emil-contacts" class="contact-info">
+                    <strong>Контактные данные:</strong><br>
+                    <div class="pixel-mosaic">
+                        +7938754524<br>
+                        emil768ads@vk.com
+                    </div>
+                </div>
             </div>
+            
             <div class="author-card">
                 <img src="https://noikcloud.xyz/FP8mdFh" class="avatar-circle" onclick="openModal(this.src)">
                 <span class="person-name">кекеплойд</span>
                 <span class="author-role">Идея</span>
-                <a href="https://t.me/pldzztg" target="_blank" class="tg-button">
-                    <svg viewBox="0 0 24 24"><path d="M12 0c-6.627 0-12 5.373-12 12s5.373 12 12 12 12-5.373 12-12-5.373-12-12-12zm5.891 8.146l-1.931 9.102c-.144.646-.528.805-1.069.5l-2.94-2.167-1.418 1.365c-.157.157-.289.289-.591.289l.211-2.992 5.446-4.921c.237-.211-.051-.328-.368-.117l-6.732 4.239-2.901-.908c-.63-.197-.643-.63.131-.931l11.34-4.371c.525-.192.985.122.822.912z"/></svg>
-                </a>
+                <div class="social-buttons">
+                    <a href="https://t.me/pldzztg" target="_blank" class="tg-button">
+                        <svg viewBox="0 0 24 24"><path d="M12 0c-6.627 0-12 5.373-12 12s5.373 12 12 12 12-5.373 12-12-5.373-12-12-12zm5.891 8.146l-1.931 9.102c-.144.646-.528.805-1.069.5l-2.94-2.167-1.418 1.365c-.157.157-.289.289-.591.289l.211-2.992 5.446-4.921c.237-.211-.051-.328-.368-.117l-6.732 4.239-2.901-.908c-.63-.197-.643-.63.131-.931l11.34-4.371c.525-.192.985.122.822.912z"/></svg>
+                    </a>
+                    <button class="more-button" onclick="toggleInfo('kek-contacts')">...</button>
+                </div>
+                <div id="kek-contacts" class="contact-info">
+                    <strong>Контактная информация</strong><br>
+                    +40-(731)-402-357<br>
+                    robtop762@gmail.com
+                </div>
             </div>
         </div>
     </section>
@@ -283,6 +309,7 @@
 
 <div id="imageModal" onclick="this.style.display='none'">
     <img id="fullImage">
+    <div id="modalCaption"></div>
 </div>
 
 <footer>
@@ -294,15 +321,37 @@
 </footer>
 
 <script>
+    let emilTapCount = 0;
+
+    function handleEmilClick(element) {
+        emilTapCount++;
+        if (emilTapCount === 10) {
+            openModal('https://noikcloud.xyz/IYStlZN', 'крутая картинка');
+            emilTapCount = 0;
+        } else {
+            openModal(element.src);
+        }
+    }
+
+    function toggleInfo(id) {
+        const div = document.getElementById(id);
+        div.style.display = (div.style.display === 'block') ? 'none' : 'block';
+    }
+
     function playQuack() {
         const audio = document.getElementById("quack-sound");
         audio.currentTime = 0;
         audio.play();
     }
-    function openModal(src) {
-        document.getElementById("imageModal").style.display = "flex";
+
+    function openModal(src, caption = '') {
+        const modal = document.getElementById("imageModal");
+        const capDiv = document.getElementById("modalCaption");
+        modal.style.display = "flex";
         document.getElementById("fullImage").src = src;
+        capDiv.innerText = caption;
     }
+
     function copyEmail(email) {
         navigator.clipboard.writeText(email).then(() => {
             const toast = document.getElementById("copy-toast");
