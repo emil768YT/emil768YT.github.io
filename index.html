@@ -5,34 +5,33 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Мир Уток — Ретро и Стиль</title>
     <style>
-        /* --- ОСНОВНЫЕ СТИЛИ --- */
+        /* --- ТЕМНЫЕ СТИЛИ --- */
         html { scroll-behavior: smooth; }
         body {
             font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
             margin: 0; padding: 0;
-            background: linear-gradient(135deg, #e0f2fe 0%, #fff9db 100%);
-            background-attachment: fixed;
-            color: #2c3e50;
+            background: #121212;
+            color: #e0e0e0;
             line-height: 1.6;
         }
 
         header {
-            background: linear-gradient(90deg, #ffce00, #ffed4a);
+            background: linear-gradient(90deg, #cca300, #ffdb4d);
             padding: 40px 15px;
             text-align: center;
-            color: #333;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            color: #121212;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.5);
             clip-path: polygon(0 0, 100% 0, 100% 90%, 0 100%);
         }
 
         header h1 {
             font-size: clamp(2rem, 8vw, 3.5rem);
             margin: 0;
-            text-shadow: 2px 2px 4px rgba(255,255,255,0.5);
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
         }
 
         nav {
-            background: rgba(51, 51, 51, 0.95);
+            background: rgba(20, 20, 20, 0.95);
             backdrop-filter: blur(10px);
             position: sticky; top: 0; z-index: 1000;
             padding: 12px 20px;
@@ -41,33 +40,34 @@
             align-items: center;
             flex-wrap: wrap;
             gap: 15px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.3);
         }
 
         .nav-links { display: flex; gap: 20px; flex-wrap: wrap; }
-        nav a { color: white; text-decoration: none; font-size: 0.85rem; font-weight: 600; text-transform: uppercase; transition: 0.3s; }
-        nav a:hover { color: #ffce00; }
+        nav a { color: #e0e0e0; text-decoration: none; font-size: 0.85rem; font-weight: 600; text-transform: uppercase; transition: 0.3s; }
+        nav a:hover { color: #ffdb4d; }
 
         .nav-status-text {
-            color: #bdc3c7;
+            color: #888;
             font-size: 0.75rem;
             font-style: italic;
-            border-left: 2px solid #ffce00;
+            border-left: 2px solid #cca300;
             padding-left: 10px;
         }
 
         .container {
             max-width: 1100px;
             margin: 20px auto; padding: 25px;
-            background: rgba(255, 255, 255, 0.7);
+            background: rgba(30, 30, 30, 0.7);
             backdrop-filter: blur(5px);
-            border: 1px solid rgba(255, 255, 255, 0.3);
+            border: 1px solid rgba(255, 255, 255, 0.05);
             border-radius: 20px;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
             width: 90%;
         }
 
-        h2 { color: #34495e; position: relative; padding-bottom: 10px; margin-top: 30px; }
-        h2::after { content: ''; position: absolute; bottom: 0; left: 0; width: 50px; height: 4px; background: #ffce00; border-radius: 2px; }
+        h2 { color: #fff; position: relative; padding-bottom: 10px; margin-top: 30px; }
+        h2::after { content: ''; position: absolute; bottom: 0; left: 0; width: 50px; height: 4px; background: #cca300; border-radius: 2px; }
 
         /* Галерея */
         .duck-gallery { 
@@ -78,15 +78,15 @@
         }
         
         .duck-card { 
-            background: white; 
+            background: #1e1e1e;
             padding: 15px; 
             border-radius: 15px; 
             text-align: center; 
-            box-shadow: 0 4px 6px rgba(0,0,0,0.05); 
+            box-shadow: 0 4px 6px rgba(0,0,0,0.3); 
             transition: transform 0.3s ease, box-shadow 0.3s ease; 
         }
 
-        .duck-card:hover { transform: rotate(-3deg) scale(1.02); }
+        .duck-card:hover { transform: rotate(-3deg) scale(1.02); box-shadow: 0 8px 15px rgba(0,0,0,0.5); }
 
         .duck-image { 
             width: 100%; height: auto; max-height: 400px; 
@@ -100,7 +100,7 @@
         .avatar-circle {
             width: 100px; height: 100px;
             border-radius: 50%; object-fit: cover;
-            border: 3px solid #ffce00; transition: 0.3s; cursor: pointer;
+            border: 3px solid #cca300; transition: 0.3s; cursor: pointer;
         }
         .avatar-circle:hover { transform: scale(1.1); }
 
@@ -114,27 +114,41 @@
         .tg-button { background-color: #26A5E4; }
         .tg-button svg { width: 16px; height: 16px; fill: white; }
         
-        .more-button { background-color: #95a5a6; color: white; font-weight: bold; font-size: 1.2rem; }
-        .more-button:hover { background-color: #7f8c8d; }
+        .more-button { background-color: #555; color: white; font-weight: bold; font-size: 1.2rem; }
+        .more-button:hover { background-color: #777; }
 
         /* Контактная информация */
         .contact-info {
             display: none;
             margin-top: 10px;
-            background: #fff;
+            background: #2a2a2a;
             padding: 10px;
             border-radius: 10px;
             font-size: 0.8rem;
-            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
-            border: 1px solid #ffce00;
+            color: #e0e0e0;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.5);
+            border: 1px solid #cca300;
             text-align: center;
             animation: fadeIn 0.3s;
         }
 
+        /* МОЗАИЧНЫЙ ПИКСЕЛЬНЫЙ БЛЮР */
         .pixel-mosaic {
             filter: url(#pixelate);
             user-select: none;
             pointer-events: none;
+        }
+
+        /* БЛЮР КЕКЕПЛОЙД */
+        .kek-blur {
+            filter: blur(8px);
+            transition: filter 0.3s ease;
+            user-select: none;
+            cursor: help;
+        }
+        .kek-blur:hover {
+            filter: blur(0);
+            user-select: auto;
         }
 
         @keyframes fadeIn { from {opacity: 0;} to {opacity: 1;} }
@@ -143,21 +157,22 @@
         #imageModal {
             display: none; position: fixed; z-index: 4000;
             left: 0; top: 0; width: 100%; height: 100%;
-            background-color: rgba(0,0,0,0.9);
+            background-color: rgba(0,0,0,0.95);
             cursor: zoom-out; align-items: center; justify-content: center;
             flex-direction: column;
         }
-        #fullImage { max-width: 95%; max-height: 85%; border-radius: 5px; object-fit: contain; }
+        #fullImage { max-width: 95%; max-height: 85%; border-radius: 5px; object-fit: contain; border: 2px solid #555; }
         #modalCaption { color: white; margin-top: 15px; font-size: 1.2rem; font-weight: bold; }
 
         /* Футер */
         footer {
-            background: #333;
-            color: #aaa;
+            background: #0a0a0a;
+            color: #666;
             padding: 40px 20px;
             margin-top: 40px;
             position: relative;
             text-align: center;
+            box-shadow: 0 -2px 10px rgba(0,0,0,0.3);
         }
 
         .footer-email-box {
@@ -165,19 +180,21 @@
             right: 20px;
             bottom: 20px;
             text-align: right;
-            background: rgba(255, 255, 255, 0.05);
+            background: rgba(255, 255, 255, 0.03);
             padding: 10px;
             border-radius: 8px;
-            border: 1px solid rgba(255, 206, 0, 0.3);
+            border: 1px solid rgba(204, 163, 0, 0.2);
         }
 
-        .email-link { color: #ffce00; font-weight: bold; cursor: pointer; text-decoration: underline; }
+        .email-link { color: #ffdb4d; font-weight: bold; cursor: pointer; text-decoration: underline; }
 
         .copy-toast {
             position: fixed; bottom: 80px; right: 20px;
-            background: #27ae60; color: white;
+            background: #1e7e44;
+            color: white;
             padding: 8px 15px; border-radius: 5px;
             opacity: 0; transition: 0.3s; z-index: 5000;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.3);
         }
     </style>
 </head>
@@ -197,8 +214,8 @@
 <div id="copy-toast" class="copy-toast">Почта скопирована!</div>
 
 <header>
-    <h1>🦆 Ретро Утки</h1>
-    <p>Вдохновение в каждом кря</p>
+    <h1>🦆 Мир Уток</h1>
+    <p>Стиль и ретро в каждой детали</p>
 </header>
 
 <nav>
@@ -208,17 +225,15 @@
         <a href="#cool-people">Люди</a>
         <a href="#authors">Команда</a>
     </div>
-    <div class="nav-status-text">сайт новый может быть он будет развиваться</div>
+    <div class="nav-status-text">сайт может быть он будет развиваться</div>
 </nav>
 
 <div class="container">
-    <!-- СЕКЦИЯ ОБ УТКАХ (МИННИ ОПИСАНИЕ) -->
     <section id="about">
         <h2>Кто такие утки?</h2>
-        <p>Утки — это удивительные водоплавающие птицы, которые встречаются практически в любой точке мира, где есть вода. Они мастера на все крылья: умеют летать, плавать и даже ходить (хоть и немного вразвалочку). А еще они бывают невероятно стильными, как те, что представлены в нашей коллекции ниже!</p>
+        <p>Утки — это удивительные водоплавающие птицы, которые мастера на все крылья. Они умеют летать, плавать и даже ходить (хоть и немного вразвалочку). Наша коллекция показывает их в уникальном эстетическом стиле.</p>
     </section>
 
-    <!-- СЕКЦИЯ ГАЛЕРЕИ -->
     <section id="gallery">
         <h2 style="text-align: center; display: block;">Галерея</h2>
         <div class="duck-gallery">
@@ -294,16 +309,18 @@
                     <button class="more-button" onclick="toggleInfo('kek-contacts')">...</button>
                 </div>
                 <div id="kek-contacts" class="contact-info">
-                    <strong>Контактная информация</strong><br>
-                    +40-(731)-402-357<br>
-                    robtop762@gmail.com
+                    <strong>Контактная информация:</strong><br>
+                    <div class="kek-blur">
+                        +40-(731)-402-357<br>
+                        robtop762@gmail.com
+                    </div>
                 </div>
             </div>
         </div>
     </section>
 
     <div style="text-align: center; margin-top: 40px;">
-        <button style="background: linear-gradient(45deg, #ffce00, #ff9100); color: white; padding: 15px 30px; border-radius: 50px; font-weight: bold; border: none; cursor: pointer;" onclick="playQuack()">ПОЛУЧИТЬ ПОРЦИЮ КРЯ</button>
+        <button style="background: linear-gradient(45deg, #cca300, #ff9100); color: white; padding: 15px 30px; border-radius: 50px; font-weight: bold; border: none; cursor: pointer;" onclick="playQuack()">ПОЛУЧИТЬ ПОРЦИЮ КРЯ</button>
     </div>
 </div>
 
@@ -315,14 +332,13 @@
 <footer>
     <p>&copy; 2026 Утиный Клуб. Все права защищены.</p>
     <div class="footer-email-box">
-        <span style="display: block; font-size: 0.65rem; color: #888;">p.s я на неё некогда нее не захожу</span>
+        <span style="display: block; font-size: 0.65rem; color: #555;">p.s я на неё некогда нее не захожу</span>
         <span class="email-link" onclick="copyEmail('emil768ads@vk.com')">emil768ads@vk.com</span>
     </div>
 </footer>
 
 <script>
     let emilTapCount = 0;
-
     function handleEmilClick(element) {
         emilTapCount++;
         if (emilTapCount === 10) {
@@ -332,18 +348,15 @@
             openModal(element.src);
         }
     }
-
     function toggleInfo(id) {
         const div = document.getElementById(id);
         div.style.display = (div.style.display === 'block') ? 'none' : 'block';
     }
-
     function playQuack() {
         const audio = document.getElementById("quack-sound");
         audio.currentTime = 0;
         audio.play();
     }
-
     function openModal(src, caption = '') {
         const modal = document.getElementById("imageModal");
         const capDiv = document.getElementById("modalCaption");
@@ -351,7 +364,6 @@
         document.getElementById("fullImage").src = src;
         capDiv.innerText = caption;
     }
-
     function copyEmail(email) {
         navigator.clipboard.writeText(email).then(() => {
             const toast = document.getElementById("copy-toast");
