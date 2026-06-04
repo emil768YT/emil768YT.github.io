@@ -2,737 +2,100 @@
 <html lang="ru">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-select=none">
-    <title>Мир Уток — Ретро и Стиль</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PixelShot для Windows — Скачать бесплатно</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <style>
-        :root {
-            --bg-color: #f0f2f5;
-            --container-bg: rgba(255, 255, 255, 0.8);
-            --text-color: #2c3e50;
-            --header-text: #121212;
-            --card-bg: #ffffff;
-            --nav-bg: rgba(40, 44, 52, 0.6);
-            --accent-color: #ffce00;
-            --secondary-accent: #ff9100;
-            --footer-bg: #333;
-            --footer-text: #aaa;
-            --border-color: rgba(0, 0, 0, 0.1);
-
-            --glass-bg: rgba(255, 255, 255, 0.25);
-            --glass-border: rgba(255, 255, 255, 0.4);
-            --glass-highlight: rgba(255, 255, 255, 0.6);
-            --glass-shadow: rgba(31, 38, 135, 0.15);
-            --glass-text: #ffffff;
-            --glass-glow: rgba(255, 206, 0, 0.3);
-            
-            --control-btn-bg: rgba(255, 255, 255, 0.3);
-            --control-btn-text: #ffffff;
-            --control-glow: rgba(255, 255, 255, 0.5);
-        }
-
-        [data-theme="dark"] {
-            --bg-color: #121212;
-            --container-bg: rgba(30, 30, 30, 0.7);
-            --text-color: #e0e0e0;
-            --header-text: #121212;
-            --card-bg: #1e1e1e;
-            --nav-bg: rgba(15, 15, 15, 0.6);
-            --accent-color: #cca300;
-            --secondary-accent: #ff9100;
-            --footer-bg: #0a0a0a;
-            --footer-text: #666;
-            --border-color: rgba(255, 255, 255, 0.05);
-
-            --glass-bg: rgba(20, 20, 20, 0.4);
-            --glass-border: rgba(255, 255, 255, 0.15);
-            --glass-highlight: rgba(255, 255, 255, 0.25);
-            --glass-shadow: rgba(0, 0, 0, 0.5);
-            --glass-text: #e0e0e0;
-            --glass-glow: rgba(204, 163, 0, 0.4);
-
-            --control-btn-bg: rgba(204, 163, 0, 0.1);
-            --control-btn-text: var(--accent-color);
-            --control-glow: rgba(204, 163, 0, 0.4);
-        }
-
-        html { scroll-behavior: smooth; }
-        body {
-            font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
-            margin: 0; padding: 0;
-            background: var(--bg-color);
-            color: var(--text-color);
-            line-height: 1.6;
-            transition: background 0.5s ease, color 0.5s ease;
-            overflow-x: hidden;
-        }
-
-        header {
-            background: linear-gradient(90deg, var(--accent-color), #ffdb4d);
-            padding: 40px 15px;
-            text-align: center;
-            color: var(--header-text);
-            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
-            clip-path: polygon(0 0, 100% 0, 100% 90%, 0 100%);
-            transition: background 0.5s ease;
-        }
-
-        header h1 { font-size: clamp(2rem, 8vw, 3.5rem); margin: 0; }
-
-        nav {
-            background: var(--nav-bg);
-            backdrop-filter: blur(15px);
-            -webkit-backdrop-filter: blur(15px);
-            position: sticky; top: 0; z-index: 1000;
-            padding: 12px 15px;
-            display: flex; justify-content: space-between; align-items: center;
-            gap: 10px;
-            border-bottom: 1px solid var(--glass-border);
-            box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.15);
-            transition: background 0.5s ease, border-color 0.5s ease;
-        }
-
-        .nav-links { display: flex; gap: 8px; flex-wrap: wrap; align-items: center; flex: 1; }
-        .nav-controls { display: flex; gap: 8px; align-items: center; flex-shrink: 0; }
-
-        .glass-btn {
-            display: inline-block;
-            background: linear-gradient(135deg, var(--glass-highlight) 0%, var(--glass-bg) 40%, rgba(255,255,255,0) 100%);
-            background-color: var(--glass-bg);
-            color: var(--glass-text);
-            text-decoration: none;
-            font-size: 0.75rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.5px;
-            padding: 8px 16px;
-            border-radius: 50px;
-            border: 1px solid var(--glass-border);
-            box-shadow: 
-                inset 0 3px 6px rgba(255, 255, 255, 0.4), 
-                inset 0 -3px 6px rgba(0, 0, 0, 0.1),
-                0 4px 15px var(--glass-shadow);
-            backdrop-filter: blur(5px);
-            -webkit-backdrop-filter: blur(5px);
-            cursor: pointer;
-            transition: all 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
-            position: relative;
-            overflow: hidden;
-        }
-
-        @media (max-width: 600px) {
-            nav { padding: 10px; gap: 5px; }
-            .glass-btn { padding: 6px 10px; font-size: 0.65rem; }
-            .control-btn { width: 36px !important; height: 36px !important; }
-            #lang-btn { font-size: 0.65rem !important; }
-            #theme-btn { font-size: 0.9rem !important; }
-            .footer-email-box { position: static !important; text-align: center !important; margin-top: 15px; }
-        }
-
-        .glass-btn::before {
-            content: ''; position: absolute; top: 0; left: -150%; width: 100%; height: 100%;
-            background: linear-gradient(90deg, rgba(255,255,255,0), rgba(255,255,255,0.4), rgba(255,255,255,0));
-            transform: skewX(-20deg); transition: 0.6s;
-        }
-        .glass-btn:hover::before { left: 150%; }
-        .glass-btn:hover {
-            transform: translateY(-2px); color: #121212; background-color: var(--accent-color);
-            border-color: var(--accent-color); box-shadow: inset 0 2px 4px rgba(255, 255, 255, 0.6), 0 6px 20px var(--glass-glow);
-        }
-
-        .control-btn {
-            background: var(--control-btn-bg); border: 1px solid var(--glass-border); color: var(--control-btn-text);
-            font-size: 0.95rem; font-weight: 700; width: 42px; height: 42px; border-radius: 50%;
-            display: flex; align-items: center; justify-content: center; cursor: pointer;
-            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15), inset 0 2px 4px rgba(255,255,255,0.2);
-            backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px);
-            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-        }
-        .control-btn:hover { transform: scale(1.1) rotate(5deg); background: var(--accent-color); color: #121212; border-color: var(--accent-color); box-shadow: 0 0 15px var(--control-glow); }
-
-        #lang-btn { font-size: 0.7rem; letter-spacing: 0.5px; }
-        #theme-btn { font-size: 1rem; }
-
-        [data-lang] {
-            transition: opacity 0.25s cubic-bezier(0.4, 0, 0.2, 1), transform 0.25s cubic-bezier(0.4, 0, 0.2, 1);
-            will-change: opacity, transform;
-        }
-
-        .lang-switching {
-            opacity: 0 !important;
-            transform: translateY(-4px);
-        }
-
-        .container {
-            max-width: 1100px; margin: 20px auto; padding: 15px; background: var(--container-bg);
-            backdrop-filter: blur(5px); border: 1px solid var(--border-color); border-radius: 20px;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.1); width: 88%; transition: background 0.5s ease;
-        }
-
-        h2 { position: relative; padding-bottom: 10px; margin-top: 30px; }
-        h2::after { content: ''; position: absolute; bottom: 0; left: 0; width: 50px; height: 4px; background: var(--accent-color); border-radius: 2px; }
-
-        .duck-gallery { display: grid; grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)); gap: 15px; margin-top: 25px; }
-        @media (min-width: 600px) { .duck-gallery { grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 25px; } }
-
-        .duck-card { 
-            background: linear-gradient(135deg, rgba(255,255,255,0.4) 0%, rgba(255,255,255,0.1) 40%, rgba(255,255,255,0) 100%);
-            background-color: rgba(255, 255, 255, 0.15); backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px);
-            border: 1px solid rgba(255, 255, 255, 0.3); padding: 15px; border-radius: 24px; text-align: center; 
-            box-shadow: inset 0 4px 10px rgba(255, 255, 255, 0.5), inset 0 -4px 10px rgba(0, 0, 0, 0.05), 0 10px 25px rgba(0, 0, 0, 0.08); 
-            transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275), background-color 0.4s ease, border-color 0.4s ease, box-shadow 0.4s ease; 
-            position: relative; overflow: hidden;
-        }
-        [data-theme="dark"] .duck-card {
-            background: linear-gradient(135deg, rgba(255,255,255,0.1) 0%, rgba(255,255,255,0.03) 40%, rgba(255,255,255,0) 100%);
-            background-color: rgba(20, 20, 20, 0.3); border-color: rgba(255, 255, 255, 0.1);
-            box-shadow: inset 0 4px 10px rgba(255, 255, 255, 0.15), inset 0 -4px 10px rgba(0, 0, 0, 0.4), 0 10px 30px rgba(0, 0, 0, 0.4);
-        }
-        .duck-card:hover { 
-            transform: rotate(-5deg);
-            background-color: rgba(255, 206, 0, 0.1); border-color: rgba(255, 206, 0, 0.4);
-            box-shadow: inset 0 4px 10px rgba(255, 255, 255, 0.4), 0 15px 30px var(--glass-glow);
-        }
-        [data-theme="dark"] .duck-card:hover { background-color: rgba(204, 163, 0, 0.08); border-color: rgba(204, 163, 0, 0.3); }
-        .duck-card p { margin: 10px 0 0 0; font-weight: 600; color: var(--text-color); font-size: 0.85rem; }
-        .duck-image { width: 100%; height: auto; max-height: 250px; object-fit: contain; border-radius: 14px; cursor: zoom-in; transition: transform 0.3s ease; box-shadow: 0 4px 10px rgba(0,0,0,0.05); }
-
-        .people-section { display: flex; justify-content: center; gap: 20px; flex-wrap: wrap; margin-top: 25px; }
-        .person-card, .author-card { text-align: center; width: 140px; display: flex; flex-direction: column; align-items: center; gap: 5px; }
-        .avatar-circle { width: 85px; height: 85px; border-radius: 50%; object-fit: cover; border: 3px solid var(--accent-color); transition: 0.3s; cursor: pointer; }
-        .avatar-black { background: #000; }
-        .avatar-circle:hover { transform: scale(1.05); }
-        .social-buttons { display: flex; gap: 10px; align-items: center; }
-        .tg-button, .more-button { display: inline-flex; align-items: center; justify-content: center; width: 32px; height: 32px; border-radius: 50%; border: none; cursor: pointer; transition: 0.3s; }
-        .tg-button { background-color: #26A5E4; } .tg-button svg { width: 16px; height: 16px; fill: white; }
-        .more-button { background-color: #555; color: white; font-weight: bold; font-size: 1.2rem; }
-        .contact-info { display: none; margin-top: 10px; background: var(--card-bg); padding: 10px; border-radius: 10px; font-size: 0.8rem; box-shadow: 0 4px 10px rgba(0,0,0,0.2); border: 1px solid var(--accent-color); animation: fadeIn 0.3s; }
-
-        .pixel-mosaic { filter: url(#pixelate); user-select: none; pointer-events: none; }
-        .kek-blur { filter: blur(8px); transition: filter 0.3s ease; user-select: none; cursor: help; }
-        .kek-blur:hover { filter: blur(0); user-select: auto; }
-
-        #imageModal { display: none; position: fixed; z-index: 4000; left: 0; top: 0; width: 100%; height: 100%; background-color: rgba(0,0,0,0.9); align-items: center; justify-content: center; flex-direction: column; cursor: zoom-out; }
-        #fullImage { max-width: 95%; max-height: 85%; border-radius: 5px; object-fit: contain; }
-        #modalCaption { color: white; margin-top: 15px; font-size: 1.2rem; font-weight: bold; }
-
-        footer { background: var(--footer-bg); color: var(--footer-text); padding: 30px 15px; margin-top: 40px; position: relative; text-align: center; transition: background 0.5s ease; }
-        .footer-email-box { position: absolute; right: 20px; bottom: 20px; text-align: right; background: rgba(255, 255, 255, 0.05); padding: 10px; border-radius: 8px; border: 1px solid var(--accent-color); }
-        .email-link { color: var(--accent-color); font-weight: bold; cursor: pointer; text-decoration: underline; }
-
-        #xp-overlay {
-            display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%;
-            background: rgba(0, 0, 0, 0.4); z-index: 99999; align-items: center; justify-content: center;
-        }
-        .xp-window {
-            position: absolute; background: #ece9d8; width: 90%; max-width: 380px;
-            border: 3px solid #0054e3; border-top-left-radius: 7px; border-top-right-radius: 7px;
-            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.4); font-family: Tahoma, Arial, sans-serif; color: #000000;
-            box-sizing: border-box;
-        }
-        .xp-titlebar {
-            background: linear-gradient(to bottom, #0058e6 0%, #0073ea 12%, #004cb0 100%);
-            padding: 6px 8px; display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid #002e86; cursor: move; user-select: none; touch-action: none;
-        }
-        .xp-title { color: #ffffff; font-weight: bold; font-size: 13px; text-shadow: 1px 1px 1px #001f60; pointer-events: none; }
-        .xp-close-btn {
-            background: linear-gradient(to bottom, #e76640 0%, #e94015 12%, #b51c02 100%); border: 1px solid #7c0400;
-            border-radius: 3px; width: 21px; height: 21px; display: flex; align-items: center; justify-content: center;
-            color: #ffffff; font-weight: bold; font-size: 11px; cursor: pointer;
-        }
-        .xp-body { padding: 15px; display: flex; gap: 12px; align-items: center; pointer-events: none; }
-        .xp-icon {
-            background: #e94015; color: #ffffff; border-radius: 50%; width: 30px; height: 30px;
-            display: flex; align-items: center; justify-content: center; font-weight: bold; font-size: 18px; flex-shrink: 0; border: 2px solid #ffffff;
-        }
-        .xp-text { font-size: 12px; line-height: 1.4; word-break: break-word; }
-        .xp-footer { padding-bottom: 12px; display: flex; justify-content: center; }
-        .xp-btn-ok {
-            background: linear-gradient(to bottom, #ffffff 0%, #f2f3ee 12%, #e5e5df 100%); border: 1px solid #003c74;
-            border-radius: 3px; padding: 4px 20px; font-size: 12px; cursor: pointer;
-        }
-
-        .spawned-xp-window {
-            position: fixed !important;
-            z-index: 999999;
-        }
-
-        #bsod-screen {
-            display: none; position: fixed; top: 0; left: 0; width: 100vw; height: 100vh;
-            background-color: #0000aa; background-size: cover; background-position: center;
-            background-repeat: no-repeat; z-index: 1000000;
-        }
-
-        .copy-toast {
-            position: fixed;
-            bottom: 20px;
-            right: 20px;
-            background: #1e7e44;
+        body { font-family: 'Segoe UI', Tahoma, sans-serif; background-color: #f4f7f6; color: #2c3e50; }
+        .hero-section { padding: 120px 0; background: linear-gradient(135deg, #2c3e50 0%, #1a2533 100%); color: white; text-align: center; }
+        .hero-image { max-width: 200px; height: auto; margin-bottom: 30px; }
+        
+        /* СТИЛЬ LIQUID GLASS */
+        .btn-download {
+            background: rgba(255, 255, 255, 0.15);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.3);
             color: white;
-            padding: 10px 20px;
-            border-radius: 8px;
-            opacity: 0;
-            transition: opacity 0.3s ease;
-            z-index: 50000;
-            pointer-events: none;
-            box-shadow: 0 4px 12px rgba(0,0,0,0.2);
-            font-weight: 600;
-            font-size: 0.9rem;
+            padding: 16px 40px;
+            border-radius: 20px;
+            text-decoration: none;
+            transition: 0.4s;
+            box-shadow: 0 8px 32px rgba(0,0,0,0.3);
+            font-weight: bold;
+            font-size: 1.25rem;
+            display: inline-block;
         }
+        .btn-download:hover {
+            background: rgba(255, 255, 255, 0.25);
+            transform: translateY(-5px) scale(1.05);
+            color: white;
+        }
+
+        .system-req { font-size: 0.95rem; color: #bdc3c7; margin-top: 25px; }
+        .feature-card { border: none; border-radius: 12px; transition: transform 0.2s; height: 100%; }
+        .feature-card:hover { transform: scale(1.03); }
+        .screenshot-img { max-width: 100%; border-radius: 12px; box-shadow: 0 10px 20px rgba(0,0,0,0.1); }
+        .footer { padding: 50px 0; background-color: #1a2533; color: #95a5a6; text-align: center; }
     </style>
 </head>
 <body>
 
-<svg width="0" height="0" style="position:absolute;">
-  <filter id="pixelate" x="0" y="0">
-    <feFlood x="4" y="4" height="2" width="2" />
-    <feComposite width="10" height="10" />
-    <feTile result="a" />
-    <feComposite in="SourceGraphic" in2="a" operator="in" />
-    <feMorphology operator="dilate" radius="5" />
-  </filter>
-</svg>
-
-<div id="copy-toast" class="copy-toast" data-lang="toast">Почта скопирована!</div>
-
-<div id="xp-overlay">
-    <div id="main-xp-window" class="xp-window">
-        <div class="xp-titlebar" onmousedown="makeDraggable(event, 'main-xp-window')" ontouchstart="makeDraggable(event, 'main-xp-window')">
-            <span class="xp-title" data-lang="xp-title">Системное предупреждение</span>
-            <div class="xp-close-btn" onclick="startXpSpam()">X</div>
-        </div>
-        <div class="xp-body">
-            <div class="xp-icon">X</div>
-            <div class="xp-text" data-lang="xp-text">Не используй Автокликер!</div>
-        </div>
-        <div class="xp-footer">
-            <button class="xp-btn-ok" onclick="startXpSpam()">OK</button>
-        </div>
-    </div>
-</div>
-
-<div id="bsod-screen"></div>
-
-<header>
-    <h1 data-lang="main-title">Мир Уток</h1>
-    <p data-lang="main-subtitle">Стиль и ретро в каждой детали</p>
-</header>
-
-<nav>
-    <div class="nav-links">
-        <a href="#about" class="glass-btn" data-lang="btn-about" onclick="registerClick()">О нас</a>
-        <a href="#gallery" class="glass-btn" data-lang="btn-gallery" onclick="registerClick()">Галерея</a>
-        <a href="#cool-people" class="glass-btn" data-lang="btn-people" onclick="registerClick()">Люди</a>
-        <a href="#authors" class="glass-btn" data-lang="btn-team" onclick="registerClick()">Команда</a>
-    </div>
-    <div class="nav-controls">
-        <button id="lang-btn" class="control-btn" onclick="toggleLanguage()">ENG</button>
-        <button id="theme-btn" class="control-btn" onclick="toggleTheme()">🌙</button>
-    </div>
-</nav>
-
-<div class="container">
-    <section id="about">
-        <h2 data-lang="about-title">Кто такие утки?</h2>
-        <p data-lang="about-text">Утки — это удивительные водоплавающие птицы, которые мастера на все крылья. Наша коллекция показывает их в уникальном эстетическом стиле.</p>
-    </section>
-
-    <section id="gallery">
-        <h2 style="text-align: center; display: block;" data-lang="gallery-title">Галерея</h2>
-        <div class="duck-gallery">
-            <div class="duck-card">
-                <img src="https://noikcloud.xyz/dKg36lq" alt="Утка-силач" class="duck-image" onclick="openModal(this.src)">
-                <p data-lang="duck1">Утка-силач</p>
-            </div>
-            <div class="duck-card">
-                <img src="https://noikcloud.xyz/tjBP5sv" alt="Стильный компаньон" class="duck-image" onclick="openModal(this.src)">
-                <p data-lang="duck2">Стильный компаньон</p>
-            </div>
-            <div class="duck-card">
-                <img src="https://static.tildacdn.pub/tild6130-3462-4436-a662-323131636366/image.png" alt="Человек держит утку" class="duck-image" onclick="openModal(this.src)">
-                <p data-lang="duck3">Человек держит утку</p>
-            </div>
-            <div class="duck-card">
-                <img src="https://tr.rbxcdn.com/180DAY-b4fe968f6db521051bdbfd49ae7f05cd/420/420/Hat/Webp/noFilter" alt="Утка mini" class="duck-image" onclick="openModal(this.src)">
-                <p data-lang="duck4">Утка mini</p>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark sticky-top">
+        <div class="container">
+            <a class="navbar-brand fw-bold d-flex align-items-center" href="#">
+                <img src="https://kappa.lol/vUqrF3" alt="PixelShot Logo" class="me-2" style="height: 40px;">
+                PixelShot
+            </a>
+            <div class="navbar-nav ms-auto">
+                <a class="nav-link" href="#features">Возможности</a>
+                <a class="nav-link" href="#screenshots">Скриншоты</a>
+                <a class="nav-link btn btn-outline-light btn-sm ms-3" href="https://noikcloud.xyz/08CLDWO">Скачать</a>
             </div>
         </div>
-    </section>
+    </nav>
 
-    <section id="cool-people">
-        <h2 style="text-align: center; display: block;" data-lang="people-title">Крутые люди</h2>
-        <div class="people-section">
-            <div class="person-card">
-                <img src="https://noikcloud.xyz/26Qonmt" class="avatar-circle" onclick="openModal(this.src)">
-                <span class="person-name" data-lang="p-name1">1. Ассассин</span>
+    <header class="hero-section">
+        <div class="container">
+            <img src="https://kappa.lol/UAAnvd" alt="PixelShot Feature Showcase" class="hero-image">
+            <h1>PixelShot для Windows</h1>
+            <div class="my-5">
+                <a href="https://noikcloud.xyz/08CLDWO" class="btn-download">Скачать для Windows</a>
             </div>
-            <div class="person-card">
-                <img src="https://noikcloud.xyz/fUX8FIB" class="avatar-circle" onclick="openModal('https://noikcloud.xyz/u6CtrMd')">
-                <span class="person-name">2. bloczi</span>
-            </div>
-            <div class="person-card">
-                <img src="https://noikcloud.xyz/VZikVKR" class="avatar-circle" onclick="openModal(this.src)">
-                <span class="person-name">3. Vlad</span>
-            </div>
-            <div class="person-card">
-                <div class="avatar-circle avatar-black" onclick="openModal('https://dummyimage.com/600x600/000/000.png', '???')"></div>
-                <span class="person-name">4. ???</span>
+            <div class="system-req">
+                <p>Совместимо с Windows 10, 11 (64-bit)</p>
             </div>
         </div>
-    </section>
+    </header>
 
-    <section id="authors">
-        <h2 style="text-align: center; display: block;" data-lang="team-title">Команда проекта</h2>
-        <div class="people-section">
-            <div class="author-card">
-                <img src="https://noikcloud.xyz/fSjunJz" class="avatar-circle" onclick="handleEmilClick(this)">
-                <span class="person-name">emil768</span>
-                <span class="author-role" data-lang="role-creator">Создатель</span>
-                <div class="social-buttons">
-                    <a href="https://t.me/emil768tg" target="_blank" class="tg-button">
-                        <svg viewBox="0 0 24 24"><path d="M12 0c-6.627 0-12 5.373-12 12s5.373 12 12 12 12-5.373 12-12-5.373-12-12-12zm5.891 8.146l-1.931 9.102c-.144.646-.528.805-1.069.5l-2.94-2.167-1.418 1.365c-.157.157-.289.289-.591.289l.211-2.992 5.446-4.921c.237-.211-.051-.328-.368-.117l-6.732 4.239-2.901-.908c-.63-.197-.643-.63.131-.931l11.34-4.371c.525-.192.985.122.822.912z"/></svg>
-                    </a>
-                    <button class="more-button" onclick="toggleInfo('emil-contacts')">...</button>
-                </div>
-                <div id="emil-contacts" class="contact-info">
-                    <strong data-lang="contact-head">Контактные данные:</strong><br>
-                    <div class="pixel-mosaic">+7938754524<br>emil768ads@vk.com</div>
+    <section id="features" class="container my-5 py-5">
+        <h2 class="text-center mb-5 fw-bold">Основные возможности</h2>
+        <div class="row justify-content-center g-4">
+            <div class="col-md-6 col-lg-5">
+                <div class="card p-4 border-0 shadow-sm feature-card">
+                    <h3 class="h4 fw-semibold text-primary">⚡ Горячие клавиши</h3>
+                    <p>Мгновенный захват любой области экрана, окна или всего рабочего стола.</p>
                 </div>
             </div>
-            
-            <div class="author-card">
-                <img src="https://noikcloud.xyz/FP8mdFh" class="avatar-circle" onclick="openModal(this.src)">
-                <span class="person-name" data-lang="p-name5">кекеплойд</span>
-                <span class="author-role" data-lang="role-idea">Идея</span>
-                <div class="social-buttons">
-                    <a href="https://t.me/pldzztg" target="_blank" class="tg-button">
-                        <svg viewBox="0 0 24 24"><path d="M12 0c-6.627 0-12 5.373-12 12s5.373 12 12 12 12-5.373 12-12-5.373-12-12-12zm5.891 8.146l-1.931 9.102c-.144.646-.528.805-1.069.5l-2.94-2.167-1.418 1.365c-.157.157-.289.289-.591.289l.211-2.992 5.446-4.921c.237-.211-.051-.328-.368-.117l-6.732 4.239-2.901-.908c-.63-.197-.643-.63.131-.931l11.34-4.371c.525-.192.985.122.822.912z"/></svg>
-                    </a>
-                    <button class="more-button" onclick="toggleInfo('kek-contacts')">...</button>
-                </div>
-                <div id="kek-contacts" class="contact-info">
-                    <strong data-lang="contact-head">Контактная информация:</strong><br>
-                    <div class="kek-blur">+40-(731)-402-357<br>robtop762@gmail.com</div>
+            <div class="col-md-6 col-lg-5">
+                <div class="card p-4 border-0 shadow-sm feature-card">
+                    <h3 class="h4 fw-semibold text-success">🎨 Встроенный редактор</h3>
+                    <p>Добавляйте карандаш, блюр, квадрат и круг сразу после снимка.</p>
                 </div>
             </div>
         </div>
     </section>
 
-    <div style="text-align: center; margin-top: 40px;">
-        <button style="background: linear-gradient(45deg, var(--accent-color), var(--secondary-accent)); color: #121212; padding: 15px 30px; border-radius: 50px; font-weight: bold; border: none; cursor: pointer;" onclick="playQuack()" data-lang="quack-btn">ПОЛУЧИТЬ ПОРЦИЮ КРЯ</button>
-    </div>
-</div>
+    <section id="screenshots" class="container my-5 py-5 text-center">
+        <h2 class="mb-5 fw-bold">Скриншоты</h2>
+        <img src="https://noikcloud.xyz/q0w0WFe" alt="PixelShot Interface" class="screenshot-img">
+    </section>
 
-<div id="imageModal" onclick="this.style.display='none'">
-    <img id="fullImage">
-    <div id="modalCaption"></div>
-</div>
-
-<footer>
-    <p>&copy; 2026 Утиный Клуб. Все права защищены.</p>
-    <div class="footer-email-box">
-        <span style="display: block; font-size: 0.65rem; color: #888;" data-lang="footer-ps">p.s я на неё некогда нее не захожу</span>
-        <span class="email-link" onclick="copyEmail('emil768ads@vk.com')">emil768ads@vk.com</span>
-    </div>
-</footer>
-
-<script>
-    const translations = {
-        ru: {
-            "main-title": "Мир Уток",
-            "main-subtitle": "Стиль и ретро в каждой детали",
-            "btn-about": "О нас",
-            "btn-gallery": "Галерея",
-            "btn-people": "Люди",
-            "btn-team": "Команда",
-            "about-title": "Кто такие утки?",
-            "about-text": "Утки — это удивительные водоплавающие птицы, которые мастера на все крылья. Наша коллекция показывает их в уникальном эстетическом стиле.",
-            "gallery-title": "Галерея",
-            "duck1": "Утка-силач",
-            "duck2": "Стильный компаньон",
-            "duck3": "Человек держит утку",
-            "duck4": "Утка mini",
-            "people-title": "Крутые люди",
-            "p-name1": "1. Ассассин",
-            "p-name5": "кекеплойд",
-            "team-title": "Команда проекта",
-            "role-creator": "Создатель",
-            "role-idea": "Идея",
-            "contact-head": "Контактные данные:",
-            "quack-btn": "ПОЛУЧИТЬ ПОРЦИЮ КРЯ",
-            "xp-title": "Системное предупреждение",
-            "xp-text": "Не используй Автокликер!",
-            "toast": "Почта скопирована!"
-        },
-        en: {
-            "main-title": "Duck World",
-            "main-subtitle": "Style and retro in every detail",
-            "btn-about": "About Us",
-            "btn-gallery": "Gallery",
-            "btn-people": "People",
-            "btn-team": "Team",
-            "about-title": "Who are the ducks?",
-            "about-text": "Ducks are amazing waterfowl that are jacks of all wings. Our collection showcases them in a unique aesthetic style.",
-            "gallery-title": "Gallery",
-            "duck1": "Strongman Duck",
-            "duck2": "Stylish Companion",
-            "duck3": "Man holding a duck",
-            "duck4": "Mini Duck",
-            "people-title": "Cool People",
-            "p-name1": "1. Assassin",
-            "p-name5": "Kekeployd",
-            "team-title": "Project Team",
-            "role-creator": "Creator",
-            "role-idea": "Idea",
-            "contact-head": "Contact info:",
-            "quack-btn": "GET A PORTION OF QUACK",
-            "xp-title": "System Warning",
-            "xp-text": "Do not use an Autoclicker!",
-            "toast": "Email copied!"
-        }
-    };
-
-    let currentLang = 'ru';
-    let isSwitching = false;
-    let clickTimestamps = [];
-    let isSpammingActive = false;
-    let audioCtx = null;
-
-    function playErrorSound() {
-        try {
-            if (!audioCtx) {
-                audioCtx = new (window.AudioContext || window.webkitAudioContext)();
-            }
-            let osc1 = audioCtx.createOscillator();
-            let osc2 = audioCtx.createOscillator();
-            let gainNode = audioCtx.createGain();
-
-            osc1.type = 'square';
-            osc1.frequency.setValueAtTime(150, audioCtx.currentTime);
-            osc2.type = 'sine';
-            osc2.frequency.setValueAtTime(120, audioCtx.currentTime);
-
-            gainNode.gain.setValueAtTime(0.3, audioCtx.currentTime);
-            gainNode.gain.exponentialRampToValueAtTime(0.01, audioCtx.currentTime + 0.25);
-
-            osc1.connect(gainNode);
-            osc2.connect(gainNode);
-            gainNode.connect(audioCtx.destination);
-
-            osc1.start(); osc2.start();
-            osc1.stop(audioCtx.currentTime + 0.25);
-            osc2.stop(audioCtx.currentTime + 0.25);
-        } catch(e) {}
-    }
-
-    function playQuackSound() {
-        try {
-            if (!audioCtx) {
-                audioCtx = new (window.AudioContext || window.webkitAudioContext)();
-            }
-            let osc = audioCtx.createOscillator();
-            let gainNode = audioCtx.createGain();
-
-            osc.type = 'sawtooth';
-            osc.frequency.setValueAtTime(450, audioCtx.currentTime);
-            osc.frequency.exponentialRampToValueAtTime(180, audioCtx.currentTime + 0.2);
-
-            gainNode.gain.setValueAtTime(0.4, audioCtx.currentTime);
-            gainNode.gain.linearRampToValueAtTime(0.01, audioCtx.currentTime + 0.25);
-
-            osc.connect(gainNode);
-            gainNode.connect(audioCtx.destination);
-
-            osc.start();
-            osc.stop(audioCtx.currentTime + 0.25);
-        } catch(e) {}
-    }
-
-    function makeDraggable(e, windowId) {
-        const windowElement = document.getElementById(windowId);
-        if (!windowElement) return;
-
-        let isTouch = e.type === 'touchstart';
-        let posX = isTouch ? e.touches[0].clientX : e.clientX;
-        let posY = isTouch ? e.touches[0].clientY : e.clientY;
-
-        function onMove(event) {
-            let currentX = isTouch ? event.touches[0].clientX : event.clientX;
-            let currentY = isTouch ? event.touches[0].clientY : event.clientY;
-
-            const deltaX = currentX - posX;
-            const deltaY = currentY - posY;
-            posX = currentX;
-            posY = currentY;
-
-            windowElement.style.top = (windowElement.offsetTop + deltaY) + "px";
-            windowElement.style.left = (windowElement.offsetLeft + deltaX) + "px";
-        }
-
-        function onEnd() {
-            document.removeEventListener(isTouch ? 'touchmove' : 'mousemove', onMove);
-            document.removeEventListener(isTouch ? 'touchend' : 'mouseup', onEnd);
-        }
-
-        document.addEventListener(isTouch ? 'touchmove' : 'mousemove', onMove, { passive: false });
-        document.addEventListener(isTouch ? 'touchend' : 'mouseup', onEnd);
-    }
-
-    function registerClick() {
-        if (isSpammingActive) return;
-        const now = Date.now();
-        clickTimestamps.push(now);
-        clickTimestamps = clickTimestamps.filter(time => now - time < 1000);
-
-        if (clickTimestamps.length > 20) {
-            isSpammingActive = true;
-            playErrorSound();
-            
-            const mainWin = document.getElementById('main-xp-window');
-            mainWin.style.left = Math.max(10, (window.innerWidth - mainWin.offsetWidth) / 2) + 'px';
-            mainWin.style.top = Math.max(50, (window.innerHeight - mainWin.offsetHeight) / 2) + 'px';
-            
-            document.getElementById('xp-overlay').style.display = 'flex';
-        }
-    }
-
-    function startXpSpam() {
-        document.getElementById('xp-overlay').style.display = 'none';
-
-        let windowCount = 0;
-        const maxWindows = 15;
-
-        const spamInterval = setInterval(() => {
-            if (windowCount >= maxWindows) {
-                clearInterval(spamInterval);
-                
-                setTimeout(() => {
-                    document.querySelectorAll('.spawned-xp-window').forEach(el => el.remove());
-                    
-                    const bsod = document.getElementById('bsod-screen');
-                    
-                    if (window.innerWidth <= 768) {
-                        bsod.style.backgroundImage = "url('https://noikcloud.xyz/7KqrUVK')";
-                    } else {
-                        bsod.style.backgroundImage = "url('https://noikcloud.xyz/lN87vXC')";
-                    }
-                    
-                    bsod.style.display = 'block';
-                    
-                    setTimeout(() => {
-                        window.location.reload();
-                    }, 5000);
-                }, 5000);
-                return;
-            }
-
-            const winWidth = Math.min(350, window.innerWidth - 40);
-            const randomX = Math.floor(Math.random() * (window.innerWidth - winWidth));
-            const randomY = Math.floor(Math.random() * (window.innerHeight - 180));
-
-            const titleText = translations[currentLang]["xp-title"];
-            const bodyText = translations[currentLang]["xp-text"];
-            const uniqueId = 'spawned-window-' + windowCount;
-
-            const newWindow = document.createElement('div');
-            newWindow.className = 'xp-window spawned-xp-window';
-            newWindow.id = uniqueId;
-            newWindow.style.left = randomX + 'px';
-            newWindow.style.top = randomY + 'px';
-            
-            newWindow.innerHTML = `
-                <div class="xp-titlebar" onmousedown="makeDraggable(event, '${uniqueId}')" ontouchstart="makeDraggable(event, '${uniqueId}')">
-                    <span class="xp-title">${titleText}</span>
-                    <div class="xp-close-btn">X</div>
-                </div>
-                <div class="xp-body">
-                    <div class="xp-icon">X</div>
-                    <div class="xp-text">${bodyText}</div>
-                </div>
-                <div class="xp-footer">
-                    <button class="xp-btn-ok">OK</button>
-                </div>
-            `;
-
-            document.body.appendChild(newWindow);
-            playErrorSound();
-            windowCount++;
-        }, 150);
-    }
-
-    function toggleLanguage() {
-        if (isSwitching) return;
-        isSwitching = true;
-
-        const langBtn = document.getElementById('lang-btn');
-        const elementsToTranslate = document.querySelectorAll('[data-lang]');
-
-        elementsToTranslate.forEach(el => el.classList.add('lang-switching'));
-
-        setTimeout(() => {
-            currentLang = (currentLang === 'ru') ? 'en' : 'ru';
-            langBtn.innerText = (currentLang === 'ru') ? 'ENG' : 'RU';
-            document.documentElement.setAttribute('lang', currentLang);
-            
-            elementsToTranslate.forEach(element => {
-                const key = element.getAttribute('data-lang');
-                if (translations[currentLang][key]) {
-                    element.innerHTML = translations[currentLang][key];
-                }
-            });
-
-            elementsToTranslate.forEach(el => el.classList.remove('lang-switching'));
-            
-            setTimeout(() => { isSwitching = false; }, 250);
-        }, 250);
-    }
-
-    function toggleTheme() {
-        const body = document.body;
-        const themeBtn = document.getElementById('theme-btn');
-        const currentTheme = body.getAttribute('data-theme');
-        
-        if (currentTheme === 'dark') {
-            body.setAttribute('data-theme', 'light');
-            themeBtn.innerText = '🌙';
-        } else {
-            body.setAttribute('data-theme', 'dark');
-            themeBtn.innerText = '☀️';
-        }
-    }
-
-    let emilTapCount = 0;
-    function handleEmilClick(element) {
-        emilTapCount++;
-        if (emilTapCount === 10) {
-            openModal('https://noikcloud.xyz/IYStlZN', currentLang === 'ru' ? 'крутая картинка' : 'cool picture');
-            emilTapCount = 0;
-        } else {
-            openModal(element.src);
-        }
-    }
-    
-    function toggleInfo(id) {
-        const div = document.getElementById(id);
-        div.style.display = (div.style.display === 'block') ? 'none' : 'block';
-    }
-    
-    function playQuack() {
-        playQuackSound();
-    }
-    
-    function openModal(src, caption = '') {
-        const modal = document.getElementById("imageModal");
-        const capDiv = document.getElementById("modalCaption");
-        modal.style.display = "flex";
-        document.getElementById("fullImage").src = src;
-        capDiv.innerText = caption;
-    }
-    
-    function copyEmail(email) {
-        navigator.clipboard.writeText(email).then(() => {
-            const toast = document.getElementById("copy-toast");
-            toast.style.opacity = "1";
-            setTimeout(() => { toast.style.opacity = "0"; }, 2000);
-        });
-    }
-</script>
+    <footer class="footer">
+        <div class="container">
+            <p>emil768ads@vk.com</p>
+        </div>
+    </footer>
 
 </body>
 </html>
