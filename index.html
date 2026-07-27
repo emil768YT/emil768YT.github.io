@@ -3,15 +3,614 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>PixelShot для Windows — Скачать бесплатно</title>
+    <title id="page-title">EMIL768 SCRIPT — Hub</title>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Comfortaa:wght@700&display=swap" rel="stylesheet">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <style>
-        body { font-family: 'Segoe UI', Tahoma, sans-serif; background-color: #f4f7f6; color: #2c3e50; }
-        .hero-section { padding: 120px 0; background: linear-gradient(135deg, #2c3e50 0%, #1a2533 100%); color: white; text-align: center; }
-        .hero-image { max-width: 200px; height: auto; margin-bottom: 30px; }
+        :root {
+            --bg-dark: #07090e;
+            --panel-bg: rgba(15, 20, 31, 0.75);
+            --panel-border: rgba(255, 255, 255, 0.08);
+            --accent-color: #00d2ff;
+            --btn-blue: #00a2ff;
+            --text-main: #f1f5f9;
+            --text-muted: #94a3b8;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            user-select: none;
+        }
+
+        body {
+            background-color: var(--bg-dark);
+            color: var(--text-main);
+            min-height: 100vh;
+            overflow-x: hidden;
+            position: relative;
+        }
+
+        /* --- АНИМАЦИИ ПЕРЕКЛЮЧЕНИЯ СТРАНИЦ --- */
+        .page-view {
+            transition: opacity 0.4s ease, transform 0.4s ease;
+            opacity: 1;
+            transform: scale(1);
+            width: 100%;
+        }
+
+        .page-view.fade-out {
+            opacity: 0;
+            transform: scale(0.97);
+            pointer-events: none;
+        }
+
+        .page-view.fade-in {
+            animation: pageFadeIn 0.4s ease forwards;
+        }
+
+        @keyframes pageFadeIn {
+            from {
+                opacity: 0;
+                transform: scale(1.03);
+            }
+            to {
+                opacity: 1;
+                transform: scale(1);
+            }
+        }
+
+        /* --- ВЫПАДАЮЩЕЕ МЕНЮ САЙТОВ --- */
+        .projects-dropdown {
+            position: fixed;
+            top: 24px;
+            right: 24px;
+            z-index: 9999;
+        }
+
+        .projects-btn {
+            background: rgba(15, 23, 42, 0.85);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            color: var(--text-main);
+            padding: 8px 18px;
+            border-radius: 20px;
+            font-size: 13px;
+            font-weight: 700;
+            cursor: pointer;
+            backdrop-filter: blur(10px);
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            transition: all 0.25s ease;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.4);
+        }
+
+        .projects-btn:hover {
+            border-color: var(--accent-color);
+            transform: translateY(-2px);
+            box-shadow: 0 6px 25px rgba(0, 210, 255, 0.25);
+        }
+
+        .projects-btn svg {
+            width: 16px;
+            height: 16px;
+            fill: var(--accent-color);
+        }
+
+        .projects-menu {
+            position: absolute;
+            top: calc(100% + 10px);
+            right: 0;
+            width: 220px;
+            background: rgba(11, 15, 25, 0.95);
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            border-radius: 14px;
+            padding: 8px;
+            backdrop-filter: blur(16px);
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.6);
+            display: none;
+            flex-direction: column;
+            gap: 4px;
+            animation: fadeIn 0.2s ease-out;
+        }
+
+        .projects-menu.show {
+            display: flex;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(-8px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .project-item {
+            padding: 10px 14px;
+            border-radius: 8px;
+            color: var(--text-muted);
+            font-size: 13px;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            transition: all 0.2s ease;
+            cursor: pointer;
+        }
+
+        .project-item:hover {
+            background: rgba(0, 210, 255, 0.1);
+            color: #ffffff;
+        }
+
+        .project-item.active {
+            color: var(--accent-color);
+            background: rgba(0, 210, 255, 0.08);
+        }
+
+        .project-badge {
+            font-size: 10px;
+            padding: 2px 6px;
+            border-radius: 6px;
+            background: rgba(255, 255, 255, 0.1);
+            color: var(--text-muted);
+        }
+
+        .project-item.active .project-badge {
+            background: var(--accent-color);
+            color: #000;
+            font-weight: 700;
+        }
+
+        /* --- СТИЛИ СТРАНИЦЫ EMIL768 SCRIPT --- */
+        #page-emil {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            min-height: 100vh;
+            position: relative;
+        }
+
+        .site-lang-switch {
+            position: absolute;
+            top: 24px;
+            left: 24px;
+            z-index: 100;
+            display: flex;
+            gap: 6px;
+            background: rgba(15, 23, 42, 0.8);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            padding: 4px;
+            border-radius: 20px;
+            backdrop-filter: blur(10px);
+        }
+
+        .lang-btn {
+            background: transparent;
+            border: none;
+            color: var(--text-muted);
+            font-size: 12px;
+            font-weight: 700;
+            padding: 6px 12px;
+            border-radius: 14px;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+
+        .lang-btn.active {
+            background: var(--btn-blue);
+            color: #fff;
+        }
+
+        .bg-lines {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 0;
+            pointer-events: none;
+        }
+
+        .bg-lines svg {
+            width: 100%;
+            height: 100%;
+            opacity: 0.25;
+        }
+
+        .container-emil {
+            position: relative;
+            z-index: 10;
+            width: 100%;
+            max-width: 1280px;
+            padding: 100px 24px 40px;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 60px;
+            align-items: center;
+        }
+
+        @media (max-width: 900px) {
+            .container-emil {
+                grid-template-columns: 1fr;
+                gap: 40px;
+                padding-top: 100px;
+            }
+        }
+
+        .hero-content {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+        }
+
+        .hero-title {
+            font-size: 54px;
+            font-weight: 800;
+            line-height: 1.1;
+            letter-spacing: -1.5px;
+            margin-bottom: 20px;
+        }
+
+        .hero-title span {
+            color: var(--accent-color);
+            transition: color 0.3s;
+        }
+
+        .hero-description {
+            font-size: 17px;
+            line-height: 1.6;
+            color: var(--text-muted);
+            margin-bottom: 36px;
+            max-width: 480px;
+        }
+
+        .cta-group {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            flex-wrap: wrap;
+        }
+
+        .btn-main {
+            background: var(--btn-blue);
+            color: #ffffff;
+            padding: 16px 32px;
+            border-radius: 30px;
+            font-size: 16px;
+            font-weight: 700;
+            border: none;
+            cursor: pointer;
+            transition: all 0.25s ease;
+            box-shadow: 0 10px 25px -5px rgba(0, 162, 255, 0.4);
+        }
+
+        .btn-main:hover {
+            opacity: 0.9;
+            transform: translateY(-2px);
+        }
+
+        .btn-arrow {
+            width: 52px;
+            height: 52px;
+            border-radius: 50%;
+            background: rgba(30, 41, 59, 0.7);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            color: var(--text-main);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 18px;
+            cursor: pointer;
+            transition: 0.2s;
+        }
+
+        .btn-arrow:hover {
+            background: rgba(51, 65, 85, 0.8);
+            transform: translateY(-2px);
+        }
+
+        .btn-telegram {
+            width: 52px;
+            height: 52px;
+            border-radius: 50%;
+            background: #24A1DE;
+            color: #ffffff;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-decoration: none;
+            transition: all 0.25s ease;
+            box-shadow: 0 10px 25px -5px rgba(36, 161, 222, 0.4);
+        }
+
+        .btn-telegram:hover {
+            background: #2094cc;
+            transform: translateY(-2px);
+            box-shadow: 0 12px 30px -5px rgba(36, 161, 222, 0.6);
+        }
+
+        .btn-telegram svg {
+            width: 24px;
+            height: 24px;
+            fill: currentColor;
+        }
+
+        .gui-wrapper {
+            position: relative;
+            display: flex;
+            justify-content: center;
+            perspective: 1000px;
+        }
+
+        .emil-window {
+            width: 360px;
+            background-color: #0b0d12;
+            border: 2px solid var(--accent-color);
+            border-radius: 16px;
+            padding: 16px;
+            box-shadow: 0 25px 60px rgba(0, 0, 0, 0.8), 0 0 25px rgba(0, 210, 255, 0.2);
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            transition: border-color 0.3s, transform 0.15s ease-out;
+            transform-style: preserve-3d;
+            will-change: transform;
+        }
+
+        /* --- ИСПРАВЛЕНИЯ ШАПКИ И ВЫСОТЫ --- */
+        .emil-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 4px 6px 0 6px;
+            margin-bottom: 2px;
+        }
+
+        .emil-title {
+            color: var(--accent-color);
+            font-family: 'Comfortaa', cursive, sans-serif;
+            font-size: 14px;
+            font-weight: 700;
+            letter-spacing: 0.5px;
+            transition: color 0.3s;
+        }
+
+        .emil-minimize {
+            color: #627288;
+            font-size: 14px;
+            cursor: pointer;
+        }
+
+        .emil-tabs {
+            display: grid;
+            grid-template-columns: 1fr 1fr 40px;
+            background: #121620;
+            border-radius: 8px;
+            padding: 3px;
+            gap: 4px;
+        }
+
+        .emil-tab {
+            background: transparent;
+            border: none;
+            color: #627288;
+            padding: 8px 0;
+            font-size: 12px;
+            font-weight: 700;
+            border-radius: 6px;
+            cursor: pointer;
+            text-align: center;
+            font-family: 'Comfortaa', cursive, sans-serif;
+        }
+
+        .emil-tab.active {
+            background: #172030;
+            color: var(--accent-color);
+            box-shadow: inset 0 0 0 1px var(--accent-color);
+            transition: color 0.3s, box-shadow 0.3s;
+        }
+
+        /* Фиксированная высота для списков панелей чтобы окно не сжималось */
+        .tab-panel {
+            display: none;
+            flex-direction: column;
+            gap: 8px;
+            height: 370px;
+            overflow-y: auto;
+            padding-right: 4px;
+        }
+
+        .tab-panel::-webkit-scrollbar {
+            width: 4px;
+        }
+        .tab-panel::-webkit-scrollbar-thumb {
+            background: #1d2636;
+            border-radius: 4px;
+        }
+
+        .tab-panel.active {
+            display: flex;
+        }
+
+        .emil-group {
+            border: 1px solid var(--accent-color);
+            border-radius: 8px;
+            padding: 6px;
+            display: flex;
+            flex-direction: column;
+            gap: 6px;
+            background: rgba(0, 162, 255, 0.02);
+            transition: border-color 0.3s;
+        }
+
+        .emil-input {
+            width: 100%;
+            background: #121722;
+            border: none;
+            border-radius: 6px;
+            padding: 10px;
+            color: #8397b0;
+            font-size: 11px;
+            text-align: center;
+            outline: none;
+            font-family: 'Comfortaa', cursive, sans-serif;
+            font-weight: 700;
+        }
+
+        .emil-btn-blue {
+            width: 100%;
+            background: var(--btn-blue);
+            border: none;
+            border-radius: 6px;
+            padding: 11px;
+            color: #ffffff;
+            font-size: 11px;
+            font-weight: 700;
+            cursor: pointer;
+            text-align: center;
+            text-transform: uppercase;
+            font-family: 'Comfortaa', cursive, sans-serif;
+            transition: background 0.2s;
+        }
+
+        .emil-btn-toggle {
+            width: 100%;
+            background: #151a26;
+            border: none;
+            border-radius: 6px;
+            padding: 11px;
+            color: #8397b0;
+            font-size: 11px;
+            font-weight: 700;
+            cursor: pointer;
+            text-align: center;
+            text-transform: uppercase;
+            font-family: 'Comfortaa', cursive, sans-serif;
+            transition: all 0.2s;
+        }
+
+        .emil-btn-toggle.active {
+            background: #10263d;
+            color: var(--accent-color);
+            box-shadow: inset 0 0 0 1px var(--accent-color);
+        }
+
+        .bind-row {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            background: #151a26;
+            border-radius: 6px;
+            padding: 10px 12px;
+            font-size: 11px;
+            font-family: 'Comfortaa', cursive, sans-serif;
+            font-weight: 700;
+            color: #8397b0;
+        }
+
+        .bind-key {
+            color: #48576e;
+            font-size: 10px;
+            text-transform: uppercase;
+            cursor: pointer;
+        }
+
+        .bind-key:hover {
+            color: var(--accent-color);
+        }
+
+        .theme-box {
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            border-radius: 8px;
+            padding: 10px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 10px;
+            background: #121722;
+        }
+
+        .theme-title {
+            font-size: 11px;
+            font-family: 'Comfortaa', cursive, sans-serif;
+            color: #8397b0;
+            font-weight: 700;
+        }
+
+        .color-dots {
+            display: flex;
+            gap: 10px;
+        }
+
+        .color-dot {
+            width: 22px;
+            height: 22px;
+            border-radius: 50%;
+            cursor: pointer;
+            transition: transform 0.2s;
+        }
+
+        .color-dot:hover {
+            transform: scale(1.2);
+        }
+
+        .emil-footer-info {
+            text-align: center;
+            font-size: 9px;
+            color: #55667d;
+            font-family: 'Comfortaa', cursive, sans-serif;
+            margin-top: 6px;
+            line-height: 1.4;
+        }
+
+        .executors-section {
+            position: relative;
+            z-index: 10;
+            width: 100%;
+            max-width: 1280px;
+            padding: 20px 24px 60px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+        }
+
+        .executors-title {
+            font-size: 28px;
+            font-weight: 800;
+            color: var(--text-main);
+            letter-spacing: -0.5px;
+        }
+
+        .executors-title span {
+            color: var(--accent-color);
+            transition: color 0.3s;
+        }
+
+        /* --- СТИЛИ СТРАНИЦЫ PIXELSHOT --- */
+        #page-pixelshot {
+            display: none;
+            background-color: #f4f7f6;
+            color: #2c3e50;
+            min-height: 100vh;
+            user-select: auto;
+        }
+
+        #page-pixelshot .hero-section { 
+            padding: 120px 0; 
+            background: linear-gradient(135deg, #2c3e50 0%, #1a2533 100%); 
+            color: white; 
+            text-align: center; 
+        }
+
+        #page-pixelshot .hero-image { 
+            max-width: 200px; 
+            height: auto; 
+            margin-bottom: 30px; 
+        }
         
-        /* СТИЛЬ LIQUID GLASS */
-        .btn-download {
+        #page-pixelshot .btn-download {
             background: rgba(255, 255, 255, 0.15);
             backdrop-filter: blur(10px);
             -webkit-backdrop-filter: blur(10px);
@@ -26,76 +625,443 @@
             font-size: 1.25rem;
             display: inline-block;
         }
-        .btn-download:hover {
+
+        #page-pixelshot .btn-download:hover {
             background: rgba(255, 255, 255, 0.25);
             transform: translateY(-5px) scale(1.05);
             color: white;
         }
 
-        .system-req { font-size: 0.95rem; color: #bdc3c7; margin-top: 25px; }
-        .feature-card { border: none; border-radius: 12px; transition: transform 0.2s; height: 100%; }
-        .feature-card:hover { transform: scale(1.03); }
-        .screenshot-img { max-width: 100%; border-radius: 12px; box-shadow: 0 10px 20px rgba(0,0,0,0.1); }
-        .footer { padding: 50px 0; background-color: #1a2533; color: #95a5a6; text-align: center; }
+        #page-pixelshot .system-req { font-size: 0.95rem; color: #bdc3c7; margin-top: 25px; }
+        #page-pixelshot .feature-card { border: none; border-radius: 12px; transition: transform 0.2s; height: 100%; }
+        #page-pixelshot .feature-card:hover { transform: scale(1.03); }
+        #page-pixelshot .screenshot-img { max-width: 100%; border-radius: 12px; box-shadow: 0 10px 20px rgba(0,0,0,0.1); }
+        #page-pixelshot .footer { padding: 50px 0; background-color: #1a2533; color: #95a5a6; text-align: center; }
+
+        /* Toast уведомление */
+        .toast {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            background: #22c55e;
+            color: #fff;
+            padding: 12px 24px;
+            border-radius: 10px;
+            font-weight: 600;
+            font-size: 14px;
+            box-shadow: 0 10px 20px rgba(0,0,0,0.3);
+            opacity: 0;
+            transform: translateY(20px);
+            transition: all 0.3s ease;
+            pointer-events: none;
+            z-index: 10000;
+        }
+
+        .toast.show {
+            opacity: 1;
+            transform: translateY(0);
+        }
     </style>
 </head>
 <body>
 
-    <nav class="navbar navbar-expand-lg navbar-dark bg-dark sticky-top">
-        <div class="container">
-            <a class="navbar-brand fw-bold d-flex align-items-center" href="#">
-                <img src="https://kappa.lol/vUqrF3" alt="PixelShot Logo" class="me-2" style="height: 40px;">
-                PixelShot
-            </a>
-            <div class="navbar-nav ms-auto">
-                <a class="nav-link" href="#features">Возможности</a>
-                <a class="nav-link" href="#screenshots">Скриншоты</a>
-                <a class="nav-link btn btn-outline-light btn-sm ms-3" href="https://noikcloud.xyz/oJHMMWA">Скачать</a>
+    <!-- ВЫПАДАЮЩЕЕ МЕНЮ СМЕНЫ САЙТОВ -->
+    <div class="projects-dropdown">
+        <button class="projects-btn" onclick="toggleProjectsMenu()">
+            <svg viewBox="0 0 24 24">
+                <path d="M4 8h4V4H4v4zm6 12h4v-4h-4v4zm-6 0h4v-4H4v4zm0-6h4v-4H4v4zm6 0h4v-4h-4v4zm6-10v4h4V4h-4zm-6 4h4V4h-4v4zm6 6h4v-4h-4v4zm0 6h4v-4h-4v4z"/>
+            </svg>
+            <span id="projects-btn-label">Мои сайты</span>
+        </button>
+        <div class="projects-menu" id="projectsMenu">
+            <div class="project-item active" id="item-emil" onclick="switchProject('emil')">
+                <span>EMIL768 SCRIPT</span>
+                <span class="project-badge">Roblox</span>
+            </div>
+            <div class="project-item" id="item-pixelshot" onclick="switchProject('pixelshot')">
+                <span>PixelShot</span>
+                <span class="project-badge">Windows</span>
             </div>
         </div>
-    </nav>
+    </div>
 
-    <header class="hero-section">
-        <div class="container">
-            <img src="https://kappa.lol/UAAnvd" alt="PixelShot Feature Showcase" class="hero-image">
-            <h1>PixelShot для Windows</h1>
-            <div class="my-5">
-                <a href="https://noikcloud.xyz/oJHMMWA" class="btn-download">Скачать для Windows</a>
-            </div>
-            <div class="system-req">
-                <p>Совместимо с Windows 10, 11 (64-bit)</p>
-            </div>
+    <!-- ==================== СТРАНИЦА 1: EMIL768 SCRIPT ==================== -->
+    <div id="page-emil" class="page-view">
+        
+        <div class="site-lang-switch">
+            <button class="lang-btn active" id="site-lang-ru" onclick="setLanguage('ru')">RU</button>
+            <button class="lang-btn" id="site-lang-en" onclick="setLanguage('en')">EN</button>
         </div>
-    </header>
 
-    <section id="features" class="container my-5 py-5">
-        <h2 class="text-center mb-5 fw-bold">Основные возможности</h2>
-        <div class="row justify-content-center g-4">
-            <div class="col-md-6 col-lg-5">
-                <div class="card p-4 border-0 shadow-sm feature-card">
-                    <h3 class="h4 fw-semibold text-primary">⚡ Горячие клавиши</h3>
-                    <p>Мгновенный захват любой области экрана, окна или всего рабочего стола.</p>
+        <div class="bg-lines">
+            <svg viewBox="0 0 1000 1000" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M-100 200 C 300 100, 500 800, 1100 400" stroke="rgba(0, 210, 255, 0.25)" stroke-width="1.5"/>
+                <path d="M-100 500 C 200 400, 600 900, 1100 200" stroke="rgba(0, 210, 255, 0.15)" stroke-width="1"/>
+            </svg>
+        </div>
+
+        <div class="container-emil">
+            <div class="hero-content">
+                <h1 class="hero-title" id="site-title">
+                    EMIL768 SCRIPT<br><span>HUB FOR ROBLOX</span>
+                </h1>
+                <p class="hero-description" id="site-desc">
+                    Красивый скрипт для любой Roblox игры без детекта античита.
+                </p>
+                <div class="cta-group">
+                    <button class="btn-main" id="site-get-btn" onclick="copyScript()">Получить скрипт</button>
+                    <button class="btn-arrow" onclick="copyScript()">→</button>
+                    <a href="https://t.me/emill768" target="_blank" class="btn-telegram" title="Telegram">
+                        <svg viewBox="0 0 24 24">
+                            <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm4.64 6.8c-.15 1.58-.8 5.42-1.13 7.19-.14.75-.42 1-.68 1.03-.58.05-1.02-.38-1.58-.75-.88-.58-1.38-.94-2.23-1.5-.99-.65-.35-1.01.22-1.59.15-.15 2.71-2.48 2.76-2.69a.2.2 0 00-.05-.18c-.06-.05-.14-.03-.21-.02-.09.02-1.49.95-4.22 2.79-.4.27-.76.41-1.08.4-.36-.01-1.04-.2-1.55-.37-.63-.2-1.12-.31-1.08-.66.02-.18.27-.36.74-.55 2.92-1.27 4.86-2.11 5.83-2.51 2.78-1.16 3.35-1.36 3.73-1.36.08 0 .27.02.39.12.1.08.13.19.14.27-.01.06.01.24 0 .38z"/>
+                        </svg>
+                    </a>
                 </div>
             </div>
-            <div class="col-md-6 col-lg-5">
-                <div class="card p-4 border-0 shadow-sm feature-card">
-                    <h3 class="h4 fw-semibold text-success">🎨 Встроенный редактор</h3>
-                    <p>Добавляйте карандаш, блюр, квадрат и круг сразу после снимка.</p>
+
+            <div class="gui-wrapper">
+                <div class="emil-window" id="emilWindow">
+                    <div class="emil-header">
+                        <span class="emil-title">EMIL768 SCRIPT</span>
+                        <span class="emil-minimize">—</span>
+                    </div>
+
+                    <div class="emil-tabs">
+                        <button class="emil-tab active" onclick="switchTab('main', this)">MAIN</button>
+                        <button class="emil-tab" onclick="switchTab('mm2', this)">MM2</button>
+                        <button class="emil-tab" onclick="switchTab('settings', this)">⚙</button>
+                    </div>
+
+                    <!-- MAIN -->
+                    <div id="tab-main" class="tab-panel active">
+                        <div class="emil-group">
+                            <input type="text" class="emil-input" id="input-speed" placeholder="ВВЕДИТЕ СКОРОСТЬ (НАПР. 50)">
+                            <button class="emil-btn-blue" id="btn-apply-speed">ПРИМЕНИТЬ СКОРОСТЬ</button>
+                            <button class="emil-btn-toggle" id="btn-reset-speed">СБРОСИТЬ СКОРОСТЬ</button>
+                        </div>
+                        <button class="emil-btn-toggle" id="btn-inf-jump" onclick="toggleScriptBtn('infJump')">БЕСКОНЕЧНЫЙ ПРЫЖОК: ВЫКЛ</button>
+                        <button class="emil-btn-toggle" id="btn-noclip" onclick="toggleScriptBtn('noclip')">СКВОЗЬ СТЕНЫ (NOCLIP): ВЫКЛ</button>
+                        <button class="emil-btn-toggle" id="btn-fly" onclick="toggleScriptBtn('fly')">ПОЛЕТ (FLY): ВЫКЛ</button>
+                        <button class="emil-btn-toggle" id="btn-wall-climb" onclick="toggleScriptBtn('wallClimb')">ПОЛЗАТЬ ПО СТЕНАМ: ВЫКЛ</button>
+
+                        <div class="emil-group">
+                            <input type="text" class="emil-input" id="input-tp" placeholder="НИКНЕЙМ ИГРОКА ДЛЯ ТП">
+                            <button class="emil-btn-blue" id="btn-tp">ТЕЛЕПОРТИРОВАТЬСЯ</button>
+                        </div>
+
+                        <div class="emil-group">
+                            <input type="text" class="emil-input" id="input-fling" placeholder="НИКНЕЙМ ИГРОКА ДЛЯ ФЛИНГА">
+                            <button class="emil-btn-toggle" id="btn-fling" onclick="toggleScriptBtn('fling')">ЗАПУСТИТЬ ФЛИНГ: ВЫКЛ</button>
+                        </div>
+
+                        <button class="emil-btn-blue" id="btn-fling-all">FLING EVERYONE (ФЛИНГ ВСЕХ)</button>
+                    </div>
+
+                    <!-- MM2 -->
+                    <div id="tab-mm2" class="tab-panel">
+                        <button class="emil-btn-toggle" id="btn-esp" onclick="toggleScriptBtn('esp')">ПОКАЗАТЬ РОЛИ (ESP): ВЫКЛ</button>
+                        <button class="emil-btn-blue" id="btn-kill-all">KILL EVERYONE (УБИТЬ ВСЕХ)</button>
+                        <button class="emil-btn-toggle" id="btn-auto-gun" onclick="toggleScriptBtn('autoGun')">АВТОТЕЛЕПОРТ И СБОР ПИСТОЛЕТА: ВЫКЛ</button>
+                        <button class="emil-btn-toggle" id="btn-auto-farm" onclick="toggleScriptBtn('autoFarm')">АВТОФАРМ МОНЕТ: ВЫКЛ</button>
+                    </div>
+
+                    <!-- SETTINGS -->
+                    <div id="tab-settings" class="tab-panel">
+                        <div style="text-align: center; font-size: 11px; font-family: 'Comfortaa', cursive; color: #8397b0; font-weight: 700; margin-bottom: 2px;" id="script-settings-title">
+                            📌 НАСТРОЙКИ И БИНДЫ
+                        </div>
+                        <div class="theme-box">
+                            <span class="theme-title" id="script-theme-title">🎨 ТЕМА ИНТЕРФЕЙСА</span>
+                            <div class="color-dots">
+                                <div class="color-dot" style="background: #00d2ff;" onclick="changeTheme('#00d2ff', '#00a2ff')"></div>
+                                <div class="color-dot" style="background: #ff3b30;" onclick="changeTheme('#ff3b30', '#e02d23')"></div>
+                                <div class="color-dot" style="background: #af52de;" onclick="changeTheme('#af52de', '#963ec3')"></div>
+                                <div class="color-dot" style="background: #34c759;" onclick="changeTheme('#34c759', '#28a745')"></div>
+                                <div class="color-dot" style="background: #ff2d55;" onclick="changeTheme('#ff2d55', '#d81b43')"></div>
+                                <div class="color-dot" style="background: #ffcc00;" onclick="changeTheme('#ffcc00', '#e6b800')"></div>
+                            </div>
+                        </div>
+
+                        <button class="emil-btn-blue" id="btn-script-lang" onclick="toggleScriptLanguage()">🌐 ЯЗЫК: РУССКИЙ</button>
+
+                        <div class="bind-row"><span>FLY (<span class="bind-fly-lbl">ПОЛЕТ</span>)</span><span class="bind-key">КЛАВИША</span></div>
+                        <div class="bind-row"><span>NOCLIP</span><span class="bind-key">КЛАВИША</span></div>
+                        <div class="bind-row"><span>INF JUMP</span><span class="bind-key">КЛАВИША</span></div>
+                        <div class="bind-row"><span>FLING</span><span class="bind-key">КЛАВИША</span></div>
+                        <div class="bind-row"><span>FLING ALL</span><span class="bind-key">КЛАВИША</span></div>
+                        <div class="bind-row"><span>ESP MM2</span><span class="bind-key">КЛАВИША</span></div>
+                        <div class="bind-row"><span>KILL ALL</span><span class="bind-key">КЛАВИША</span></div>
+                        <div class="bind-row"><span>AUTO SHERIFF</span><span class="bind-key">КЛАВИША</span></div>
+                        <div class="bind-row"><span>AUTO FARM COINS</span><span class="bind-key">КЛАВИША</span></div>
+
+                        <div class="emil-footer-info">
+                            TELEGRAM - @EMILL768<br>
+                            DISCORD - EMIL768
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
-    </section>
 
-    <section id="screenshots" class="container my-5 py-5 text-center">
-        <h2 class="mb-5 fw-bold">Скриншоты</h2>
-        <img src="https://noikcloud.xyz/q0w0WFe" alt="PixelShot Interface" class="screenshot-img">
-    </section>
-
-    <footer class="footer">
-        <div class="container">
-            <p>emil768ads@vk.com</p>
+        <div class="executors-section">
+            <h2 class="executors-title" id="executors-title-text">
+                Скрипт работает во <span>ВСЕХ</span> roblox инжекторах
+            </h2>
         </div>
-    </footer>
+    </div>
 
+    <!-- ==================== СТРАНИЦА 2: PIXELSHOT ==================== -->
+    <div id="page-pixelshot" class="page-view">
+        <nav class="navbar navbar-expand-lg navbar-dark bg-dark sticky-top">
+            <div class="container">
+                <a class="navbar-brand fw-bold d-flex align-items-center" href="#">
+                    <img src="https://kappa.lol/vUqrF3" alt="PixelShot Logo" class="me-2" style="height: 40px;">
+                    PixelShot
+                </a>
+                <div class="navbar-nav ms-auto">
+                    <a class="nav-link" href="#features">Возможности</a>
+                    <a class="nav-link" href="#screenshots">Скриншоты</a>
+                    <a class="nav-link btn btn-outline-light btn-sm ms-3" href="https://drive.google.com/uc?export=download&id=1bhok1FzfqSJ5dq1eOYZBBy2QzqtqSQIX">Скачать</a>
+                </div>
+            </div>
+        </nav>
+
+        <header class="hero-section">
+            <div class="container">
+                <img src="https://kappa.lol/UAAnvd" alt="PixelShot Feature Showcase" class="hero-image">
+                <h1 class="text-white fw-bold">PixelShot для Windows</h1>
+                <div class="my-5">
+                    <a href="https://drive.google.com/uc?export=download&id=1bhok1FzfqSJ5dq1eOYZBBy2QzqtqSQIX" class="btn-download">Скачать для Windows</a>
+                </div>
+                <div class="system-req">
+                    <p>Совместимо с Windows 10, 11 (64-bit)</p>
+                </div>
+            </div>
+        </header>
+
+        <section id="features" class="container my-5 py-5">
+            <h2 class="text-center mb-5 fw-bold">Основные возможности</h2>
+            <div class="row justify-content-center g-4">
+                <div class="col-md-6 col-lg-5">
+                    <div class="card p-4 border-0 shadow-sm feature-card">
+                        <h3 class="h4 fw-semibold text-primary">⚡ Горячие клавиши</h3>
+                        <p>Мгновенный захват любой области экрана, окна или всего рабочего стола.</p>
+                    </div>
+                </div>
+                <div class="col-md-6 col-lg-5">
+                    <div class="card p-4 border-0 shadow-sm feature-card">
+                        <h3 class="h4 fw-semibold text-success">🎨 Встроенный редактор</h3>
+                        <p>Добавляйте карандаш, блюр, квадрат и круг сразу после снимка.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="screenshots" class="container my-5 py-5 text-center">
+            <h2 class="mb-5 fw-bold">Скриншоты</h2>
+            <img src="https://noikcloud.xyz/q0w0WFe" alt="PixelShot Interface" class="screenshot-img">
+        </section>
+
+        <footer class="footer">
+            <div class="container">
+                <p class="mb-0">emil768ads@vk.com</p>
+            </div>
+        </footer>
+    </div>
+
+    <div class="toast" id="toast">Скрипт скопирован в буфер обмена!</div>
+
+    <script>
+        function toggleProjectsMenu() {
+            document.getElementById('projectsMenu').classList.toggle('show');
+        }
+
+        window.addEventListener('click', (e) => {
+            if (!e.target.closest('.projects-dropdown')) {
+                document.getElementById('projectsMenu').classList.remove('show');
+            }
+        });
+
+        let isSwitching = false;
+
+        function switchProject(projectName) {
+            document.getElementById('projectsMenu').classList.remove('show');
+
+            const pageEmil = document.getElementById('page-emil');
+            const pagePixelshot = document.getElementById('page-pixelshot');
+            const itemEmil = document.getElementById('item-emil');
+            const itemPixelshot = document.getElementById('item-pixelshot');
+            const pageTitle = document.getElementById('page-title');
+
+            const currentActive = itemEmil.classList.contains('active') ? 'emil' : 'pixelshot';
+            if (currentActive === projectName || isSwitching) return;
+
+            isSwitching = true;
+
+            const outgoingPage = projectName === 'pixelshot' ? pageEmil : pagePixelshot;
+            const incomingPage = projectName === 'pixelshot' ? pagePixelshot : pageEmil;
+
+            outgoingPage.classList.remove('fade-in');
+            outgoingPage.classList.add('fade-out');
+
+            setTimeout(() => {
+                outgoingPage.style.display = 'none';
+                outgoingPage.classList.remove('fade-out');
+
+                if (projectName === 'pixelshot') {
+                    incomingPage.style.display = 'block';
+                    itemEmil.classList.remove('active');
+                    itemPixelshot.classList.add('active');
+                    pageTitle.innerText = "PixelShot для Windows — Скачать бесплатно";
+                } else {
+                    incomingPage.style.display = 'flex';
+                    itemPixelshot.classList.remove('active');
+                    itemEmil.classList.add('active');
+                    pageTitle.innerText = "EMIL768 SCRIPT — Hub";
+                }
+
+                incomingPage.classList.add('fade-in');
+                window.scrollTo({ top: 0, behavior: 'instant' });
+
+                setTimeout(() => {
+                    incomingPage.classList.remove('fade-in');
+                    isSwitching = false;
+                }, 400);
+
+            }, 350);
+        }
+
+        // 3D TILT EFFECT
+        const emilWindow = document.getElementById('emilWindow');
+        document.addEventListener('mousemove', (e) => {
+            if (document.getElementById('page-emil').style.display === 'none') return;
+            const { innerWidth, innerHeight } = window;
+            const xOffset = (e.clientX - innerWidth / 2) / (innerWidth / 2);
+            const yOffset = (e.clientY - innerHeight / 2) / (innerHeight / 2);
+
+            emilWindow.style.transform = `translate3d(${xOffset * 12}px, ${yOffset * 12}px, 0) rotateX(${-yOffset * 15}deg) rotateY(${xOffset * 15}deg)`;
+        });
+
+        // СОСТОЯНИЕ СКРИПТА
+        const scriptState = { infJump: false, noclip: false, fly: false, wallClimb: false, fling: false, esp: false, autoGun: false, autoFarm: false };
+        let currentLang = 'ru';
+
+        const siteI18n = {
+            ru: {
+                title: "EMIL768 SCRIPT<br><span>HUB FOR ROBLOX</span>",
+                desc: "Красивый скрипт для любой Roblox игры без детекта античита.",
+                getBtn: "Получить скрипт",
+                executorsTitle: "Скрипт работает во <span>ВСЕХ</span> roblox инжекторах",
+                projectsBtnLabel: "Мои сайты",
+                toast: "Скрипт скопирован в буфер обмена!"
+            },
+            en: {
+                title: "EMIL768 SCRIPT<br><span>HUB FOR ROBLOX</span>",
+                desc: "A beautiful script for any Roblox game with zero anticheat detection.",
+                getBtn: "Get script",
+                executorsTitle: "Script works in <span>ALL</span> roblox injectors",
+                projectsBtnLabel: "My Websites",
+                toast: "Script copied to clipboard!"
+            }
+        };
+
+        const scriptI18n = {
+            ru: {
+                langBtn: "🌐 ЯЗЫК: РУССКИЙ", speedInput: "ВВЕДИТЕ СКОРОСТЬ (НАПР. 50)", applySpeed: "ПРИМЕНИТЬ СКОРОСТЬ", resetSpeed: "СБРОСИТЬ СКОРОСТЬ",
+                infJump: "БЕСКОНЕЧНЫЙ ПРЫЖОК", noclip: "СКВОЗЬ СТЕНЫ (NOCLIP)", fly: "ПОЛЕТ (FLY)", wallClimb: "ПОЛЗАТЬ ПО СТЕНАМ", tpInput: "НИКНЕЙМ ИГРОКА ДЛЯ ТП",
+                tpBtn: "ТЕЛЕПОРТИРОВАТЬСЯ", flingInput: "НИКНЕЙМ ИГРОКА ДЛЯ ФЛИНГА", flingBtn: "ЗАПУСТИТЬ ФЛИНГ", flingAll: "FLING EVERYONE (ФЛИНГ ВСЕХ)",
+                esp: "ПОКАЗАТЬ РОЛИ (ESP)", killAll: "KILL EVERYONE (УБИТЬ ВСЕХ)", autoGun: "АВТОТЕЛЕПОРТ И СБОР ПИСТОЛЕТА", autoFarm: "АВТОФАРМ МОНЕТ",
+                settingsTitle: "📌 НАСТРОЙКИ И БИНДЫ", themeTitle: "🎨 ТЕМА ИНТЕРФЕЙСА", bindFly: "ПОЛЕТ", key: "КЛАВИША", off: "ВЫКЛ", on: "ВКЛ"
+            },
+            en: {
+                langBtn: "🌐 LANGUAGE: ENGLISH", speedInput: "ENTER SPEED (E.G. 50)", applySpeed: "APPLY SPEED", resetSpeed: "RESET SPEED",
+                infJump: "INFINITE JUMP", noclip: "NOCLIP", fly: "FLY", wallClimb: "WALL CLIMB", tpInput: "PLAYER USERNAME FOR TP",
+                tpBtn: "TELEPORT", flingInput: "PLAYER USERNAME FOR FLING", flingBtn: "START FLING", flingAll: "FLING EVERYONE",
+                esp: "SHOW ROLES (ESP)", killAll: "KILL EVERYONE", autoGun: "AUTOTELEPORT & GRAB GUN", autoFarm: "AUTOFARM COINS",
+                settingsTitle: "📌 SETTINGS & BINDS", themeTitle: "🎨 INTERFACE THEME", bindFly: "FLY", key: "KEY", off: "OFF", on: "ON"
+            }
+        };
+
+        function setLanguage(lang) {
+            currentLang = lang;
+            document.getElementById('site-lang-ru').classList.toggle('active', lang === 'ru');
+            document.getElementById('site-lang-en').classList.toggle('active', lang === 'en');
+
+            const st = siteI18n[lang];
+            document.getElementById('site-title').innerHTML = st.title;
+            document.getElementById('site-desc').innerText = st.desc;
+            document.getElementById('site-get-btn').innerText = st.getBtn;
+            document.getElementById('executors-title-text').innerHTML = st.executorsTitle;
+            document.getElementById('projects-btn-label').innerText = st.projectsBtnLabel;
+            document.getElementById('toast').innerText = st.toast;
+
+            updateScriptUI();
+        }
+
+        function toggleScriptLanguage() {
+            setLanguage(currentLang === 'ru' ? 'en' : 'ru');
+        }
+
+        function updateScriptUI() {
+            const t = scriptI18n[currentLang];
+
+            document.getElementById('btn-script-lang').innerText = t.langBtn;
+            document.getElementById('input-speed').placeholder = t.speedInput;
+            document.getElementById('btn-apply-speed').innerText = t.applySpeed;
+            document.getElementById('btn-reset-speed').innerText = t.resetSpeed;
+            document.getElementById('input-tp').placeholder = t.tpInput;
+            document.getElementById('btn-tp').innerText = t.tpBtn;
+            document.getElementById('input-fling').placeholder = t.flingInput;
+            document.getElementById('btn-fling-all').innerText = t.flingAll;
+            document.getElementById('btn-kill-all').innerText = t.killAll;
+            document.getElementById('script-settings-title').innerText = t.settingsTitle;
+            document.getElementById('script-theme-title').innerText = t.themeTitle;
+
+            document.querySelectorAll('.bind-fly-lbl').forEach(el => el.innerText = t.bindFly);
+            document.querySelectorAll('.bind-key').forEach(el => el.innerText = t.key);
+
+            updateToggleBtn('btn-inf-jump', t.infJump, scriptState.infJump);
+            updateToggleBtn('btn-noclip', t.noclip, scriptState.noclip);
+            updateToggleBtn('btn-fly', t.fly, scriptState.fly);
+            updateToggleBtn('btn-wall-climb', t.wallClimb, scriptState.wallClimb);
+            updateToggleBtn('btn-fling', t.flingBtn, scriptState.fling);
+            updateToggleBtn('btn-esp', t.esp, scriptState.esp);
+            updateToggleBtn('btn-auto-gun', t.autoGun, scriptState.autoGun);
+            updateToggleBtn('btn-auto-farm', t.autoFarm, scriptState.autoFarm);
+        }
+
+        function updateToggleBtn(elementId, labelText, isActive) {
+            const btn = document.getElementById(elementId);
+            const t = scriptI18n[currentLang];
+            btn.innerText = `${labelText}: ${isActive ? t.on : t.off}`;
+            btn.classList.toggle('active', isActive);
+        }
+
+        function toggleScriptBtn(key) {
+            scriptState[key] = !scriptState[key];
+            updateScriptUI();
+        }
+
+        function switchTab(tabId, btn) {
+            document.querySelectorAll('.tab-panel').forEach(p => p.classList.remove('active'));
+            document.querySelectorAll('.emil-tab').forEach(t => t.classList.remove('active'));
+            document.getElementById('tab-' + tabId).classList.add('active');
+            btn.classList.add('active');
+        }
+
+        function changeTheme(accent, btnColor) {
+            document.documentElement.style.setProperty('--accent-color', accent);
+            document.documentElement.style.setProperty('--btn-blue', btnColor);
+        }
+
+        function copyScript() {
+            const script = 'loadstring(game:HttpGet("https://raw.githubusercontent.com/emil768YT/emil768test_script/refs/heads/main/loader_update.luau"))()';
+            navigator.clipboard.writeText(script).then(() => {
+                const toast = document.getElementById('toast');
+                toast.classList.add('show');
+                setTimeout(() => { toast.classList.remove('show'); }, 3000);
+            });
+        }
+    </script>
 </body>
 </html>
