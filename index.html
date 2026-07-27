@@ -15,6 +15,51 @@
             --btn-blue: #00a2ff;
             --text-main: #f1f5f9;
             --text-muted: #94a3b8;
+
+            /* Переменные Уток */
+            --duck-bg: #f0f2f5;
+            --duck-container-bg: rgba(255, 255, 255, 0.8);
+            --duck-text: #2c3e50;
+            --duck-header-text: #121212;
+            --duck-card-bg: #ffffff;
+            --duck-nav-bg: rgba(40, 44, 52, 0.6);
+            --duck-accent: #ffce00;
+            --duck-secondary: #ff9100;
+            --duck-footer-bg: #333;
+            --duck-footer-text: #aaa;
+            --duck-border: rgba(0, 0, 0, 0.1);
+            --duck-glass-bg: rgba(255, 255, 255, 0.25);
+            --duck-glass-border: rgba(255, 255, 255, 0.4);
+            --duck-glass-highlight: rgba(255, 255, 255, 0.6);
+            --duck-glass-shadow: rgba(31, 38, 135, 0.15);
+            --duck-glass-text: #ffffff;
+            --duck-glass-glow: rgba(255, 206, 0, 0.3);
+            --duck-ctrl-bg: rgba(255, 255, 255, 0.3);
+            --duck-ctrl-text: #ffffff;
+            --duck-ctrl-glow: rgba(255, 255, 255, 0.5);
+        }
+
+        [data-duck-theme="dark"] {
+            --duck-bg: #121212;
+            --duck-container-bg: rgba(30, 30, 30, 0.7);
+            --duck-text: #e0e0e0;
+            --duck-header-text: #121212;
+            --duck-card-bg: #1e1e1e;
+            --duck-nav-bg: rgba(15, 15, 15, 0.6);
+            --duck-accent: #cca300;
+            --duck-secondary: #ff9100;
+            --duck-footer-bg: #0a0a0a;
+            --duck-footer-text: #666;
+            --duck-border: rgba(255, 255, 255, 0.05);
+            --duck-glass-bg: rgba(20, 20, 20, 0.4);
+            --duck-glass-border: rgba(255, 255, 255, 0.15);
+            --duck-glass-highlight: rgba(255, 255, 255, 0.25);
+            --duck-glass-shadow: rgba(0, 0, 0, 0.5);
+            --duck-glass-text: #e0e0e0;
+            --duck-glass-glow: rgba(204, 163, 0, 0.4);
+            --duck-ctrl-bg: rgba(204, 163, 0, 0.1);
+            --duck-ctrl-text: var(--duck-accent);
+            --duck-ctrl-glow: rgba(204, 163, 0, 0.4);
         }
 
         * {
@@ -52,14 +97,8 @@
         }
 
         @keyframes pageFadeIn {
-            from {
-                opacity: 0;
-                transform: scale(1.03);
-            }
-            to {
-                opacity: 1;
-                transform: scale(1);
-            }
+            from { opacity: 0; transform: scale(1.03); }
+            to { opacity: 1; transform: scale(1); }
         }
 
         /* --- ВЫПАДАЮЩЕЕ МЕНЮ САЙТОВ --- */
@@ -73,7 +112,7 @@
         .projects-btn {
             background: rgba(15, 23, 42, 0.85);
             border: 1px solid rgba(255, 255, 255, 0.2);
-            color: var(--text-main);
+            color: #ffffff;
             padding: 8px 18px;
             border-radius: 20px;
             font-size: 13px;
@@ -88,7 +127,7 @@
         }
 
         .projects-btn:hover {
-            border-color: var(--accent-color);
+            border-color: #00d2ff;
             transform: translateY(-2px);
             box-shadow: 0 6px 25px rgba(0, 210, 255, 0.25);
         }
@@ -96,7 +135,7 @@
         .projects-btn svg {
             width: 16px;
             height: 16px;
-            fill: var(--accent-color);
+            fill: #00d2ff;
         }
 
         .projects-menu {
@@ -116,9 +155,7 @@
             animation: fadeIn 0.2s ease-out;
         }
 
-        .projects-menu.show {
-            display: flex;
-        }
+        .projects-menu.show { display: flex; }
 
         @keyframes fadeIn {
             from { opacity: 0; transform: translateY(-8px); }
@@ -128,7 +165,7 @@
         .project-item {
             padding: 10px 14px;
             border-radius: 8px;
-            color: var(--text-muted);
+            color: #94a3b8;
             font-size: 13px;
             font-weight: 600;
             display: flex;
@@ -144,7 +181,7 @@
         }
 
         .project-item.active {
-            color: var(--accent-color);
+            color: #00d2ff;
             background: rgba(0, 210, 255, 0.08);
         }
 
@@ -153,11 +190,11 @@
             padding: 2px 6px;
             border-radius: 6px;
             background: rgba(255, 255, 255, 0.1);
-            color: var(--text-muted);
+            color: #94a3b8;
         }
 
         .project-item.active .project-badge {
-            background: var(--accent-color);
+            background: #00d2ff;
             color: #000;
             font-weight: 700;
         }
@@ -252,10 +289,7 @@
             margin-bottom: 20px;
         }
 
-        .hero-title span {
-            color: var(--accent-color);
-            transition: color 0.3s;
-        }
+        .hero-title span { color: var(--accent-color); transition: color 0.3s; }
 
         .hero-description {
             font-size: 17px;
@@ -285,10 +319,7 @@
             box-shadow: 0 10px 25px -5px rgba(0, 162, 255, 0.4);
         }
 
-        .btn-main:hover {
-            opacity: 0.9;
-            transform: translateY(-2px);
-        }
+        .btn-main:hover { opacity: 0.9; transform: translateY(-2px); }
 
         .btn-arrow {
             width: 52px;
@@ -305,10 +336,7 @@
             transition: 0.2s;
         }
 
-        .btn-arrow:hover {
-            background: rgba(51, 65, 85, 0.8);
-            transform: translateY(-2px);
-        }
+        .btn-arrow:hover { background: rgba(51, 65, 85, 0.8); transform: translateY(-2px); }
 
         .btn-telegram {
             width: 52px;
@@ -330,11 +358,7 @@
             box-shadow: 0 12px 30px -5px rgba(36, 161, 222, 0.6);
         }
 
-        .btn-telegram svg {
-            width: 24px;
-            height: 24px;
-            fill: currentColor;
-        }
+        .btn-telegram svg { width: 24px; height: 24px; fill: currentColor; }
 
         .gui-wrapper {
             position: relative;
@@ -358,7 +382,6 @@
             will-change: transform;
         }
 
-        /* --- ИСПРАВЛЕНИЯ ШАПКИ И ВЫСОТЫ --- */
         .emil-header {
             display: flex;
             justify-content: space-between;
@@ -376,11 +399,7 @@
             transition: color 0.3s;
         }
 
-        .emil-minimize {
-            color: #627288;
-            font-size: 14px;
-            cursor: pointer;
-        }
+        .emil-minimize { color: #627288; font-size: 14px; cursor: pointer; }
 
         .emil-tabs {
             display: grid;
@@ -411,7 +430,6 @@
             transition: color 0.3s, box-shadow 0.3s;
         }
 
-        /* Фиксированная высота для списков панелей чтобы окно не сжималось */
         .tab-panel {
             display: none;
             flex-direction: column;
@@ -421,17 +439,9 @@
             padding-right: 4px;
         }
 
-        .tab-panel::-webkit-scrollbar {
-            width: 4px;
-        }
-        .tab-panel::-webkit-scrollbar-thumb {
-            background: #1d2636;
-            border-radius: 4px;
-        }
-
-        .tab-panel.active {
-            display: flex;
-        }
+        .tab-panel::-webkit-scrollbar { width: 4px; }
+        .tab-panel::-webkit-scrollbar-thumb { background: #1d2636; border-radius: 4px; }
+        .tab-panel.active { display: flex; }
 
         .emil-group {
             border: 1px solid var(--accent-color);
@@ -509,16 +519,8 @@
             color: #8397b0;
         }
 
-        .bind-key {
-            color: #48576e;
-            font-size: 10px;
-            text-transform: uppercase;
-            cursor: pointer;
-        }
-
-        .bind-key:hover {
-            color: var(--accent-color);
-        }
+        .bind-key { color: #48576e; font-size: 10px; text-transform: uppercase; cursor: pointer; }
+        .bind-key:hover { color: var(--accent-color); }
 
         .theme-box {
             border: 1px solid rgba(255, 255, 255, 0.08);
@@ -531,29 +533,10 @@
             background: #121722;
         }
 
-        .theme-title {
-            font-size: 11px;
-            font-family: 'Comfortaa', cursive, sans-serif;
-            color: #8397b0;
-            font-weight: 700;
-        }
-
-        .color-dots {
-            display: flex;
-            gap: 10px;
-        }
-
-        .color-dot {
-            width: 22px;
-            height: 22px;
-            border-radius: 50%;
-            cursor: pointer;
-            transition: transform 0.2s;
-        }
-
-        .color-dot:hover {
-            transform: scale(1.2);
-        }
+        .theme-title { font-size: 11px; font-family: 'Comfortaa', cursive, sans-serif; color: #8397b0; font-weight: 700; }
+        .color-dots { display: flex; gap: 10px; }
+        .color-dot { width: 22px; height: 22px; border-radius: 50%; cursor: pointer; transition: transform 0.2s; }
+        .color-dot:hover { transform: scale(1.2); }
 
         .emil-footer-info {
             text-align: center;
@@ -576,17 +559,8 @@
             text-align: center;
         }
 
-        .executors-title {
-            font-size: 28px;
-            font-weight: 800;
-            color: var(--text-main);
-            letter-spacing: -0.5px;
-        }
-
-        .executors-title span {
-            color: var(--accent-color);
-            transition: color 0.3s;
-        }
+        .executors-title { font-size: 28px; font-weight: 800; color: var(--text-main); letter-spacing: -0.5px; }
+        .executors-title span { color: var(--accent-color); transition: color 0.3s; }
 
         /* --- СТИЛИ СТРАНИЦЫ PIXELSHOT --- */
         #page-pixelshot {
@@ -604,11 +578,7 @@
             text-align: center; 
         }
 
-        #page-pixelshot .hero-image { 
-            max-width: 200px; 
-            height: auto; 
-            margin-bottom: 30px; 
-        }
+        #page-pixelshot .hero-image { max-width: 200px; height: auto; margin-bottom: 30px; }
         
         #page-pixelshot .btn-download {
             background: rgba(255, 255, 255, 0.15);
@@ -638,7 +608,182 @@
         #page-pixelshot .screenshot-img { max-width: 100%; border-radius: 12px; box-shadow: 0 10px 20px rgba(0,0,0,0.1); }
         #page-pixelshot .footer { padding: 50px 0; background-color: #1a2533; color: #95a5a6; text-align: center; }
 
-        /* Toast уведомление */
+        /* --- СТИЛИ СТРАНИЦЫ МИР УТОК --- */
+        #page-ducks {
+            display: none;
+            background: var(--duck-bg);
+            color: var(--duck-text);
+            min-height: 100vh;
+            user-select: auto;
+            transition: background 0.5s ease, color 0.5s ease;
+        }
+
+        #page-ducks header {
+            background: linear-gradient(90deg, var(--duck-accent), #ffdb4d);
+            padding: 40px 15px;
+            text-align: center;
+            color: var(--duck-header-text);
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            clip-path: polygon(0 0, 100% 0, 100% 90%, 0 100%);
+            transition: background 0.5s ease;
+        }
+
+        #page-ducks header h1 { font-size: clamp(2rem, 8vw, 3.5rem); margin: 0; font-weight: 800; }
+
+        #page-ducks nav {
+            background: var(--duck-nav-bg);
+            backdrop-filter: blur(15px);
+            -webkit-backdrop-filter: blur(15px);
+            position: sticky; top: 0; z-index: 1000;
+            padding: 12px 15px;
+            display: flex; justify-content: space-between; align-items: center;
+            gap: 10px;
+            border-bottom: 1px solid var(--duck-glass-border);
+            box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.15);
+            transition: background 0.5s ease, border-color 0.5s ease;
+        }
+
+        .duck-nav-links { display: flex; gap: 8px; flex-wrap: wrap; align-items: center; flex: 1; }
+        .duck-nav-controls { display: flex; gap: 8px; align-items: center; flex-shrink: 0; }
+
+        .duck-glass-btn {
+            display: inline-block;
+            background: linear-gradient(135deg, var(--duck-glass-highlight) 0%, var(--duck-glass-bg) 40%, rgba(255,255,255,0) 100%);
+            background-color: var(--duck-glass-bg);
+            color: var(--duck-glass-text);
+            text-decoration: none;
+            font-size: 0.75rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.5px;
+            padding: 8px 16px;
+            border-radius: 50px;
+            border: 1px solid var(--duck-glass-border);
+            box-shadow: inset 0 3px 6px rgba(255, 255, 255, 0.4), inset 0 -3px 6px rgba(0, 0, 0, 0.1), 0 4px 15px var(--duck-glass-shadow);
+            backdrop-filter: blur(5px);
+            -webkit-backdrop-filter: blur(5px);
+            cursor: pointer;
+            transition: all 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .duck-glass-btn::before {
+            content: ''; position: absolute; top: 0; left: -150%; width: 100%; height: 100%;
+            background: linear-gradient(90deg, rgba(255,255,255,0), rgba(255,255,255,0.4), rgba(255,255,255,0));
+            transform: skewX(-20deg); transition: 0.6s;
+        }
+        .duck-glass-btn:hover::before { left: 150%; }
+        .duck-glass-btn:hover {
+            transform: translateY(-2px); color: #121212; background-color: var(--duck-accent);
+            border-color: var(--duck-accent); box-shadow: inset 0 2px 4px rgba(255, 255, 255, 0.6), 0 6px 20px var(--duck-glass-glow);
+        }
+
+        .duck-control-btn {
+            background: var(--duck-ctrl-bg); border: 1px solid var(--duck-glass-border); color: var(--duck-ctrl-text);
+            font-size: 0.95rem; font-weight: 700; width: 42px; height: 42px; border-radius: 50%;
+            display: flex; align-items: center; justify-content: center; cursor: pointer;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15), inset 0 2px 4px rgba(255,255,255,0.2);
+            backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px);
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+        .duck-control-btn:hover { transform: scale(1.1) rotate(5deg); background: var(--duck-accent); color: #121212; border-color: var(--duck-accent); box-shadow: 0 0 15px var(--duck-ctrl-glow); }
+
+        .duck-container {
+            max-width: 1100px; margin: 20px auto; padding: 15px; background: var(--duck-container-bg);
+            backdrop-filter: blur(5px); border: 1px solid var(--duck-border); border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1); width: 88%; transition: background 0.5s ease;
+        }
+
+        #page-ducks h2 { position: relative; padding-bottom: 10px; margin-top: 30px; font-weight: 700; }
+        #page-ducks h2::after { content: ''; position: absolute; bottom: 0; left: 0; width: 50px; height: 4px; background: var(--duck-accent); border-radius: 2px; }
+
+        .duck-gallery { display: grid; grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)); gap: 15px; margin-top: 25px; }
+        @media (min-width: 600px) { .duck-gallery { grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 25px; } }
+
+        .duck-card { 
+            background: linear-gradient(135deg, rgba(255,255,255,0.4) 0%, rgba(255,255,255,0.1) 40%, rgba(255,255,255,0) 100%);
+            background-color: rgba(255, 255, 255, 0.15); backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.3); padding: 15px; border-radius: 24px; text-align: center; 
+            box-shadow: inset 0 4px 10px rgba(255, 255, 255, 0.5), inset 0 -4px 10px rgba(0, 0, 0, 0.05), 0 10px 25px rgba(0, 0, 0, 0.08); 
+            transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275), background-color 0.4s ease, border-color 0.4s ease, box-shadow 0.4s ease; 
+            position: relative; overflow: hidden;
+        }
+        [data-duck-theme="dark"] .duck-card {
+            background: linear-gradient(135deg, rgba(255,255,255,0.1) 0%, rgba(255,255,255,0.03) 40%, rgba(255,255,255,0) 100%);
+            background-color: rgba(20, 20, 20, 0.3); border-color: rgba(255, 255, 255, 0.1);
+            box-shadow: inset 0 4px 10px rgba(255, 255, 255, 0.15), inset 0 -4px 10px rgba(0, 0, 0, 0.4), 0 10px 30px rgba(0, 0, 0, 0.4);
+        }
+        .duck-card:hover { 
+            transform: rotate(-5deg);
+            background-color: rgba(255, 206, 0, 0.1); border-color: rgba(255, 206, 0, 0.4);
+            box-shadow: inset 0 4px 10px rgba(255, 255, 255, 0.4), 0 15px 30px var(--duck-glass-glow);
+        }
+        [data-duck-theme="dark"] .duck-card:hover { background-color: rgba(204, 163, 0, 0.08); border-color: rgba(204, 163, 0, 0.3); }
+        .duck-card p { margin: 10px 0 0 0; font-weight: 600; color: var(--duck-text); font-size: 0.85rem; }
+        .duck-image { width: 100%; height: auto; max-height: 250px; object-fit: contain; border-radius: 14px; cursor: zoom-in; transition: transform 0.3s ease; box-shadow: 0 4px 10px rgba(0,0,0,0.05); }
+
+        .duck-people-section { display: flex; justify-content: center; gap: 20px; flex-wrap: wrap; margin-top: 25px; }
+        .duck-person-card, .duck-author-card { text-align: center; width: 140px; display: flex; flex-direction: column; align-items: center; gap: 5px; }
+        .duck-avatar-circle { width: 85px; height: 85px; border-radius: 50%; object-fit: cover; border: 3px solid var(--duck-accent); transition: 0.3s; cursor: pointer; }
+        .duck-avatar-black { background: #000; }
+        .duck-avatar-circle:hover { transform: scale(1.05); }
+        .duck-social-buttons { display: flex; gap: 10px; align-items: center; }
+        .duck-tg-button, .duck-more-button { display: inline-flex; align-items: center; justify-content: center; width: 32px; height: 32px; border-radius: 50%; border: none; cursor: pointer; transition: 0.3s; }
+        .duck-tg-button { background-color: #26A5E4; } .duck-tg-button svg { width: 16px; height: 16px; fill: white; }
+        .duck-more-button { background-color: #555; color: white; font-weight: bold; font-size: 1.2rem; }
+        .duck-contact-info { display: none; margin-top: 10px; background: var(--duck-card-bg); padding: 10px; border-radius: 10px; font-size: 0.8rem; box-shadow: 0 4px 10px rgba(0,0,0,0.2); border: 1px solid var(--duck-accent); animation: fadeIn 0.3s; }
+
+        .duck-pixel-mosaic { filter: url(#pixelate); user-select: none; pointer-events: none; }
+        .duck-kek-blur { filter: blur(8px); transition: filter 0.3s ease; user-select: none; cursor: help; }
+        .duck-kek-blur:hover { filter: blur(0); user-select: auto; }
+
+        #duckImageModal { display: none; position: fixed; z-index: 20000; left: 0; top: 0; width: 100%; height: 100%; background-color: rgba(0,0,0,0.9); align-items: center; justify-content: center; flex-direction: column; cursor: zoom-out; }
+        #duckFullImage { max-width: 95%; max-height: 85%; border-radius: 5px; object-fit: contain; }
+        #duckModalCaption { color: white; margin-top: 15px; font-size: 1.2rem; font-weight: bold; }
+
+        #page-ducks footer { background: var(--duck-footer-bg); color: var(--duck-footer-text); padding: 30px 15px; margin-top: 40px; position: relative; text-align: center; transition: background 0.5s ease; }
+        .duck-footer-email-box { position: absolute; right: 20px; bottom: 20px; text-align: right; background: rgba(255, 255, 255, 0.05); padding: 10px; border-radius: 8px; border: 1px solid var(--duck-accent); }
+        .duck-email-link { color: var(--duck-accent); font-weight: bold; cursor: pointer; text-decoration: underline; }
+
+        #duck-xp-overlay {
+            display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+            background: rgba(0, 0, 0, 0.4); z-index: 99999; align-items: center; justify-content: center;
+        }
+        .duck-xp-window {
+            position: absolute; background: #ece9d8; width: 90%; max-width: 380px;
+            border: 3px solid #0054e3; border-top-left-radius: 7px; border-top-right-radius: 7px;
+            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.4); font-family: Tahoma, Arial, sans-serif; color: #000000;
+            box-sizing: border-box;
+        }
+        .duck-xp-titlebar {
+            background: linear-gradient(to bottom, #0058e6 0%, #0073ea 12%, #004cb0 100%);
+            padding: 6px 8px; display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid #002e86; cursor: move; user-select: none; touch-action: none;
+        }
+        .duck-xp-title { color: #ffffff; font-weight: bold; font-size: 13px; text-shadow: 1px 1px 1px #001f60; pointer-events: none; }
+        .duck-xp-close-btn {
+            background: linear-gradient(to bottom, #e76640 0%, #e94015 12%, #b51c02 100%); border: 1px solid #7c0400;
+            border-radius: 3px; width: 21px; height: 21px; display: flex; align-items: center; justify-content: center;
+            color: #ffffff; font-weight: bold; font-size: 11px; cursor: pointer;
+        }
+        .duck-xp-body { padding: 15px; display: flex; gap: 12px; align-items: center; pointer-events: none; }
+        .duck-xp-icon {
+            background: #e94015; color: #ffffff; border-radius: 50%; width: 30px; height: 30px;
+            display: flex; align-items: center; justify-content: center; font-weight: bold; font-size: 18px; flex-shrink: 0; border: 2px solid #ffffff;
+        }
+        .duck-xp-text { font-size: 12px; line-height: 1.4; word-break: break-word; }
+        .duck-xp-footer { padding-bottom: 12px; display: flex; justify-content: center; }
+        .duck-xp-btn-ok {
+            background: linear-gradient(to bottom, #ffffff 0%, #f2f3ee 12%, #e5e5df 100%); border: 1px solid #003c74;
+            border-radius: 3px; padding: 4px 20px; font-size: 12px; cursor: pointer;
+        }
+
+        .duck-spawned-xp-window { position: fixed !important; z-index: 999999; }
+
+        #duck-bsod-screen {
+            display: none; position: fixed; top: 0; left: 0; width: 100vw; height: 100vh;
+            background-color: #0000aa; background-size: cover; background-position: center;
+            background-repeat: no-repeat; z-index: 1000000;
+        }
+
+        /* Toast уведомление общие */
         .toast {
             position: fixed;
             bottom: 30px;
@@ -657,13 +802,20 @@
             z-index: 10000;
         }
 
-        .toast.show {
-            opacity: 1;
-            transform: translateY(0);
-        }
+        .toast.show { opacity: 1; transform: translateY(0); }
     </style>
 </head>
 <body>
+
+    <svg width="0" height="0" style="position:absolute;">
+      <filter id="pixelate" x="0" y="0">
+        <feFlood x="4" y="4" height="2" width="2" />
+        <feComposite width="10" height="10" />
+        <feTile result="a" />
+        <feComposite in="SourceGraphic" in2="a" operator="in" />
+        <feMorphology operator="dilate" radius="5" />
+      </filter>
+    </svg>
 
     <!-- ВЫПАДАЮЩЕЕ МЕНЮ СМЕНЫ САЙТОВ -->
     <div class="projects-dropdown">
@@ -682,12 +834,15 @@
                 <span>PixelShot</span>
                 <span class="project-badge">Windows</span>
             </div>
+            <div class="project-item" id="item-ducks" onclick="switchProject('ducks')">
+                <span>Мир Уток</span>
+                <span class="project-badge">Retro</span>
+            </div>
         </div>
     </div>
 
     <!-- ==================== СТРАНИЦА 1: EMIL768 SCRIPT ==================== -->
     <div id="page-emil" class="page-view">
-        
         <div class="site-lang-switch">
             <button class="lang-btn active" id="site-lang-ru" onclick="setLanguage('ru')">RU</button>
             <button class="lang-btn" id="site-lang-en" onclick="setLanguage('en')">EN</button>
@@ -702,12 +857,8 @@
 
         <div class="container-emil">
             <div class="hero-content">
-                <h1 class="hero-title" id="site-title">
-                    EMIL768 SCRIPT<br><span>HUB FOR ROBLOX</span>
-                </h1>
-                <p class="hero-description" id="site-desc">
-                    Красивый скрипт для любой Roblox игры без детекта античита.
-                </p>
+                <h1 class="hero-title" id="site-title">EMIL768 SCRIPT<br><span>HUB FOR ROBLOX</span></h1>
+                <p class="hero-description" id="site-desc">Красивый скрипт для любой Roblox игры без детекта античита.</p>
                 <div class="cta-group">
                     <button class="btn-main" id="site-get-btn" onclick="copyScript()">Получить скрипт</button>
                     <button class="btn-arrow" onclick="copyScript()">→</button>
@@ -804,9 +955,7 @@
         </div>
 
         <div class="executors-section">
-            <h2 class="executors-title" id="executors-title-text">
-                Скрипт работает во <span>ВСЕХ</span> roblox инжекторах
-            </h2>
+            <h2 class="executors-title" id="executors-title-text">Скрипт работает во <span>ВСЕХ</span> roblox инжекторах</h2>
         </div>
     </div>
 
@@ -869,9 +1018,154 @@
         </footer>
     </div>
 
+    <!-- ==================== СТРАНИЦА 3: МИР УТОК ==================== -->
+    <div id="page-ducks" class="page-view">
+        <div id="duck-xp-overlay">
+            <div id="main-duck-xp-window" class="duck-xp-window">
+                <div class="duck-xp-titlebar" onmousedown="makeDuckDraggable(event, 'main-duck-xp-window')" ontouchstart="makeDuckDraggable(event, 'main-duck-xp-window')">
+                    <span class="duck-xp-title" data-duck-lang="xp-title">Системное предупреждение</span>
+                    <div class="duck-xp-close-btn" onclick="startDuckXpSpam()">X</div>
+                </div>
+                <div class="duck-xp-body">
+                    <div class="duck-xp-icon">X</div>
+                    <div class="duck-xp-text" data-duck-lang="xp-text">Не используй Автокликер!</div>
+                </div>
+                <div class="duck-xp-footer">
+                    <button class="duck-xp-btn-ok" onclick="startDuckXpSpam()">OK</button>
+                </div>
+            </div>
+        </div>
+
+        <div id="duck-bsod-screen"></div>
+
+        <header>
+            <h1 data-duck-lang="main-title">Мир Уток</h1>
+            <p data-duck-lang="main-subtitle">Стиль и ретро в каждой детали</p>
+        </header>
+
+        <nav>
+            <div class="duck-nav-links">
+                <a href="#duck-about" class="duck-glass-btn" data-duck-lang="btn-about" onclick="registerDuckClick()">О нас</a>
+                <a href="#duck-gallery" class="duck-glass-btn" data-duck-lang="btn-gallery" onclick="registerDuckClick()">Галерея</a>
+                <a href="#duck-cool-people" class="duck-glass-btn" data-duck-lang="btn-people" onclick="registerDuckClick()">Люди</a>
+                <a href="#duck-authors" class="duck-glass-btn" data-duck-lang="btn-team" onclick="registerDuckClick()">Команда</a>
+            </div>
+            <div class="duck-nav-controls">
+                <button id="duck-lang-btn" class="duck-control-btn" onclick="toggleDuckLanguage()">ENG</button>
+                <button id="duck-theme-btn" class="duck-control-btn" onclick="toggleDuckTheme()">🌙</button>
+            </div>
+        </nav>
+
+        <div class="duck-container">
+            <section id="duck-about">
+                <h2 data-duck-lang="about-title">Кто такие утки?</h2>
+                <p data-duck-lang="about-text">Утки — это удивительные водоплавающие птицы, которые мастера на все крылья. Наша коллекция показывает их в уникальном эстетическом стиле.</p>
+            </section>
+
+            <section id="duck-gallery">
+                <h2 style="text-align: center; display: block;" data-duck-lang="gallery-title">Галерея</h2>
+                <div class="duck-gallery">
+                    <div class="duck-card">
+                        <img src="https://noikcloud.xyz/dKg36lq" alt="Утка-силач" class="duck-image" onclick="openDuckModal(this.src)">
+                        <p data-duck-lang="duck1">Утка-силач</p>
+                    </div>
+                    <div class="duck-card">
+                        <img src="https://noikcloud.xyz/tjBP5sv" alt="Стильный компаньон" class="duck-image" onclick="openDuckModal(this.src)">
+                        <p data-duck-lang="duck2">Стильный компаньон</p>
+                    </div>
+                    <div class="duck-card">
+                        <img src="https://static.tildacdn.pub/tild6130-3462-4436-a662-323131636366/image.png" alt="Человек держит утку" class="duck-image" onclick="openDuckModal(this.src)">
+                        <p data-duck-lang="duck3">Человек держит утку</p>
+                    </div>
+                    <div class="duck-card">
+                        <img src="https://tr.rbxcdn.com/180DAY-b4fe968f6db521051bdbfd49ae7f05cd/420/420/Hat/Webp/noFilter" alt="Утка mini" class="duck-image" onclick="openDuckModal(this.src)">
+                        <p data-duck-lang="duck4">Утка mini</p>
+                    </div>
+                </div>
+            </section>
+
+            <section id="duck-cool-people">
+                <h2 style="text-align: center; display: block;" data-duck-lang="people-title">Крутые люди</h2>
+                <div class="duck-people-section">
+                    <div class="duck-person-card">
+                        <img src="https://noikcloud.xyz/26Qonmt" class="duck-avatar-circle" onclick="openDuckModal(this.src)">
+                        <span class="duck-person-name" data-duck-lang="p-name1">1. Ассассин</span>
+                    </div>
+                    <div class="duck-person-card">
+                        <img src="https://noikcloud.xyz/fUX8FIB" class="duck-avatar-circle" onclick="openDuckModal('https://noikcloud.xyz/u6CtrMd')">
+                        <span class="duck-person-name">2. bloczi</span>
+                    </div>
+                    <div class="duck-person-card">
+                        <img src="https://noikcloud.xyz/VZikVKR" class="duck-avatar-circle" onclick="openDuckModal(this.src)">
+                        <span class="duck-person-name">3. Vlad</span>
+                    </div>
+                    <div class="duck-person-card">
+                        <div class="duck-avatar-circle duck-avatar-black" onclick="openDuckModal('https://dummyimage.com/600x600/000/000.png', '???')"></div>
+                        <span class="duck-person-name">4. ???</span>
+                    </div>
+                </div>
+            </section>
+
+            <section id="duck-authors">
+                <h2 style="text-align: center; display: block;" data-duck-lang="team-title">Команда проекта</h2>
+                <div class="duck-people-section">
+                    <div class="duck-author-card">
+                        <img src="https://noikcloud.xyz/fSjunJz" class="duck-avatar-circle" onclick="handleEmilDuckClick(this)">
+                        <span class="duck-person-name">emil768</span>
+                        <span class="duck-author-role" data-duck-lang="role-creator">Создатель</span>
+                        <div class="duck-social-buttons">
+                            <a href="https://t.me/emil768tg" target="_blank" class="duck-tg-button">
+                                <svg viewBox="0 0 24 24"><path d="M12 0c-6.627 0-12 5.373-12 12s5.373 12 12 12 12-5.373 12-12-5.373-12-12-12zm5.891 8.146l-1.931 9.102c-.144.646-.528.805-1.069.5l-2.94-2.167-1.418 1.365c-.157.157-.289.289-.591.289l.211-2.992 5.446-4.921c.237-.211-.051-.328-.368-.117l-6.732 4.239-2.901-.908c-.63-.197-.643-.63.131-.931l11.34-4.371c.525-.192.985.122.822.912z"/></svg>
+                            </a>
+                            <button class="duck-more-button" onclick="toggleDuckInfo('emil-duck-contacts')">...</button>
+                        </div>
+                        <div id="emil-duck-contacts" class="duck-contact-info">
+                            <strong data-duck-lang="contact-head">Контактные данные:</strong><br>
+                            <div class="duck-pixel-mosaic">+7938754524<br>emil768ads@vk.com</div>
+                        </div>
+                    </div>
+                    
+                    <div class="duck-author-card">
+                        <img src="https://noikcloud.xyz/FP8mdFh" class="duck-avatar-circle" onclick="openDuckModal(this.src)">
+                        <span class="duck-person-name" data-duck-lang="p-name5">кекеплойд</span>
+                        <span class="duck-author-role" data-duck-lang="role-idea">Идея</span>
+                        <div class="duck-social-buttons">
+                            <a href="https://t.me/pldzztg" target="_blank" class="duck-tg-button">
+                                <svg viewBox="0 0 24 24"><path d="M12 0c-6.627 0-12 5.373-12 12s5.373 12 12 12 12-5.373 12-12-5.373-12-12-12zm5.891 8.146l-1.931 9.102c-.144.646-.528.805-1.069.5l-2.94-2.167-1.418 1.365c-.157.157-.289.289-.591.289l.211-2.992 5.446-4.921c.237-.211-.051-.328-.368-.117l-6.732 4.239-2.901-.908c-.63-.197-.643-.63.131-.931l11.34-4.371c.525-.192.985.122.822.912z"/></svg>
+                            </a>
+                            <button class="duck-more-button" onclick="toggleDuckInfo('kek-duck-contacts')">...</button>
+                        </div>
+                        <div id="kek-duck-contacts" class="duck-contact-info">
+                            <strong data-duck-lang="contact-head">Контактная информация:</strong><br>
+                            <div class="duck-kek-blur">+40-(731)-402-357<br>robtop762@gmail.com</div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <div style="text-align: center; margin-top: 40px;">
+                <button style="background: linear-gradient(45deg, var(--duck-accent), var(--duck-secondary)); color: #121212; padding: 15px 30px; border-radius: 50px; font-weight: bold; border: none; cursor: pointer;" onclick="playDuckQuack()" data-duck-lang="quack-btn">ПОЛУЧИТЬ ПОРЦИЮ КРЯ</button>
+            </div>
+        </div>
+
+        <div id="duckImageModal" onclick="this.style.display='none'">
+            <img id="duckFullImage">
+            <div id="duckModalCaption"></div>
+        </div>
+
+        <footer>
+            <p>&copy; 2026 Утиный Клуб. Все права защищены.</p>
+            <div class="duck-footer-email-box">
+                <span style="display: block; font-size: 0.65rem; color: #888;" data-duck-lang="footer-ps">p.s я на неё некогда нее не захожу</span>
+                <span class="duck-email-link" onclick="copyDuckEmail('emil768ads@vk.com')">emil768ads@vk.com</span>
+            </div>
+        </footer>
+    </div>
+
     <div class="toast" id="toast">Скрипт скопирован в буфер обмена!</div>
 
     <script>
+        // --- ПЕРЕКЛЮЧЕНИЕ МЕЖДУ ПРОЕКТАМИ ---
         function toggleProjectsMenu() {
             document.getElementById('projectsMenu').classList.toggle('show');
         }
@@ -889,17 +1183,26 @@
 
             const pageEmil = document.getElementById('page-emil');
             const pagePixelshot = document.getElementById('page-pixelshot');
+            const pageDucks = document.getElementById('page-ducks');
+
             const itemEmil = document.getElementById('item-emil');
             const itemPixelshot = document.getElementById('item-pixelshot');
+            const itemDucks = document.getElementById('item-ducks');
             const pageTitle = document.getElementById('page-title');
 
-            const currentActive = itemEmil.classList.contains('active') ? 'emil' : 'pixelshot';
+            let currentActive = 'emil';
+            if (itemPixelshot.classList.contains('active')) currentActive = 'pixelshot';
+            if (itemDucks.classList.contains('active')) currentActive = 'ducks';
+
             if (currentActive === projectName || isSwitching) return;
 
             isSwitching = true;
 
-            const outgoingPage = projectName === 'pixelshot' ? pageEmil : pagePixelshot;
-            const incomingPage = projectName === 'pixelshot' ? pagePixelshot : pageEmil;
+            const pagesMap = { emil: pageEmil, pixelshot: pagePixelshot, ducks: pageDucks };
+            const itemsMap = { emil: itemEmil, pixelshot: itemPixelshot, ducks: itemDucks };
+
+            const outgoingPage = pagesMap[currentActive];
+            const incomingPage = pagesMap[projectName];
 
             outgoingPage.classList.remove('fade-in');
             outgoingPage.classList.add('fade-out');
@@ -908,15 +1211,17 @@
                 outgoingPage.style.display = 'none';
                 outgoingPage.classList.remove('fade-out');
 
+                Object.values(itemsMap).forEach(item => item.classList.remove('active'));
+                itemsMap[projectName].classList.add('active');
+
                 if (projectName === 'pixelshot') {
                     incomingPage.style.display = 'block';
-                    itemEmil.classList.remove('active');
-                    itemPixelshot.classList.add('active');
                     pageTitle.innerText = "PixelShot для Windows — Скачать бесплатно";
+                } else if (projectName === 'ducks') {
+                    incomingPage.style.display = 'block';
+                    pageTitle.innerText = "Мир Уток — Ретро и Стиль";
                 } else {
                     incomingPage.style.display = 'flex';
-                    itemPixelshot.classList.remove('active');
-                    itemEmil.classList.add('active');
                     pageTitle.innerText = "EMIL768 SCRIPT — Hub";
                 }
 
@@ -931,7 +1236,7 @@
             }, 350);
         }
 
-        // 3D TILT EFFECT
+        // --- ЛОГИКА EMIL768 SCRIPT ---
         const emilWindow = document.getElementById('emilWindow');
         document.addEventListener('mousemove', (e) => {
             if (document.getElementById('page-emil').style.display === 'none') return;
@@ -942,7 +1247,6 @@
             emilWindow.style.transform = `translate3d(${xOffset * 12}px, ${yOffset * 12}px, 0) rotateX(${-yOffset * 15}deg) rotateY(${xOffset * 15}deg)`;
         });
 
-        // СОСТОЯНИЕ СКРИПТА
         const scriptState = { infJump: false, noclip: false, fly: false, wallClimb: false, fling: false, esp: false, autoGun: false, autoFarm: false };
         let currentLang = 'ru';
 
@@ -1056,11 +1360,223 @@
 
         function copyScript() {
             const script = 'loadstring(game:HttpGet("https://raw.githubusercontent.com/emil768YT/emil768test_script/refs/heads/main/loader_update.luau"))()';
-            navigator.clipboard.writeText(script).then(() => {
-                const toast = document.getElementById('toast');
-                toast.classList.add('show');
-                setTimeout(() => { toast.classList.remove('show'); }, 3000);
+            showToast(scriptI18n[currentLang] ? siteI18n[currentLang].toast : 'Скопировано!');
+            navigator.clipboard.writeText(script);
+        }
+
+        function showToast(text) {
+            const toast = document.getElementById('toast');
+            toast.innerText = text;
+            toast.classList.add('show');
+            setTimeout(() => { toast.classList.remove('show'); }, 3000);
+        }
+
+        // --- ЛОГИКА МИРА УТОК ---
+        const duckTranslations = {
+            ru: {
+                "main-title": "Мир Уток", "main-subtitle": "Стиль и ретро в каждой детали", "btn-about": "О нас", "btn-gallery": "Галерея",
+                "btn-people": "Люди", "btn-team": "Команда", "about-title": "Кто такие утки?",
+                "about-text": "Утки — это удивительные водоплавающие птицы, которые мастера на все крылья. Наша коллекция показывает их в уникальном эстетическом стиле.",
+                "gallery-title": "Галерея", "duck1": "Утка-силач", "duck2": "Стильный компаньон", "duck3": "Человек держит утку",
+                "duck4": "Утка mini", "people-title": "Крутые люди", "p-name1": "1. Ассассин", "p-name5": "кекеплойд",
+                "team-title": "Команда проекта", "role-creator": "Создатель", "role-idea": "Идея", "contact-head": "Контактные данные:",
+                "quack-btn": "ПОЛУЧИТЬ ПОРЦИЮ КРЯ", "xp-title": "Системное предупреждение", "xp-text": "Не используй Автокликер!", "toast": "Почта скопирована!"
+            },
+            en: {
+                "main-title": "Duck World", "main-subtitle": "Style and retro in every detail", "btn-about": "About Us", "btn-gallery": "Gallery",
+                "btn-people": "People", "btn-team": "Team", "about-title": "Who are the ducks?",
+                "about-text": "Ducks are amazing waterfowl that are jacks of all wings. Our collection showcases them in a unique aesthetic style.",
+                "gallery-title": "Gallery", "duck1": "Strongman Duck", "duck2": "Stylish Companion", "duck3": "Man holding a duck",
+                "duck4": "Mini Duck", "people-title": "Cool People", "p-name1": "1. Assassin", "p-name5": "Kekeployd",
+                "team-title": "Project Team", "role-creator": "Creator", "role-idea": "Idea", "contact-head": "Contact info:",
+                "quack-btn": "GET A PORTION OF QUACK", "xp-title": "System Warning", "xp-text": "Do not use an Autoclicker!", "toast": "Email copied!"
+            }
+        };
+
+        let currentDuckLang = 'ru';
+        let isDuckLangSwitching = false;
+        let duckClickTimestamps = [];
+        let isDuckSpammingActive = false;
+        let duckAudioCtx = null;
+
+        function playDuckErrorSound() {
+            try {
+                if (!duckAudioCtx) duckAudioCtx = new (window.AudioContext || window.webkitAudioContext)();
+                let osc1 = duckAudioCtx.createOscillator(), osc2 = duckAudioCtx.createOscillator(), gainNode = duckAudioCtx.createGain();
+                osc1.type = 'square'; osc1.frequency.setValueAtTime(150, duckAudioCtx.currentTime);
+                osc2.type = 'sine'; osc2.frequency.setValueAtTime(120, duckAudioCtx.currentTime);
+                gainNode.gain.setValueAtTime(0.3, duckAudioCtx.currentTime);
+                gainNode.gain.exponentialRampToValueAtTime(0.01, duckAudioCtx.currentTime + 0.25);
+                osc1.connect(gainNode); osc2.connect(gainNode); gainNode.connect(duckAudioCtx.destination);
+                osc1.start(); osc2.start(); osc1.stop(duckAudioCtx.currentTime + 0.25); osc2.stop(duckAudioCtx.currentTime + 0.25);
+            } catch(e) {}
+        }
+
+        function playDuckQuackSound() {
+            try {
+                if (!duckAudioCtx) duckAudioCtx = new (window.AudioContext || window.webkitAudioContext)();
+                let osc = duckAudioCtx.createOscillator(), gainNode = duckAudioCtx.createGain();
+                osc.type = 'sawtooth'; osc.frequency.setValueAtTime(450, duckAudioCtx.currentTime);
+                osc.frequency.exponentialRampToValueAtTime(180, duckAudioCtx.currentTime + 0.2);
+                gainNode.gain.setValueAtTime(0.4, duckAudioCtx.currentTime);
+                gainNode.gain.linearRampToValueAtTime(0.01, duckAudioCtx.currentTime + 0.25);
+                osc.connect(gainNode); gainNode.connect(duckAudioCtx.destination);
+                osc.start(); osc.stop(duckAudioCtx.currentTime + 0.25);
+            } catch(e) {}
+        }
+
+        function makeDuckDraggable(e, windowId) {
+            const windowElement = document.getElementById(windowId);
+            if (!windowElement) return;
+            let isTouch = e.type === 'touchstart';
+            let posX = isTouch ? e.touches[0].clientX : e.clientX;
+            let posY = isTouch ? e.touches[0].clientY : e.clientY;
+
+            function onMove(event) {
+                let currentX = isTouch ? event.touches[0].clientX : event.clientX;
+                let currentY = isTouch ? event.touches[0].clientY : event.clientY;
+                const deltaX = currentX - posX; const deltaY = currentY - posY;
+                posX = currentX; posY = currentY;
+                windowElement.style.top = (windowElement.offsetTop + deltaY) + "px";
+                windowElement.style.left = (windowElement.offsetLeft + deltaX) + "px";
+            }
+
+            function onEnd() {
+                document.removeEventListener(isTouch ? 'touchmove' : 'mousemove', onMove);
+                document.removeEventListener(isTouch ? 'touchend' : 'mouseup', onEnd);
+            }
+
+            document.addEventListener(isTouch ? 'touchmove' : 'mousemove', onMove, { passive: false });
+            document.addEventListener(isTouch ? 'touchend' : 'mouseup', onEnd);
+        }
+
+        function registerDuckClick() {
+            if (isDuckSpammingActive) return;
+            const now = Date.now();
+            duckClickTimestamps.push(now);
+            duckClickTimestamps = duckClickTimestamps.filter(time => now - time < 1000);
+
+            if (duckClickTimestamps.length > 20) {
+                isDuckSpammingActive = true;
+                playDuckErrorSound();
+                const mainWin = document.getElementById('main-duck-xp-window');
+                mainWin.style.left = Math.max(10, (window.innerWidth - mainWin.offsetWidth) / 2) + 'px';
+                mainWin.style.top = Math.max(50, (window.innerHeight - mainWin.offsetHeight) / 2) + 'px';
+                document.getElementById('duck-xp-overlay').style.display = 'flex';
+            }
+        }
+
+        function startDuckXpSpam() {
+            document.getElementById('duck-xp-overlay').style.display = 'none';
+            let windowCount = 0; const maxWindows = 15;
+
+            const spamInterval = setInterval(() => {
+                if (windowCount >= maxWindows) {
+                    clearInterval(spamInterval);
+                    setTimeout(() => {
+                        document.querySelectorAll('.duck-spawned-xp-window').forEach(el => el.remove());
+                        const bsod = document.getElementById('duck-bsod-screen');
+                        bsod.style.backgroundImage = window.innerWidth <= 768 ? "url('https://noikcloud.xyz/7KqrUVK')" : "url('https://noikcloud.xyz/lN87vXC')";
+                        bsod.style.display = 'block';
+                        setTimeout(() => { window.location.reload(); }, 5000);
+                    }, 5000);
+                    return;
+                }
+
+                const winWidth = Math.min(350, window.innerWidth - 40);
+                const randomX = Math.floor(Math.random() * (window.innerWidth - winWidth));
+                const randomY = Math.floor(Math.random() * (window.innerHeight - 180));
+                const titleText = duckTranslations[currentDuckLang]["xp-title"];
+                const bodyText = duckTranslations[currentDuckLang]["xp-text"];
+                const uniqueId = 'duck-spawned-window-' + windowCount;
+
+                const newWindow = document.createElement('div');
+                newWindow.className = 'duck-xp-window duck-spawned-xp-window';
+                newWindow.id = uniqueId;
+                newWindow.style.left = randomX + 'px';
+                newWindow.style.top = randomY + 'px';
+                
+                newWindow.innerHTML = `
+                    <div class="duck-xp-titlebar" onmousedown="makeDuckDraggable(event, '${uniqueId}')" ontouchstart="makeDuckDraggable(event, '${uniqueId}')">
+                        <span class="duck-xp-title">${titleText}</span>
+                        <div class="duck-xp-close-btn">X</div>
+                    </div>
+                    <div class="duck-xp-body">
+                        <div class="duck-xp-icon">X</div>
+                        <div class="duck-xp-text">${bodyText}</div>
+                    </div>
+                    <div class="duck-xp-footer">
+                        <button class="duck-xp-btn-ok">OK</button>
+                    </div>
+                `;
+
+                document.body.appendChild(newWindow);
+                playDuckErrorSound();
+                windowCount++;
+            }, 150);
+        }
+
+        function toggleDuckLanguage() {
+            if (isDuckLangSwitching) return;
+            isDuckLangSwitching = true;
+            const langBtn = document.getElementById('duck-lang-btn');
+            const elementsToTranslate = document.querySelectorAll('[data-duck-lang]');
+
+            currentDuckLang = (currentDuckLang === 'ru') ? 'en' : 'ru';
+            langBtn.innerText = (currentDuckLang === 'ru') ? 'ENG' : 'RU';
+
+            elementsToTranslate.forEach(element => {
+                const key = element.getAttribute('data-duck-lang');
+                if (duckTranslations[currentDuckLang][key]) {
+                    element.innerHTML = duckTranslations[currentDuckLang][key];
+                }
             });
+            setTimeout(() => { isDuckLangSwitching = false; }, 250);
+        }
+
+        function toggleDuckTheme() {
+            const pageDucks = document.getElementById('page-ducks');
+            const themeBtn = document.getElementById('duck-theme-btn');
+            const currentTheme = pageDucks.getAttribute('data-duck-theme');
+            
+            if (currentTheme === 'dark') {
+                pageDucks.setAttribute('data-duck-theme', 'light');
+                themeBtn.innerText = '🌙';
+            } else {
+                pageDucks.setAttribute('data-duck-theme', 'dark');
+                themeBtn.innerText = '☀️';
+            }
+        }
+
+        let emilDuckTapCount = 0;
+        function handleEmilDuckClick(element) {
+            emilDuckTapCount++;
+            if (emilDuckTapCount === 10) {
+                openDuckModal('https://noikcloud.xyz/IYStlZN', currentDuckLang === 'ru' ? 'крутая картинка' : 'cool picture');
+                emilDuckTapCount = 0;
+            } else {
+                openDuckModal(element.src);
+            }
+        }
+        
+        function toggleDuckInfo(id) {
+            const div = document.getElementById(id);
+            div.style.display = (div.style.display === 'block') ? 'none' : 'block';
+        }
+        
+        function playDuckQuack() { playDuckQuackSound(); }
+        
+        function openDuckModal(src, caption = '') {
+            const modal = document.getElementById("duckImageModal");
+            const capDiv = document.getElementById("duckModalCaption");
+            modal.style.display = "flex";
+            document.getElementById("duckFullImage").src = src;
+            capDiv.innerText = caption;
+        }
+        
+        function copyDuckEmail(email) {
+            navigator.clipboard.writeText(email);
+            showToast(duckTranslations[currentDuckLang]["toast"]);
         }
     </script>
 </body>
