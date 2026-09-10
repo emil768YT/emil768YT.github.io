@@ -574,51 +574,22 @@
         .executors-title { font-size: 28px; font-weight: 800; color: var(--text-main); letter-spacing: -0.5px; }
         .executors-title span { color: var(--accent-color); transition: color 0.3s; }
 
-        /* --- СТИЛИ СТРАНИЦЫ PIXELSHOT --- */
+        /* --- СТРАНИЦА PIXELSHOT (новая версия) --- */
         #page-pixelshot {
             display: none;
-            background-color: #f4f7f6;
-            color: #2c3e50;
+            width: 100%;
             min-height: 100vh;
-            user-select: auto;
+            background: #100A22;
+        }
+        #page-pixelshot iframe {
+            display: block;
+            width: 100%;
+            min-height: 100vh;
+            height: 2400px;
+            border: 0;
         }
 
-        #page-pixelshot .hero-section { 
-            padding: 120px 0; 
-            background: linear-gradient(135deg, #2c3e50 0%, #1a2533 100%); 
-            color: white; 
-            text-align: center; 
-        }
 
-        #page-pixelshot .hero-image { max-width: 200px; height: auto; margin-bottom: 30px; }
-        
-        #page-pixelshot .btn-download {
-            background: rgba(255, 255, 255, 0.15);
-            backdrop-filter: blur(10px);
-            -webkit-backdrop-filter: blur(10px);
-            border: 1px solid rgba(255, 255, 255, 0.3);
-            color: white;
-            padding: 16px 40px;
-            border-radius: 20px;
-            text-decoration: none;
-            transition: 0.4s;
-            box-shadow: 0 8px 32px rgba(0,0,0,0.3);
-            font-weight: bold;
-            font-size: 1.25rem;
-            display: inline-block;
-        }
-
-        #page-pixelshot .btn-download:hover {
-            background: rgba(255, 255, 255, 0.25);
-            transform: translateY(-5px) scale(1.05);
-            color: white;
-        }
-
-        #page-pixelshot .system-req { font-size: 0.95rem; color: #bdc3c7; margin-top: 25px; }
-        #page-pixelshot .feature-card { border: none; border-radius: 12px; transition: transform 0.2s; height: 100%; }
-        #page-pixelshot .feature-card:hover { transform: scale(1.03); }
-        #page-pixelshot .screenshot-img { max-width: 100%; border-radius: 12px; box-shadow: 0 10px 20px rgba(0,0,0,0.1); }
-        #page-pixelshot .footer { padding: 50px 0; background-color: #1a2533; color: #95a5a6; text-align: center; }
 
         /* --- СТИЛИ СТРАНИЦЫ МИР УТОК --- */
         #page-ducks {
@@ -970,65 +941,690 @@
             <h2 class="executors-title" id="executors-title-text">Скрипт работает во <span>ВСЕХ</span> roblox инжекторах</h2>
         </div>
     </div>
-
     <!-- ==================== СТРАНИЦА 2: PIXELSHOT ==================== -->
     <div id="page-pixelshot" class="page-view">
-        <nav class="navbar navbar-expand-lg navbar-dark bg-dark sticky-top">
-            <div class="container">
-                <a class="navbar-brand fw-bold d-flex align-items-center" href="#">
-                    <img src="https://kappa.lol/vUqrF3" alt="PixelShot Logo" class="me-2" style="height: 40px;">
-                    PixelShot
-                </a>
-                <div class="navbar-nav ms-auto">
-                    <a class="nav-link" href="#features">Возможности</a>
-                    <a class="nav-link" href="#screenshots">Скриншоты</a>
-                    <a class="nav-link btn btn-outline-light btn-sm ms-3" href="https://drive.google.com/uc?export=download&id=1bhok1FzfqSJ5dq1eOYZBBy2QzqtqSQIX">Скачать</a>
-                </div>
-            </div>
-        </nav>
+        <iframe srcdoc="&lt;!DOCTYPE html&gt;
+&lt;html lang=&quot;ru&quot;&gt;
+&lt;head&gt;
+&lt;meta charset=&quot;UTF-8&quot;&gt;
+&lt;meta name=&quot;viewport&quot; content=&quot;width=device-width, initial-scale=1.0&quot;&gt;
+&lt;title&gt;PixelShot — скриншоты с точностью до пикселя&lt;/title&gt;
+&lt;link rel=&quot;icon&quot; href=&quot;https://kappa.lol/UAAnvd&quot;&gt;
+&lt;link rel=&quot;preconnect&quot; href=&quot;https://fonts.googleapis.com&quot;&gt;
+&lt;link rel=&quot;preconnect&quot; href=&quot;https://fonts.gstatic.com&quot; crossorigin&gt;
+&lt;link href=&quot;https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&amp;family=Inter:wght@400;500;600&amp;display=swap&quot; rel=&quot;stylesheet&quot;&gt;
+&lt;style&gt;
+  :root{
+    --bg: #100A22;
+    --violet: #6E5BFF;
+    --magenta: #FF4FA0;
+    --aqua: #33E6C9;
+    --glass: rgba(255,255,255,0.08);
+    --glass-strong: rgba(255,255,255,0.14);
+    --border: rgba(255,255,255,0.22);
+    --border-strong: rgba(255,255,255,0.4);
+    --text: #F5F6FA;
+    --muted: rgba(245,246,250,0.66);
+  }
 
-        <header class="hero-section">
-            <div class="container">
-                <img src="https://kappa.lol/UAAnvd" alt="PixelShot Feature Showcase" class="hero-image">
-                <h1 class="text-white fw-bold">PixelShot для Windows</h1>
-                <div class="my-5">
-                    <a href="https://drive.google.com/uc?export=download&id=1bhok1FzfqSJ5dq1eOYZBBy2QzqtqSQIX" class="btn-download">Скачать для Windows</a>
-                </div>
-                <div class="system-req">
-                    <p>Совместимо с Windows 10, 11 (64-bit)</p>
-                </div>
-            </div>
-        </header>
+  *{ margin:0; padding:0; box-sizing:border-box; }
+  html{ scroll-behavior:smooth; }
 
-        <section id="features" class="container my-5 py-5">
-            <h2 class="text-center mb-5 fw-bold">Основные возможности</h2>
-            <div class="row justify-content-center g-4">
-                <div class="col-md-6 col-lg-5">
-                    <div class="card p-4 border-0 shadow-sm feature-card">
-                        <h3 class="h4 fw-semibold text-primary">⚡ Горячие клавиши</h3>
-                        <p>Мгновенный захват любой области экрана, окна или всего рабочего стола.</p>
-                    </div>
-                </div>
-                <div class="col-md-6 col-lg-5">
-                    <div class="card p-4 border-0 shadow-sm feature-card">
-                        <h3 class="h4 fw-semibold text-success">🎨 Встроенный редактор</h3>
-                        <p>Добавляйте карандаш, блюр, квадрат и круг сразу после снимка.</p>
-                    </div>
-                </div>
-            </div>
-        </section>
+  body{
+    background:var(--bg);
+    color:var(--text);
+    font-family:'Inter', sans-serif;
+    line-height:1.6;
+    overflow-x:hidden;
+    position:relative;
+    min-height:100vh;
+  }
 
-        <section id="screenshots" class="container my-5 py-5 text-center">
-            <h2 class="mb-5 fw-bold">Скриншоты</h2>
-            <img src="https://noikcloud.xyz/q0w0WFe" alt="PixelShot Interface" class="screenshot-img">
-        </section>
+  h1,h2,h3{
+    font-family:'Space Grotesk', sans-serif;
+    font-weight:700;
+    line-height:1.12;
+    letter-spacing:-0.01em;
+  }
+  a{ color:inherit; text-decoration:none; }
 
-        <footer class="footer">
-            <div class="container">
-                <p class="mb-0">emil768ads@vk.com</p>
-            </div>
-        </footer>
+  .wrap{ max-width:1120px; margin:0 auto; padding:0 28px; }
+
+  /* ---------- ambient background blobs ---------- */
+  .blobs{
+    position:fixed; inset:0; z-index:-1; overflow:hidden;
+  }
+  .blob{
+    position:absolute;
+    border-radius:50%;
+    filter:blur(55px);
+    opacity:0.6;
+    will-change:transform;
+  }
+  .blob-a{
+    width:240px; height:240px;
+    background:var(--violet);
+    top:-40px; left:-40px;
+  }
+  .blob-b{
+    width:200px; height:200px;
+    background:var(--magenta);
+    top:22%; right:-40px;
+  }
+  .blob-c{
+    width:190px; height:190px;
+    background:var(--aqua);
+    bottom:-60px; left:24%;
+  }
+
+  /* ---------- glass primitive ---------- */
+  .glass{
+    background:var(--glass);
+    backdrop-filter:blur(22px) saturate(160%);
+    -webkit-backdrop-filter:blur(22px) saturate(160%);
+    border:1px solid var(--border);
+    position:relative;
+    box-shadow:0 8px 32px rgba(0,0,0,0.35);
+  }
+  .glass::before{
+    content:&quot;&quot;;
+    position:absolute; inset:0;
+    border-radius:inherit;
+    background:linear-gradient(135deg, rgba(255,255,255,0.35), rgba(255,255,255,0) 40%);
+    opacity:0.5;
+    pointer-events:none;
+  }
+
+  /* ---------- nav ---------- */
+  header{
+    position:sticky; top:16px; z-index:50;
+    padding:0 28px;
+  }
+  nav{
+    max-width:1120px; margin:0 auto;
+    display:flex; align-items:center; justify-content:space-between;
+    padding:10px 12px 10px 18px;
+    border-radius:999px;
+  }
+  .brand{ display:flex; align-items:center; gap:10px; }
+  .brand img{
+    width:30px; height:30px; object-fit:contain;
+    border-radius:9px;
+    background:rgba(255,255,255,0.12);
+    padding:3px;
+  }
+  .brand span{ font-family:'Space Grotesk',sans-serif; font-weight:600; font-size:1rem; }
+  .nav-links{ display:flex; gap:28px; }
+  .nav-links a{ font-size:0.92rem; color:var(--muted); transition:color .18s ease; }
+  .nav-links a:hover{ color:var(--text); }
+  .nav-cta{
+    font-size:0.85rem; font-weight:600;
+    padding:9px 20px; border-radius:999px;
+    background:linear-gradient(135deg, var(--violet), var(--magenta));
+    color:#fff;
+    box-shadow:0 4px 18px rgba(255,79,160,0.35);
+  }
+
+  /* ---------- hero ---------- */
+  .hero{ padding:96px 0 100px; text-align:center; }
+  .hero-card{
+    max-width:720px; margin:0 auto;
+    border-radius:32px;
+    padding:56px 44px 48px;
+  }
+  .hero-emblem{
+    width:64px; height:64px;
+    margin:0 auto 28px;
+    border-radius:20px;
+    display:flex; align-items:center; justify-content:center;
+    background:rgba(255,255,255,0.12);
+  }
+  .hero-emblem img{ width:38px; height:38px; object-fit:contain; }
+  .hero h1{
+    font-size:clamp(2.1rem, 5vw, 3.6rem);
+    margin-bottom:18px;
+    background:linear-gradient(120deg, #ffffff 30%, #d9d3ff 60%, #ffe0ef 100%);
+    -webkit-background-clip:text;
+    background-clip:text;
+    color:transparent;
+  }
+  .hero p{
+    max-width:440px; margin:0 auto 40px;
+    color:var(--muted); font-size:1.04rem;
+  }
+
+  .download-cta{ display:inline-flex; flex-direction:column; align-items:center; gap:14px; }
+
+  .liquid-btn{
+    display:inline-flex; align-items:center; justify-content:center;
+    border-radius:22px;
+    padding:10px;
+    cursor:pointer;
+    border:1px solid var(--border-strong);
+    transition:transform .15s ease, box-shadow .2s ease;
+  }
+  .liquid-btn:hover{
+    transform:translateY(-2px);
+    box-shadow:0 12px 34px rgba(110,91,255,0.35);
+  }
+  .liquid-btn:active{ transform:translateY(0) scale(0.97); }
+  .liquid-btn{
+    gap:12px;
+    padding:16px 30px;
+    font-family:'Space Grotesk', sans-serif;
+    font-weight:600;
+    font-size:1.02rem;
+    color:#fff;
+    background:linear-gradient(135deg, rgba(110,91,255,0.35), rgba(255,79,160,0.28));
+  }
+
+  .download-meta{ font-size:0.82rem; color:var(--muted); }
+  .download-meta b{ color:var(--text); font-weight:500; }
+  .download-status{
+    font-size:0.8rem; color:var(--aqua);
+    min-height:1.2em;
+  }
+
+  /* ---------- mock window ---------- */
+  .mock-wrap{ padding:0 0 130px; }
+  .mock-window{
+    max-width:860px; margin:0 auto;
+    border-radius:26px;
+    overflow:hidden;
+  }
+  .mock-titlebar{
+    display:flex; align-items:center; gap:8px;
+    padding:14px 18px;
+    border-bottom:1px solid var(--border);
+    background:rgba(255,255,255,0.04);
+  }
+  .mock-dot{ width:10px; height:10px; border-radius:50%; background:rgba(255,255,255,0.25); }
+  .mock-titlebar span{ margin-left:8px; font-size:0.78rem; color:var(--muted); }
+  .mock-toolbar{ display:flex; gap:10px; padding:14px 18px; border-bottom:1px solid var(--border); }
+  .mock-tool{
+    width:32px; height:32px; border-radius:11px;
+    display:flex; align-items:center; justify-content:center;
+    background:rgba(255,255,255,0.06);
+    border:1px solid var(--border);
+    color:var(--muted);
+  }
+  .mock-tool.active{ background:rgba(255,255,255,0.16); color:#fff; border-color:var(--border-strong); }
+  .mock-canvas{
+    position:relative; height:360px; overflow:hidden;
+    background:linear-gradient(135deg, #2A1F5C 0%, #3A1E52 45%, #1C3A55 100%);
+  }
+  .mock-canvas svg{ position:absolute; inset:0; width:100%; height:100%; }
+  .mock-select{
+    position:absolute; top:16%; left:8%; width:38%; height:46%;
+    border:1.5px dashed rgba(255,255,255,0.75);
+    border-radius:14px;
+    backdrop-filter:blur(1px);
+  }
+  .mock-tag{
+    position:absolute; bottom:20px; right:24px;
+    padding:9px 14px; border-radius:999px;
+    font-size:0.78rem; display:flex; align-items:center; gap:8px;
+  }
+  .mock-tag::before{ content:&quot;&quot;; width:6px; height:6px; border-radius:50%; background:var(--aqua); }
+
+  /* ---------- screenshots ---------- */
+  .screens-wrap{ padding:0 0 130px; }
+  .screens-window{ max-width:900px; }
+  .screens-image{ position:relative; line-height:0; }
+  .screens-image img{ display:block; width:100%; height:auto; }
+
+  /* ---------- features ---------- */
+  .features{ padding:0 0 130px; }
+  .section-head{ max-width:520px; margin:0 auto 52px; text-align:center; }
+  .section-head h2{ font-size:clamp(1.7rem, 3.4vw, 2.3rem); margin-bottom:14px; }
+  .section-head p{ color:var(--muted); font-size:1rem; }
+
+  .feature-grid{ display:grid; grid-template-columns:repeat(3,1fr); gap:20px; }
+  .feature-card{ border-radius:22px; padding:30px 26px 32px; }
+  .feature-icon{
+    width:44px; height:44px; border-radius:14px;
+    display:flex; align-items:center; justify-content:center;
+    background:rgba(255,255,255,0.12);
+    margin-bottom:22px;
+  }
+  .feature-card h3{ font-size:1.1rem; margin-bottom:10px; }
+  .feature-card p{ color:var(--muted); font-size:0.94rem; }
+
+  /* ---------- final cta ---------- */
+  .final-cta{ padding:0 0 120px; text-align:center; }
+  .final-cta-box{ border-radius:32px; padding:60px 40px; max-width:800px; margin:0 auto; }
+  .final-cta-box h2{ font-size:clamp(1.6rem, 3.2vw, 2.2rem); margin-bottom:14px; }
+  .final-cta-box p{ color:var(--muted); margin-bottom:32px; }
+
+  /* ---------- footer ---------- */
+  footer{ padding:26px 28px 40px; }
+  .footer-row{
+    max-width:1120px; margin:0 auto;
+    display:flex; align-items:center; justify-content:space-between;
+    flex-wrap:wrap; gap:16px;
+    padding:16px 22px;
+    border-radius:20px;
+  }
+  .footer-brand{ display:flex; align-items:center; gap:10px; color:var(--muted); font-size:0.85rem; }
+  .footer-brand img{ width:20px; height:20px; object-fit:contain; border-radius:6px; }
+  .footer-links{ display:flex; gap:22px; }
+  .footer-links a{ font-size:0.85rem; color:var(--muted); transition:color .18s ease; }
+  .footer-links a:hover{ color:var(--text); }
+
+  /* ---------- entrance ---------- */
+  .reveal{ opacity:0; transform:translateY(16px); filter:blur(6px); animation: focusIn .7s cubic-bezier(.2,.7,.3,1) forwards; }
+  .reveal:nth-child(1){ animation-delay:0.02s; }
+  .reveal:nth-child(2){ animation-delay:0.14s; }
+  .reveal:nth-child(3){ animation-delay:0.26s; }
+  @keyframes focusIn{ to{ opacity:1; transform:translateY(0); filter:blur(0); } }
+  @media (prefers-reduced-motion: reduce){ .reveal{ animation:none; opacity:1; transform:none; filter:none; } }
+
+  :focus-visible{ outline:2px solid var(--aqua); outline-offset:3px; border-radius:8px; }
+
+  @media (max-width:760px){
+    .nav-links{ display:none; }
+    .hero{ padding:64px 0 60px; }
+    .hero-card{ padding:40px 24px 36px; border-radius:26px; }
+    .feature-grid{ grid-template-columns:1fr; }
+    .mock-canvas{ height:260px; }
+    .final-cta-box{ padding:44px 22px; }
+  }
+
+  .mobile-block{
+    display:none;
+  }
+
+  @media (max-width:760px){
+    header, main{ display:none; }
+    .mobile-block{
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      min-height:100vh;
+      padding:28px;
+    }
+    .mobile-block-card{
+      max-width:360px;
+      width:100%;
+      border-radius:26px;
+      padding:38px 28px;
+      text-align:center;
+    }
+    .mobile-block-icon{
+      width:56px; height:56px;
+      margin:0 auto 22px;
+      border-radius:18px;
+      background:rgba(255,255,255,0.12);
+      display:flex; align-items:center; justify-content:center;
+    }
+    .mobile-block-icon img{ width:32px; height:32px; object-fit:contain; }
+    .mobile-block-card h2{
+      font-size:1.35rem;
+      margin-bottom:12px;
+    }
+    .mobile-block-card p{
+      color:var(--muted);
+      font-size:0.94rem;
+    }
+  }
+  @media (min-width:761px){
+    .mobile-block{ display:none !important; }
+  }
+&lt;/style&gt;
+&lt;/head&gt;
+&lt;body&gt;
+
+&lt;div class=&quot;mobile-block&quot;&gt;
+  &lt;div class=&quot;mobile-block-card glass&quot;&gt;
+    &lt;div class=&quot;mobile-block-icon&quot;&gt;
+      &lt;img src=&quot;https://kappa.lol/UAAnvd&quot; alt=&quot;PixelShot&quot;&gt;
+    &lt;/div&gt;
+    &lt;h2&gt;PixelShot — только для компьютера&lt;/h2&gt;
+    &lt;p&gt;Приложение работает на Windows-ПК и ноутбуках. Откройте эту страницу с компьютера, чтобы посмотреть сайт и скачать PixelShot.&lt;/p&gt;
+  &lt;/div&gt;
+&lt;/div&gt;
+
+&lt;div class=&quot;blobs&quot;&gt;
+  &lt;div class=&quot;blob blob-a&quot;&gt;&lt;/div&gt;
+  &lt;div class=&quot;blob blob-b&quot;&gt;&lt;/div&gt;
+  &lt;div class=&quot;blob blob-c&quot;&gt;&lt;/div&gt;
+&lt;/div&gt;
+
+&lt;header&gt;
+  &lt;nav class=&quot;glass&quot;&gt;
+    &lt;div class=&quot;brand&quot;&gt;
+      &lt;img src=&quot;https://kappa.lol/UAAnvd&quot; alt=&quot;PixelShot logo&quot;&gt;
+      &lt;span&gt;PixelShot&lt;/span&gt;
+    &lt;/div&gt;
+    &lt;div class=&quot;nav-links&quot;&gt;
+      &lt;a href=&quot;#features&quot;&gt;Возможности&lt;/a&gt;
+      &lt;a href=&quot;#preview&quot;&gt;Как это выглядит&lt;/a&gt;
+      &lt;a href=&quot;#screenshots&quot;&gt;Скриншоты&lt;/a&gt;
+      &lt;a href=&quot;#download&quot;&gt;Скачать&lt;/a&gt;
+    &lt;/div&gt;
+    &lt;a href=&quot;#download&quot; class=&quot;nav-cta&quot;&gt;Скачать&lt;/a&gt;
+  &lt;/nav&gt;
+&lt;/header&gt;
+
+&lt;main&gt;
+
+  &lt;section class=&quot;hero&quot;&gt;
+    &lt;div class=&quot;wrap&quot;&gt;
+      &lt;div class=&quot;hero-card glass&quot;&gt;
+        &lt;div class=&quot;hero-emblem reveal&quot;&gt;
+          &lt;img src=&quot;https://kappa.lol/UAAnvd&quot; alt=&quot;PixelShot&quot;&gt;
+        &lt;/div&gt;
+        &lt;h1 class=&quot;reveal&quot;&gt;Скриншоты с точностью до пикселя&lt;/h1&gt;
+        &lt;p class=&quot;reveal&quot;&gt;PixelShot захватывает экран, область или окно за один клик — и сразу даёт отметить важное, не открывая сторонних редакторов.&lt;/p&gt;
+
+        &lt;div class=&quot;download-cta reveal&quot; id=&quot;download&quot;&gt;
+          &lt;button type=&quot;button&quot; class=&quot;liquid-btn glass&quot; id=&quot;downloadBtn&quot; aria-label=&quot;Скачать PixelShot&quot;&gt;
+            &lt;svg width=&quot;20&quot; height=&quot;20&quot; viewBox=&quot;0 0 24 24&quot; fill=&quot;none&quot;&gt;&lt;path d=&quot;M12 3v12m0 0l-5-5m5 5l5-5M5 20h14&quot; stroke=&quot;#fff&quot; stroke-width=&quot;2&quot; stroke-linecap=&quot;round&quot; stroke-linejoin=&quot;round&quot;/&gt;&lt;/svg&gt;
+            &lt;span&gt;Скачать PixelShot&lt;/span&gt;
+          &lt;/button&gt;
+          &lt;div class=&quot;download-meta&quot;&gt;Бесплатно · &lt;b&gt;Windows&lt;/b&gt;&lt;/div&gt;
+          &lt;div class=&quot;download-status&quot; id=&quot;downloadStatus&quot; role=&quot;status&quot;&gt;&lt;/div&gt;
+        &lt;/div&gt;
+      &lt;/div&gt;
+    &lt;/div&gt;
+  &lt;/section&gt;
+
+  &lt;section class=&quot;mock-wrap&quot; id=&quot;preview&quot;&gt;
+    &lt;div class=&quot;wrap&quot;&gt;
+      &lt;div class=&quot;mock-window glass&quot;&gt;
+        &lt;div class=&quot;mock-titlebar&quot;&gt;
+          &lt;div class=&quot;mock-dot&quot;&gt;&lt;/div&gt;
+          &lt;div class=&quot;mock-dot&quot;&gt;&lt;/div&gt;
+          &lt;div class=&quot;mock-dot&quot;&gt;&lt;/div&gt;
+          &lt;span&gt;pixelshot — снимок_экрана.png&lt;/span&gt;
+        &lt;/div&gt;
+        &lt;div class=&quot;mock-toolbar&quot; id=&quot;mockToolbar&quot;&gt;
+          &lt;div class=&quot;mock-tool active&quot; data-tool=&quot;select&quot; role=&quot;button&quot; tabindex=&quot;0&quot; aria-label=&quot;Курсор&quot;&gt;
+            &lt;svg width=&quot;14&quot; height=&quot;14&quot; viewBox=&quot;0 0 24 24&quot; fill=&quot;none&quot;&gt;&lt;path d=&quot;M4 4l7 16 2.5-6.5L20 11 4 4z&quot; stroke=&quot;currentColor&quot; stroke-width=&quot;2&quot; stroke-linejoin=&quot;round&quot;/&gt;&lt;/svg&gt;
+          &lt;/div&gt;
+          &lt;div class=&quot;mock-tool&quot; data-tool=&quot;rect&quot; role=&quot;button&quot; tabindex=&quot;0&quot; aria-label=&quot;Рамка&quot;&gt;
+            &lt;svg width=&quot;14&quot; height=&quot;14&quot; viewBox=&quot;0 0 24 24&quot; fill=&quot;none&quot;&gt;&lt;rect x=&quot;4&quot; y=&quot;4&quot; width=&quot;16&quot; height=&quot;16&quot; rx=&quot;3&quot; stroke=&quot;currentColor&quot; stroke-width=&quot;2&quot;/&gt;&lt;/svg&gt;
+          &lt;/div&gt;
+          &lt;div class=&quot;mock-tool&quot; data-tool=&quot;arrow&quot; role=&quot;button&quot; tabindex=&quot;0&quot; aria-label=&quot;Стрелка&quot;&gt;
+            &lt;svg width=&quot;14&quot; height=&quot;14&quot; viewBox=&quot;0 0 24 24&quot; fill=&quot;none&quot;&gt;&lt;path d=&quot;M5 19L19 5M19 5H10M19 5V14&quot; stroke=&quot;currentColor&quot; stroke-width=&quot;2&quot; stroke-linecap=&quot;round&quot;/&gt;&lt;/svg&gt;
+          &lt;/div&gt;
+          &lt;div class=&quot;mock-tool&quot; data-tool=&quot;text&quot; role=&quot;button&quot; tabindex=&quot;0&quot; aria-label=&quot;Текст&quot;&gt;
+            &lt;svg width=&quot;14&quot; height=&quot;14&quot; viewBox=&quot;0 0 24 24&quot; fill=&quot;none&quot;&gt;&lt;path d=&quot;M6 6h12M12 6v12&quot; stroke=&quot;currentColor&quot; stroke-width=&quot;2&quot; stroke-linecap=&quot;round&quot;/&gt;&lt;/svg&gt;
+          &lt;/div&gt;
+        &lt;/div&gt;
+        &lt;div class=&quot;mock-canvas&quot; id=&quot;mockCanvas&quot;&gt;
+          &lt;div class=&quot;mock-select&quot;&gt;&lt;/div&gt;
+          &lt;svg viewBox=&quot;0 0 600 360&quot; preserveAspectRatio=&quot;none&quot;&gt;
+            &lt;line x1=&quot;260&quot; y1=&quot;290&quot; x2=&quot;420&quot; y2=&quot;160&quot; stroke=&quot;#FF4FA0&quot; stroke-width=&quot;3&quot;/&gt;
+            &lt;polygon points=&quot;420,160 405,168 412,180&quot; fill=&quot;#FF4FA0&quot;/&gt;
+            &lt;rect x=&quot;330&quot; y=&quot;60&quot; width=&quot;150&quot; height=&quot;70&quot; rx=&quot;10&quot; fill=&quot;none&quot; stroke=&quot;#33E6C9&quot; stroke-width=&quot;2&quot; stroke-dasharray=&quot;6 5&quot;/&gt;
+          &lt;/svg&gt;
+          &lt;div class=&quot;mock-tag glass&quot;&gt;Ссылка скопирована&lt;/div&gt;
+          &lt;div class=&quot;canvas-hint&quot;&gt;Выберите инструмент и рисуйте здесь&lt;/div&gt;
+        &lt;/div&gt;
+      &lt;/div&gt;
+    &lt;/div&gt;
+  &lt;/section&gt;
+
+  &lt;section class=&quot;screens-wrap&quot; id=&quot;screenshots&quot;&gt;
+    &lt;div class=&quot;wrap&quot;&gt;
+      &lt;div class=&quot;section-head&quot;&gt;
+        &lt;h2&gt;Как это выглядит в деле&lt;/h2&gt;
+        &lt;p&gt;Реальный кадр, снятый и размеченный прямо в PixelShot — без сторонних программ.&lt;/p&gt;
+      &lt;/div&gt;
+      &lt;div class=&quot;mock-window glass screens-window&quot;&gt;
+        &lt;div class=&quot;mock-titlebar&quot;&gt;
+          &lt;div class=&quot;mock-dot&quot;&gt;&lt;/div&gt;
+          &lt;div class=&quot;mock-dot&quot;&gt;&lt;/div&gt;
+          &lt;div class=&quot;mock-dot&quot;&gt;&lt;/div&gt;
+          &lt;span&gt;pixelshot — снимок_экрана.png&lt;/span&gt;
+        &lt;/div&gt;
+        &lt;div class=&quot;screens-image&quot;&gt;
+          &lt;img src=&quot;https://noikcloud.xyz/q0w0WFe&quot; alt=&quot;Скриншот PixelShot&quot; loading=&quot;lazy&quot;&gt;
+        &lt;/div&gt;
+      &lt;/div&gt;
+    &lt;/div&gt;
+  &lt;/section&gt;
+
+  &lt;section class=&quot;features&quot; id=&quot;features&quot;&gt;
+    &lt;div class=&quot;wrap&quot;&gt;
+      &lt;div class=&quot;section-head&quot;&gt;
+        &lt;h2&gt;Всё нужное для быстрого снимка&lt;/h2&gt;
+        &lt;p&gt;Никаких лишних окон и настроек — три вещи, которые PixelShot делает лучше остальных.&lt;/p&gt;
+      &lt;/div&gt;
+      &lt;div class=&quot;feature-grid&quot;&gt;
+        &lt;div class=&quot;feature-card glass&quot;&gt;
+          &lt;div class=&quot;feature-icon&quot;&gt;
+            &lt;svg width=&quot;20&quot; height=&quot;20&quot; viewBox=&quot;0 0 24 24&quot; fill=&quot;none&quot;&gt;&lt;rect x=&quot;3&quot; y=&quot;5&quot; width=&quot;18&quot; height=&quot;14&quot; rx=&quot;3&quot; stroke=&quot;#fff&quot; stroke-width=&quot;1.6&quot;/&gt;&lt;circle cx=&quot;12&quot; cy=&quot;12&quot; r=&quot;3.2&quot; stroke=&quot;#fff&quot; stroke-width=&quot;1.6&quot;/&gt;&lt;/svg&gt;
+          &lt;/div&gt;
+          &lt;h3&gt;Захват в один клик&lt;/h3&gt;
+          &lt;p&gt;Область, окно или весь экран — без переключения режимов и без задержки перед снимком.&lt;/p&gt;
+        &lt;/div&gt;
+        &lt;div class=&quot;feature-card glass&quot;&gt;
+          &lt;div class=&quot;feature-icon&quot;&gt;
+            &lt;svg width=&quot;20&quot; height=&quot;20&quot; viewBox=&quot;0 0 24 24&quot; fill=&quot;none&quot;&gt;&lt;path d=&quot;M4 16l4-4 3 3 6-7 3 3&quot; stroke=&quot;#fff&quot; stroke-width=&quot;1.6&quot; stroke-linecap=&quot;round&quot; stroke-linejoin=&quot;round&quot;/&gt;&lt;/svg&gt;
+          &lt;/div&gt;
+          &lt;h3&gt;Аннотации на месте&lt;/h3&gt;
+          &lt;p&gt;Стрелки, рамки и текст прямо поверх снимка — редактор открывается там же, где сделан кадр.&lt;/p&gt;
+        &lt;/div&gt;
+        &lt;div class=&quot;feature-card glass&quot;&gt;
+          &lt;div class=&quot;feature-icon&quot;&gt;
+            &lt;svg width=&quot;20&quot; height=&quot;20&quot; viewBox=&quot;0 0 24 24&quot; fill=&quot;none&quot;&gt;&lt;path d=&quot;M9 12a3 3 0 106 0 3 3 0 00-6 0z&quot; stroke=&quot;#fff&quot; stroke-width=&quot;1.6&quot;/&gt;&lt;path d=&quot;M4 12c1.8-4 4.8-6 8-6s6.2 2 8 6c-1.8 4-4.8 6-8 6s-6.2-2-8-6z&quot; stroke=&quot;#fff&quot; stroke-width=&quot;1.6&quot;/&gt;&lt;/svg&gt;
+          &lt;/div&gt;
+          &lt;h3&gt;Мгновенная ссылка&lt;/h3&gt;
+          &lt;p&gt;Снимок улетает в буфер обмена уже как ссылка — можно вставлять в чат, пока курсор ещё не убран.&lt;/p&gt;
+        &lt;/div&gt;
+      &lt;/div&gt;
+    &lt;/div&gt;
+  &lt;/section&gt;
+
+  &lt;section class=&quot;final-cta&quot;&gt;
+    &lt;div class=&quot;wrap&quot;&gt;
+      &lt;div class=&quot;final-cta-box glass&quot;&gt;
+        &lt;h2&gt;Поставь PixelShot и забудь про Print Screen&lt;/h2&gt;
+        &lt;p&gt;Установка занимает меньше минуты, обновления — в фоне.&lt;/p&gt;
+        &lt;div class=&quot;download-cta&quot;&gt;
+          &lt;button type=&quot;button&quot; class=&quot;liquid-btn glass js-download&quot; aria-label=&quot;Скачать PixelShot&quot;&gt;
+            &lt;svg width=&quot;20&quot; height=&quot;20&quot; viewBox=&quot;0 0 24 24&quot; fill=&quot;none&quot;&gt;&lt;path d=&quot;M12 3v12m0 0l-5-5m5 5l5-5M5 20h14&quot; stroke=&quot;#fff&quot; stroke-width=&quot;2&quot; stroke-linecap=&quot;round&quot; stroke-linejoin=&quot;round&quot;/&gt;&lt;/svg&gt;
+            &lt;span&gt;Скачать PixelShot&lt;/span&gt;
+          &lt;/button&gt;
+          &lt;div class=&quot;download-meta&quot;&gt;Бесплатно · &lt;b&gt;Windows&lt;/b&gt;&lt;/div&gt;
+        &lt;/div&gt;
+      &lt;/div&gt;
+    &lt;/div&gt;
+  &lt;/section&gt;
+
+&lt;/main&gt;
+
+&lt;script&gt;
+  (function followMouseBlobs(){
+    const blobDefs = [
+      { el: document.querySelector('.blob-a'), strength: 0.16, ease: 0.06 },
+      { el: document.querySelector('.blob-b'), strength: 0.24, ease: 0.08 },
+      { el: document.querySelector('.blob-c'), strength: 0.20, ease: 0.05 }
+    ].filter(b =&gt; b.el);
+
+    if(!blobDefs.length) return;
+    if(window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+
+    let mx = window.innerWidth / 2;
+    let my = window.innerHeight / 2;
+    blobDefs.forEach(b =&gt; { b.x = 0; b.y = 0; });
+
+    window.addEventListener('pointermove', (e) =&gt; {
+      mx = e.clientX;
+      my = e.clientY;
+    });
+
+    function loop(){
+      const cx = window.innerWidth / 2;
+      const cy = window.innerHeight / 2;
+      blobDefs.forEach(b =&gt; {
+        const targetX = (mx - cx) * b.strength;
+        const targetY = (my - cy) * b.strength;
+        b.x += (targetX - b.x) * b.ease;
+        b.y += (targetY - b.y) * b.ease;
+        b.el.style.transform = 'translate(' + b.x.toFixed(1) + 'px, ' + b.y.toFixed(1) + 'px)';
+      });
+      requestAnimationFrame(loop);
+    }
+    requestAnimationFrame(loop);
+  })();
+
+  const FILE_URL = &quot;https://kappa.lol/OrPEG0&quot;;
+
+  document.querySelectorAll('#downloadBtn, .js-download').forEach(btn =&gt; {
+    btn.addEventListener('click', () =&gt; {
+      window.location.href = FILE_URL;
+    });
+  });
+
+  (function initDrawableMock(){
+    const canvas = document.getElementById('mockCanvas');
+    const toolbar = document.getElementById('mockToolbar');
+    const resetBtn = document.getElementById('canvasReset');
+    const hint = canvas.querySelector('.canvas-hint');
+    if(!canvas || !toolbar) return;
+
+    const svgNS = 'http://www.w3.org/2000/svg';
+    const toolBtns = toolbar.querySelectorAll('.mock-tool');
+    let activeTool = 'select';
+    let drawing = false;
+    let startX = 0, startY = 0;
+    let currentEl = null;
+
+    const overlay = document.createElementNS(svgNS, 'svg');
+    overlay.setAttribute('class', 'user-draw-layer');
+    canvas.appendChild(overlay);
+
+    const defs = document.createElementNS(svgNS, 'defs');
+    defs.innerHTML = '&lt;marker id=&quot;userArrowHead&quot; markerWidth=&quot;8&quot; markerHeight=&quot;8&quot; refX=&quot;6&quot; refY=&quot;4&quot; orient=&quot;auto&quot;&gt;&lt;path d=&quot;M0,0 L8,4 L0,8 Z&quot; fill=&quot;#FF4FA0&quot;/&gt;&lt;/marker&gt;';
+    overlay.appendChild(defs);
+
+    function setTool(tool, btn){
+      activeTool = tool;
+      toolBtns.forEach(b =&gt; b.classList.remove('active'));
+      if(btn) btn.classList.add('active');
+      canvas.classList.remove('tool-rect', 'tool-arrow', 'tool-text');
+      if(tool === 'rect') canvas.classList.add('tool-rect');
+      if(tool === 'arrow') canvas.classList.add('tool-arrow');
+      if(tool === 'text') canvas.classList.add('tool-text');
+      if(hint) hint.style.opacity = '0';
+    }
+
+    toolBtns.forEach(btn =&gt; {
+      btn.addEventListener('click', () =&gt; setTool(btn.dataset.tool, btn));
+      btn.addEventListener('keydown', (e) =&gt; {
+        if(e.key === 'Enter' || e.key === ' '){
+          e.preventDefault();
+          setTool(btn.dataset.tool, btn);
+        }
+      });
+    });
+
+    function getPoint(e){
+      const rect = canvas.getBoundingClientRect();
+      return { x: e.clientX - rect.left, y: e.clientY - rect.top };
+    }
+
+    canvas.addEventListener('pointerdown', (e) =&gt; {
+      if(activeTool === 'select' || e.target.closest('.canvas-reset')) return;
+      const p = getPoint(e);
+      startX = p.x; startY = p.y;
+
+      if(activeTool === 'text'){
+        createTextInput(p);
+        return;
+      }
+
+      drawing = true;
+      canvas.setPointerCapture(e.pointerId);
+
+      if(activeTool === 'rect'){
+        currentEl = document.createElementNS(svgNS, 'rect');
+        currentEl.setAttribute('fill', 'none');
+        currentEl.setAttribute('stroke', '#33E6C9');
+        currentEl.setAttribute('stroke-width', '2');
+        currentEl.setAttribute('stroke-dasharray', '6 5');
+        currentEl.setAttribute('rx', '10');
+      } else if(activeTool === 'arrow'){
+        currentEl = document.createElementNS(svgNS, 'line');
+        currentEl.setAttribute('stroke', '#FF4FA0');
+        currentEl.setAttribute('stroke-width', '3');
+        currentEl.setAttribute('stroke-linecap', 'round');
+        currentEl.setAttribute('marker-end', 'url(#userArrowHead)');
+      }
+      if(currentEl) overlay.appendChild(currentEl);
+    });
+
+    canvas.addEventListener('pointermove', (e) =&gt; {
+      if(!drawing || !currentEl) return;
+      const p = getPoint(e);
+      if(activeTool === 'rect'){
+        const x = Math.min(startX, p.x), y = Math.min(startY, p.y);
+        const w = Math.abs(p.x - startX), h = Math.abs(p.y - startY);
+        currentEl.setAttribute('x', x);
+        currentEl.setAttribute('y', y);
+        currentEl.setAttribute('width', w);
+        currentEl.setAttribute('height', h);
+      } else if(activeTool === 'arrow'){
+        currentEl.setAttribute('x1', startX);
+        currentEl.setAttribute('y1', startY);
+        currentEl.setAttribute('x2', p.x);
+        currentEl.setAttribute('y2', p.y);
+      }
+    });
+
+    function endDraw(){
+      drawing = false;
+      currentEl = null;
+    }
+    canvas.addEventListener('pointerup', endDraw);
+    canvas.addEventListener('pointerleave', endDraw);
+
+    function createTextInput(p){
+      const input = document.createElement('input');
+      input.type = 'text';
+      input.placeholder = 'Текст…';
+      input.className = 'user-text-input';
+      input.style.left = p.x + 'px';
+      input.style.top = p.y + 'px';
+      canvas.appendChild(input);
+      input.focus();
+
+      function commit(){
+        const val = input.value.trim();
+        input.remove();
+        if(!val) return;
+        const label = document.createElement('div');
+        label.className = 'user-text-label';
+        label.style.left = p.x + 'px';
+        label.style.top = p.y + 'px';
+        label.textContent = val;
+        canvas.appendChild(label);
+      }
+      input.addEventListener('blur', commit);
+      input.addEventListener('keydown', (ev) =&gt; {
+        if(ev.key === 'Enter'){ ev.preventDefault(); input.blur(); }
+        if(ev.key === 'Escape'){ input.value = ''; input.blur(); }
+      });
+    }
+
+    if(resetBtn){
+      resetBtn.addEventListener('click', () =&gt; {
+        overlay.querySelectorAll('rect, line').forEach(el =&gt; el.remove());
+        canvas.querySelectorAll('.user-text-label, .user-text-input').forEach(el =&gt; el.remove());
+      });
+    }
+  })();
+&lt;/script&gt;
+
+&lt;/body&gt;
+&lt;/html&gt;
+" title="PixelShot" loading="eager" allow="clipboard-write" style="display:block;width:100%;height:2400px;min-height:100vh;border:0;"></iframe>
     </div>
+
+
 
     <!-- ==================== СТРАНИЦА 3: МИР УТОК ==================== -->
     <div id="page-ducks" class="page-view">
