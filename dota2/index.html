@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Отправь · Кликер</title>
+<title>exteraClicker</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Sora:wght@400;600;700;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
@@ -291,10 +291,6 @@
   .transfer{
     width: 100%;
     margin-top: 56px;
-    display: none;
-  }
-  .transfer.owner-visible{
-    display: block;
   }
   .transfer-actions{
     display: flex;
@@ -642,7 +638,7 @@
 </svg>
 
 <div class="wrap">
-  <div class="brand">РЕД<span>·</span>КЛИК</div>
+  <div class="brand">extera<span>·</span>Clicker</div>
   <h1>Отправляй сигналы</h1>
   <p class="sub">Каждое нажатие — ещё один отправленный сигнал. Нанимай ускорители, чтобы сеть работала сама.</p>
 
@@ -672,7 +668,7 @@
 
   <div class="upgrades" id="upgrades"></div>
 
-  <div class="transfer" aria-hidden="true">
+  <div class="transfer">
     <div class="section-head">
       <h2>Перенос прогресса</h2>
       <span>между браузерами / устройствами</span>
@@ -746,15 +742,6 @@
 
 <script>
 (function(){
-  // Расширенные функции скрыты из обычного интерфейса.
-  // Ctrl+Shift+P показывает/скрывает панель переноса прогресса.
-  document.addEventListener("keydown", function(e){
-    if(e.ctrlKey && e.shiftKey && (e.key === "P" || e.key === "p")){
-      const panel = document.querySelector(".transfer");
-      if(panel) panel.classList.toggle("owner-visible");
-    }
-  });
-
   const STORAGE_KEY = "red_clicker_save_v1";
 
   const upgradeDefs = [
