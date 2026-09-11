@@ -1,0 +1,511 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Отправь · Кликер</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Sora:wght@400;600;700;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg: #191014;
+    --bg-2: #241620;
+    --panel: #2a1a22;
+    --line: rgba(245, 233, 227, 0.10);
+    --ink: #F5E9E3;
+    --ink-dim: #C7B4B6;
+    --red: #E8393B;
+    --red-soft: #C97B7E;
+    --red-glow: rgba(232, 57, 59, 0.35);
+  }
+  *{ box-sizing: border-box; }
+  html,body{
+    margin:0; padding:0; height:100%;
+    background:
+      radial-gradient(circle at 50% -10%, #331924 0%, var(--bg) 55%),
+      var(--bg);
+    color: var(--ink);
+    font-family: 'Inter', sans-serif;
+    overflow-x: hidden;
+  }
+  ::selection{ background: var(--red); color: white; }
+
+  .wrap{
+    max-width: 720px;
+    margin: 0 auto;
+    padding: 40px 20px 80px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+  }
+
+  .brand{
+    font-family: 'Sora', sans-serif;
+    font-weight: 700;
+    font-size: 15px;
+    letter-spacing: 0.02em;
+    color: var(--ink-dim);
+    margin-bottom: 6px;
+  }
+  .brand span{ color: var(--red); }
+
+  h1{
+    font-family: 'Sora', sans-serif;
+    font-weight: 800;
+    font-size: clamp(30px, 6vw, 44px);
+    line-height: 1.08;
+    margin: 4px 0 10px;
+  }
+
+  .sub{
+    color: var(--ink-dim);
+    font-size: 15px;
+    max-width: 40ch;
+    margin: 0 0 34px;
+  }
+
+  .score-row{
+    display: flex;
+    align-items: baseline;
+    gap: 10px;
+    margin-bottom: 4px;
+  }
+  .score{
+    font-family: 'Sora', sans-serif;
+    font-weight: 800;
+    font-size: clamp(48px, 12vw, 76px);
+    letter-spacing: -0.02em;
+    font-variant-numeric: tabular-nums;
+  }
+  .score-unit{
+    font-size: 16px;
+    color: var(--red-soft);
+    font-weight: 600;
+    padding-bottom: 10px;
+  }
+  .rate{
+    color: var(--ink-dim);
+    font-size: 14px;
+    margin-bottom: 36px;
+    min-height: 18px;
+  }
+  .rate b{ color: var(--red-soft); font-weight: 600; }
+
+  .plane-zone{
+    position: relative;
+    width: 220px;
+    height: 220px;
+    margin-bottom: 12px;
+  }
+
+  .plane-btn{
+    width: 220px;
+    height: 220px;
+    border-radius: 50%;
+    border: none;
+    padding: 0;
+    cursor: pointer;
+    background: transparent;
+    position: relative;
+    -webkit-tap-highlight-color: transparent;
+    touch-action: manipulation;
+  }
+  .plane-btn::before{
+    content: "";
+    position: absolute;
+    inset: -18px;
+    border-radius: 50%;
+    background: radial-gradient(circle, var(--red-glow) 0%, transparent 70%);
+    opacity: 0.9;
+    animation: pulse 2.6s ease-in-out infinite;
+  }
+  .plane-btn img{
+    width: 100%;
+    height: 100%;
+    display: block;
+    border-radius: 50%;
+    box-shadow:
+      0 0 0 1px rgba(245,233,227,0.08),
+      0 20px 50px -10px rgba(0,0,0,0.6),
+      0 0 60px -8px var(--red-glow);
+    transition: transform 0.08s ease;
+    position: relative;
+  }
+  .plane-btn:active img{
+    transform: scale(0.93);
+  }
+  @keyframes pulse{
+    0%, 100%{ transform: scale(1); opacity: 0.7; }
+    50%{ transform: scale(1.08); opacity: 1; }
+  }
+
+  .float-pop{
+    position: absolute;
+    left: 50%;
+    top: 10%;
+    transform: translateX(-50%);
+    font-family: 'Sora', sans-serif;
+    font-weight: 700;
+    font-size: 20px;
+    color: var(--red-soft);
+    pointer-events: none;
+    animation: floatUp 0.9s ease-out forwards;
+    white-space: nowrap;
+  }
+  @keyframes floatUp{
+    0%{ opacity: 0; transform: translate(-50%, 0) scale(0.8); }
+    15%{ opacity: 1; transform: translate(-50%, -10px) scale(1); }
+    100%{ opacity: 0; transform: translate(-50%, -90px) scale(1); }
+  }
+
+  .hint{
+    color: var(--ink-dim);
+    font-size: 13px;
+    margin-top: 18px;
+    margin-bottom: 46px;
+  }
+
+  .section-head{
+    width: 100%;
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    border-bottom: 1px solid var(--line);
+    padding-bottom: 10px;
+    margin-bottom: 4px;
+    text-align: left;
+  }
+  .section-head h2{
+    font-family: 'Sora', sans-serif;
+    font-size: 18px;
+    font-weight: 700;
+    margin: 0;
+  }
+  .section-head span{
+    font-size: 13px;
+    color: var(--ink-dim);
+  }
+
+  .upgrades{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .upgrade{
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    width: 100%;
+    background: none;
+    border: none;
+    border-bottom: 1px solid var(--line);
+    padding: 16px 4px;
+    text-align: left;
+    cursor: pointer;
+    color: var(--ink);
+    font-family: 'Inter', sans-serif;
+  }
+  .upgrade:hover:not(:disabled){
+    background: rgba(245,233,227,0.03);
+  }
+  .upgrade:disabled{
+    cursor: not-allowed;
+    opacity: 0.4;
+  }
+  .u-icon{
+    font-size: 22px;
+    width: 34px;
+    text-align: center;
+    flex-shrink: 0;
+  }
+  .u-main{
+    flex: 1;
+    min-width: 0;
+  }
+  .u-name{
+    font-weight: 600;
+    font-size: 15px;
+    margin-bottom: 2px;
+  }
+  .u-desc{
+    font-size: 12.5px;
+    color: var(--ink-dim);
+  }
+  .u-right{
+    text-align: right;
+    flex-shrink: 0;
+  }
+  .u-cost{
+    font-family: 'Sora', sans-serif;
+    font-weight: 700;
+    font-size: 15px;
+    color: var(--red-soft);
+  }
+  .u-owned{
+    font-size: 11.5px;
+    color: var(--ink-dim);
+    margin-top: 2px;
+  }
+
+  .reset{
+    margin-top: 40px;
+    background: none;
+    border: 1px solid var(--line);
+    color: var(--ink-dim);
+    font-size: 12.5px;
+    padding: 8px 14px;
+    border-radius: 100px;
+    cursor: pointer;
+    font-family: 'Inter', sans-serif;
+  }
+  .reset:hover{
+    border-color: var(--red-soft);
+    color: var(--red-soft);
+  }
+
+  @media (prefers-reduced-motion: reduce){
+    .plane-btn::before{ animation: none; }
+    .float-pop{ animation: none; opacity: 0; }
+  }
+</style>
+</head>
+<body>
+
+<div class="wrap">
+  <div class="brand">РЕД<span>·</span>КЛИК</div>
+  <h1>Отправляй сигналы</h1>
+  <p class="sub">Каждое нажатие — ещё один отправленный сигнал. Нанимай ускорители, чтобы сеть работала сама.</p>
+
+  <div class="score-row">
+    <div class="score" id="score">0</div>
+    <div class="score-unit">сигналов</div>
+  </div>
+  <div class="rate" id="rate">Пока всё тихо — нажми, чтобы начать</div>
+
+  <div class="plane-zone">
+    <button class="plane-btn" id="planeBtn" aria-label="Отправить сигнал">
+      <img src="data:image/png;base64,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" alt="Отправить">
+    </button>
+  </div>
+  <div class="hint">Нажимай на значок</div>
+
+  <div class="section-head">
+    <h2>Ускорители</h2>
+    <span id="perClickInfo">+1 за клик</span>
+  </div>
+
+  <div class="upgrades" id="upgrades"></div>
+
+  <button class="reset" id="resetBtn">Сбросить прогресс</button>
+</div>
+
+<script>
+(function(){
+  const STORAGE_KEY = "red_clicker_save_v1";
+
+  const upgradeDefs = [
+    {
+      id: "finger",
+      icon: "👆",
+      name: "Быстрые пальцы",
+      desc: "Каждый клик отправляет на 1 сигнал больше",
+      baseCost: 15,
+      growth: 1.15,
+      effect: "click",
+      value: 1
+    },
+    {
+      id: "relay",
+      icon: "📡",
+      name: "Ретранслятор",
+      desc: "Отправляет 1 сигнал в секунду сам",
+      baseCost: 40,
+      growth: 1.16,
+      effect: "auto",
+      value: 1
+    },
+    {
+      id: "operator",
+      icon: "🧑‍💻",
+      name: "Оператор связи",
+      desc: "Отправляет 5 сигналов в секунду сам",
+      baseCost: 260,
+      growth: 1.17,
+      effect: "auto",
+      value: 5
+    },
+    {
+      id: "tower",
+      icon: "🗼",
+      name: "Вышка",
+      desc: "Отправляет 25 сигналов в секунду сама",
+      baseCost: 1800,
+      growth: 1.18,
+      effect: "auto",
+      value: 25
+    },
+    {
+      id: "satellite",
+      icon: "🛰️",
+      name: "Спутник",
+      desc: "Отправляет 120 сигналов в секунду сам",
+      baseCost: 12000,
+      growth: 1.19,
+      effect: "auto",
+      value: 120
+    },
+    {
+      id: "amplifier",
+      icon: "⚡",
+      name: "Усилитель клика",
+      desc: "Каждый клик отправляет ещё на 10 сигналов больше",
+      baseCost: 5000,
+      growth: 1.2,
+      effect: "click",
+      value: 10
+    }
+  ];
+
+  let state = {
+    score: 0,
+    perClick: 1,
+    perSecond: 0,
+    owned: {}
+  };
+
+  function load(){
+    try{
+      const raw = localStorage.getItem(STORAGE_KEY);
+      if(raw){
+        const parsed = JSON.parse(raw);
+        state.score = parsed.score || 0;
+        state.owned = parsed.owned || {};
+      }
+    }catch(e){}
+    recompute();
+  }
+
+  function save(){
+    try{
+      localStorage.setItem(STORAGE_KEY, JSON.stringify({ score: state.score, owned: state.owned }));
+    }catch(e){}
+  }
+
+  function recompute(){
+    let click = 1;
+    let auto = 0;
+    upgradeDefs.forEach(function(u){
+      const n = state.owned[u.id] || 0;
+      if(u.effect === "click") click += u.value * n;
+      if(u.effect === "auto") auto += u.value * n;
+    });
+    state.perClick = click;
+    state.perSecond = auto;
+  }
+
+  function costFor(u){
+    const n = state.owned[u.id] || 0;
+    return Math.ceil(u.baseCost * Math.pow(u.growth, n));
+  }
+
+  function fmt(n){
+    n = Math.floor(n);
+    if(n < 1000) return String(n);
+    if(n < 1000000) return (n/1000).toFixed(n % 1000 === 0 ? 0 : 1).replace(/\.0$/,'') + "K";
+    if(n < 1000000000) return (n/1000000).toFixed(2).replace(/0+$/,'').replace(/\.$/,'') + "M";
+    return (n/1000000000).toFixed(2).replace(/0+$/,'').replace(/\.$/,'') + "B";
+  }
+
+  const scoreEl = document.getElementById("score");
+  const rateEl = document.getElementById("rate");
+  const perClickInfo = document.getElementById("perClickInfo");
+  const upgradesEl = document.getElementById("upgrades");
+  const planeBtn = document.getElementById("planeBtn");
+  const planeZone = document.querySelector(".plane-zone");
+
+  function render(){
+    scoreEl.textContent = fmt(state.score);
+    perClickInfo.textContent = "+" + fmt(state.perClick) + " за клик";
+    rateEl.innerHTML = state.perSecond > 0
+      ? "Сеть отправляет <b>" + fmt(state.perSecond) + "</b> сигн./сек сама"
+      : "Пока всё тихо — нажми, чтобы начать";
+
+    upgradesEl.innerHTML = "";
+    upgradeDefs.forEach(function(u){
+      const cost = costFor(u);
+      const owned = state.owned[u.id] || 0;
+      const affordable = state.score >= cost;
+
+      const btn = document.createElement("button");
+      btn.className = "upgrade";
+      btn.disabled = !affordable;
+      btn.innerHTML =
+        '<div class="u-icon">' + u.icon + '</div>' +
+        '<div class="u-main">' +
+          '<div class="u-name">' + u.name + '</div>' +
+          '<div class="u-desc">' + u.desc + '</div>' +
+        '</div>' +
+        '<div class="u-right">' +
+          '<div class="u-cost">' + fmt(cost) + '</div>' +
+          '<div class="u-owned">куплено: ' + owned + '</div>' +
+        '</div>';
+      btn.addEventListener("click", function(){ buy(u); });
+      upgradesEl.appendChild(btn);
+    });
+  }
+
+  function buy(u){
+    const cost = costFor(u);
+    if(state.score < cost) return;
+    state.score -= cost;
+    state.owned[u.id] = (state.owned[u.id] || 0) + 1;
+    recompute();
+    render();
+    save();
+  }
+
+  function spawnFloat(text){
+    const el = document.createElement("div");
+    el.className = "float-pop";
+    el.textContent = text;
+    el.style.left = (45 + Math.random() * 10) + "%";
+    planeZone.appendChild(el);
+    setTimeout(function(){ el.remove(); }, 900);
+  }
+
+  planeBtn.addEventListener("click", function(){
+    state.score += state.perClick;
+    spawnFloat("+" + fmt(state.perClick));
+    scoreEl.textContent = fmt(state.score);
+    render();
+    save();
+  });
+
+  document.getElementById("resetBtn").addEventListener("click", function(){
+    if(confirm("Точно сбросить весь прогресс?")){
+      state = { score: 0, perClick: 1, perSecond: 0, owned: {} };
+      recompute();
+      render();
+      save();
+    }
+  });
+
+  setInterval(function(){
+    if(state.perSecond > 0){
+      state.score += state.perSecond / 10;
+      render();
+    }
+  }, 100);
+
+  setInterval(save, 4000);
+
+  load();
+  render();
+})();
+</script>
+
+</body>
+</html>
