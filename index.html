@@ -86,7 +86,7 @@
             }
             to {
                 opacity: 1;
-                transform: translateY(0) scale(1);
+                transform: none;
             }
         }
 
@@ -94,7 +94,7 @@
         .page-view {
             transition: opacity 0.4s ease, transform 0.4s ease;
             opacity: 1;
-            transform: scale(1);
+            transform: none;
             width: 100%;
         }
 
@@ -590,6 +590,57 @@
         }
 
 
+
+        /* --- СТИЛИ СТРАНИЦЫ 404 --- */
+        #page-404 {
+            display: none;
+            min-height: 100vh;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            padding: 40px 24px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        #page-404 .not-found-code {
+            font-size: clamp(90px, 18vw, 180px);
+            font-weight: 800;
+            line-height: 1;
+            letter-spacing: -4px;
+            background: linear-gradient(135deg, var(--accent-color), #6a5cff 60%, #ff3b8d);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            margin-bottom: 10px;
+        }
+
+        #page-404 .not-found-title {
+            font-size: 24px;
+            font-weight: 800;
+            color: var(--text-main);
+            margin-bottom: 12px;
+        }
+
+        #page-404 .not-found-text {
+            font-size: 15px;
+            color: var(--text-muted);
+            max-width: 420px;
+            margin: 0 auto 32px;
+            line-height: 1.6;
+        }
+
+        #page-404 .not-found-path {
+            display: inline-block;
+            margin-top: 18px;
+            padding: 6px 14px;
+            border-radius: 8px;
+            background: rgba(255, 255, 255, 0.06);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            color: var(--text-muted);
+            font-size: 12px;
+            font-family: monospace;
+        }
 
         /* --- СТИЛИ СТРАНИЦЫ МИР УТОК --- */
         #page-ducks {
@@ -1479,6 +1530,15 @@
     });
   });
 
+  document.querySelectorAll('a[href^=&quot;#&quot;]').forEach(function(link){
+    link.addEventListener('click', function(e){
+      e.preventDefault();
+      var id = link.getAttribute('href').slice(1);
+      var el = document.getElementById(id);
+      if(el){ el.scrollIntoView({behavior:'smooth', block:'start'}); }
+    });
+  });
+
   (function initDrawableMock(){
     const canvas = document.getElementById('mockCanvas');
     const toolbar = document.getElementById('mockToolbar');
@@ -1772,6 +1832,23 @@
 
     <div class="toast" id="toast">Скрипт скопирован в буфер обмена!</div>
 
+    <!-- ==================== СТРАНИЦА 404 ==================== -->
+    <div id="page-404" class="page-view">
+        <div>
+            <div class="not-found-code">404</div>
+            <div class="not-found-title">Такой страницы не существует</div>
+            <p class="not-found-text">Проверьте адрес или вернитесь на главную — возможно, страница была удалена или вы перешли по неверной ссылке.</p>
+            <div style="display:flex; gap:12px; justify-content:center; flex-wrap:wrap;">
+                <button class="btn-main" onclick="window.location.href='https://emil768yt.github.io/'">На главную</button>
+                <a class="btn-main" style="background: rgba(148, 163, 184, 0.15); display:inline-flex; align-items:center; gap:8px; text-decoration:none;" href="https://emil768yt.github.io/dota2" target="_blank" rel="noopener">
+                    exteraclicker
+                    <span style="background: var(--accent-color); color:#07090e; font-size:10px; font-weight:800; padding:2px 7px; border-radius:20px; letter-spacing:0.3px;">НОВОЕ</span>
+                </a>
+            </div>
+            <div class="not-found-path" id="not-found-path"></div>
+        </div>
+    </div>
+
     <script>
         // --- ПЕРЕКЛЮЧЕНИЕ МЕЖДУ ПРОЕКТАМИ ---
         function toggleProjectsMenu() {
@@ -1786,8 +1863,64 @@
 
         let isSwitching = false;
 
+        // --- СТРАНИЦА 404 ---
+        function showNotFound(displayPath) {
+            document.getElementById('projectsMenu').classList.remove('show');
+
+            ['page-emil', 'page-pixelshot', 'page-ducks'].forEach((id) => {
+                const el = document.getElementById(id);
+                if (el) {
+                    el.classList.remove('fade-in', 'fade-out');
+                    el.style.display = 'none';
+                }
+            });
+
+            document.querySelectorAll('.project-item').forEach((item) => item.classList.remove('active'));
+
+            const page404 = document.getElementById('page-404');
+            const pathLabel = document.getElementById('not-found-path');
+            if (pathLabel) pathLabel.textContent = displayPath || '';
+            if (page404) {
+                page404.style.display = 'flex';
+                page404.classList.add('fade-in');
+                setTimeout(() => page404.classList.remove('fade-in'), 400);
+            }
+
+            const pageTitle = document.getElementById('page-title');
+            if (pageTitle) pageTitle.innerText = '404 — Страница не найдена';
+
+            window.scrollTo({ top: 0, behavior: 'instant' });
+        }
+
+        function goHomeFrom404() {
+            const page404 = document.getElementById('page-404');
+            if (page404) page404.style.display = 'none';
+            window.location.hash = 'emil';
+            switchProject('emil');
+        }
+
+        function handleHashRoute() {
+            const hash = window.location.hash.replace('#', '').trim();
+            if (!hash) return;
+            if (KNOWN_PROJECTS.includes(hash)) {
+                switchProject(hash);
+            } else {
+                showNotFound('#' + hash);
+            }
+        }
+
+        window.addEventListener('hashchange', handleHashRoute);
+        window.addEventListener('DOMContentLoaded', handleHashRoute);
+
+        const KNOWN_PROJECTS = ['emil', 'pixelshot', 'ducks'];
+
         function switchProject(projectName) {
             document.getElementById('projectsMenu').classList.remove('show');
+
+            const page404 = document.getElementById('page-404');
+            if (page404 && page404.style.display !== 'none' && page404.style.display !== '') {
+                page404.style.display = 'none';
+            }
 
             const pageEmil = document.getElementById('page-emil');
             const pagePixelshot = document.getElementById('page-pixelshot');
@@ -1801,6 +1934,10 @@
             let currentActive = 'emil';
             if (itemPixelshot.classList.contains('active')) currentActive = 'pixelshot';
             if (itemDucks.classList.contains('active')) currentActive = 'ducks';
+
+            if (window.location.hash.replace('#', '') !== projectName) {
+                window.location.hash = projectName;
+            }
 
             if (currentActive === projectName || isSwitching) return;
 
