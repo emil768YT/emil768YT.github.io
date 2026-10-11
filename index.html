@@ -8,10 +8,10 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <style>
         :root {
-            --bg-dark: #07090e;
+            --bg-dark: #101722;
             --panel-bg: rgba(15, 20, 31, 0.75);
             --panel-border: rgba(255, 255, 255, 0.08);
-            --accent-color: #00d2ff;
+            --accent-color: #19dcff;
             --btn-blue: #00a2ff;
             --text-main: #f1f5f9;
             --text-muted: #94a3b8;
@@ -380,19 +380,52 @@
         }
 
         .emil-window {
-            width: 360px;
-            background-color: #0b0d12;
-            border: 2px solid var(--accent-color);
+            position: relative;
+            box-sizing: border-box;
+            width: 280px;
+            height: 600px;
+            max-width: calc(100vw - 24px);
+            background: linear-gradient(135deg, #1b293a, #121b29);
+            border: 1.5px solid var(--accent-color);
             border-radius: 16px;
-            padding: 16px;
+            padding: 12px;
             box-shadow: 0 25px 60px rgba(0, 0, 0, 0.8), 0 0 25px rgba(0, 210, 255, 0.2);
             display: flex;
             flex-direction: column;
-            gap: 10px;
-            transition: border-color 0.3s, transform 0.15s ease-out;
+            gap: 8px;
+            overflow: hidden;
+            transition: height 0.25s ease, border-color 0.3s, transform 0.15s ease-out;
             transform-style: preserve-3d;
             will-change: transform;
         }
+
+        .emil-window.is-minimized { height: 45px; }
+        .emil-window.is-confirm-expanded { height: 205px; }
+        .emil-window.is-minimized .emil-tabs,
+        .emil-window.is-minimized .tab-panel { display: none !important; }
+        .emil-header-actions { display: flex; align-items: center; gap: 8px; }
+        .emil-close { color: #96a0b0; font-size: 14px; font-weight: 800; cursor: pointer; }
+        .emil-close:hover { color: #ff5050; }
+        .script-confirm {
+            position: absolute; inset: 0; z-index: 30;
+            display: none; align-items: center; justify-content: center;
+            padding: 14px; background: rgba(12, 12, 17, 0.96);
+        }
+        .script-confirm.show { display: flex; }
+        .script-confirm-card {
+            width: 100%; text-align: center; padding: 16px 12px;
+            background: #10131c; border: 1px solid rgba(255, 80, 80, 0.55);
+            border-radius: 14px; box-shadow: 0 12px 32px rgba(0,0,0,.45);
+        }
+        .script-confirm-title { color: #e6e6e6; font-size: 14px; font-weight: 800; }
+        .script-confirm-sub { color: #8290a5; font-size: 11px; margin: 6px 0 14px; }
+        .script-confirm-actions { display: flex; gap: 8px; }
+        .script-confirm-actions button {
+            flex: 1; border: 0; border-radius: 8px; padding: 9px;
+            color: #fff; font-size: 11px; font-weight: 800; cursor: pointer;
+        }
+        #confirm-script-yes { background: #c82828; }
+        #confirm-script-no { background: #252b39; }
 
         .emil-header {
             display: flex;
@@ -411,7 +444,7 @@
             transition: color 0.3s;
         }
 
-        .emil-minimize { color: #627288; font-size: 14px; cursor: pointer; }
+        .emil-minimize { color: #a7b7cb; font-size: 14px; cursor: pointer; }
 
         .emil-tabs {
             display: grid;
@@ -425,7 +458,7 @@
         .emil-tab {
             background: transparent;
             border: none;
-            color: #627288;
+            color: #a7b7cb;
             padding: 8px 0;
             font-size: 12px;
             font-weight: 700;
@@ -446,7 +479,8 @@
             display: none;
             flex-direction: column;
             gap: 8px;
-            height: 370px;
+            flex: 1;
+            min-height: 0;
             overflow-y: auto;
             padding-right: 4px;
         }
@@ -462,23 +496,24 @@
             display: flex;
             flex-direction: column;
             gap: 6px;
-            background: rgba(0, 162, 255, 0.02);
+            background: rgba(28, 49, 72, 0.58);
             transition: border-color 0.3s;
         }
 
         .emil-input {
             width: 100%;
-            background: #121722;
-            border: none;
+            background: #26364a;
+            border: 1px solid rgba(255,255,255,.06);
             border-radius: 6px;
             padding: 10px;
-            color: #8397b0;
+            color: #f1f5f9;
             font-size: 11px;
             text-align: center;
             outline: none;
             font-family: 'Comfortaa', cursive, sans-serif;
             font-weight: 700;
         }
+        .emil-input::placeholder { color: #b7c4d5; opacity: 1; }
 
         .emil-btn-blue {
             width: 100%;
@@ -498,11 +533,11 @@
 
         .emil-btn-toggle {
             width: 100%;
-            background: #151a26;
-            border: none;
+            background: #253247;
+            border: 1px solid rgba(255,255,255,.045);
             border-radius: 6px;
             padding: 11px;
-            color: #8397b0;
+            color: #d5dfec;
             font-size: 11px;
             font-weight: 700;
             cursor: pointer;
@@ -512,9 +547,10 @@
             transition: all 0.2s;
         }
 
+        .emil-btn-toggle:hover { background: #30435a; color: #ffffff; }
         .emil-btn-toggle.active {
-            background: #10263d;
-            color: var(--accent-color);
+            background: #123b59;
+            color: #36e2ff;
             box-shadow: inset 0 0 0 1px var(--accent-color);
         }
 
@@ -522,16 +558,16 @@
             display: flex;
             align-items: center;
             justify-content: space-between;
-            background: #151a26;
+            background: #253247;
             border-radius: 6px;
             padding: 10px 12px;
             font-size: 11px;
             font-family: 'Comfortaa', cursive, sans-serif;
             font-weight: 700;
-            color: #8397b0;
+            color: #d5dfec;
         }
 
-        .bind-key { color: #48576e; font-size: 10px; text-transform: uppercase; cursor: pointer; }
+        .bind-key { color: #b1bfd1; font-size: 10px; text-transform: uppercase; cursor: pointer; }
         .bind-key:hover { color: var(--accent-color); }
 
         .theme-box {
@@ -542,18 +578,42 @@
             flex-direction: column;
             align-items: center;
             gap: 10px;
-            background: #121722;
+            background: #202d40;
         }
 
-        .theme-title { font-size: 11px; font-family: 'Comfortaa', cursive, sans-serif; color: #8397b0; font-weight: 700; }
+        .theme-title { font-size: 11px; font-family: 'Comfortaa', cursive, sans-serif; color: #d1dbea; font-weight: 700; }
         .color-dots { display: flex; gap: 10px; }
+        .fly-speed-group { padding: 8px 10px; }
+        .fly-speed-heading { display: flex; justify-content: space-between; color: #dce2eb; font-size: 11px; font-weight: 700; }
+        .fly-speed-heading output { color: var(--accent-color); }
+        #fly-speed-slider { width: 100%; height: 6px; margin: 10px 0 2px; accent-color: var(--accent-color); cursor: pointer; }
+        .script-lang-modal {
+            position: absolute; inset: 0; z-index: 25; display: none;
+            align-items: center; justify-content: center; padding: 14px;
+            background: rgba(5, 7, 12, .72); backdrop-filter: blur(3px);
+        }
+        .script-lang-modal.show { display: flex; }
+        .script-lang-card {
+            width: 240px; max-width: 100%; padding: 14px 12px;
+            text-align: center; background: #12141d; border: 1.5px solid var(--accent-color);
+            border-radius: 12px; box-shadow: 0 12px 34px rgba(0,0,0,.55);
+        }
+        .script-lang-title { margin-bottom: 12px; color: #f0f0f5; font-size: 12px; font-weight: 800; }
+        .script-lang-options { display: flex; justify-content: center; gap: 7px; }
+        .script-lang-options button {
+            min-width: 62px; padding: 10px 7px; border: 1px solid #343848;
+            border-radius: 8px; background: #20222d; color: #fff;
+            font-size: 12px; font-weight: 800; cursor: pointer;
+        }
+        .script-lang-options button:hover,
+        .script-lang-options button.active { border-color: var(--accent-color); color: var(--accent-color); }
         .color-dot { width: 22px; height: 22px; border-radius: 50%; cursor: pointer; transition: transform 0.2s; }
         .color-dot:hover { transform: scale(1.2); }
 
         .emil-footer-info {
             text-align: center;
             font-size: 9px;
-            color: #55667d;
+            color: #a1b1c7;
             font-family: 'Comfortaa', cursive, sans-serif;
             margin-top: 6px;
             line-height: 1.4;
@@ -837,6 +897,7 @@
         }
 
         .toast.show { opacity: 1; transform: translateY(0); }
+        .toast.ai-warning { background: #182b40; border: 1px solid var(--accent-color); }
     </style>
 </head>
 <body>
@@ -880,6 +941,7 @@
         <div class="site-lang-switch">
             <button class="lang-btn active" id="site-lang-ru" onclick="setLanguage('ru')">RU</button>
             <button class="lang-btn" id="site-lang-en" onclick="setLanguage('en')">EN</button>
+            <button class="lang-btn" id="site-lang-ua" onclick="setLanguage('ua')">UA</button>
         </div>
 
         <div class="bg-lines">
@@ -908,7 +970,10 @@
                 <div class="emil-window" id="emilWindow">
                     <div class="emil-header">
                         <span class="emil-title">EMIL768 SCRIPT</span>
-                        <span class="emil-minimize">—</span>
+                        <div class="emil-header-actions">
+                            <span class="emil-minimize" id="script-minimize" role="button" tabindex="0">—</span>
+                            <span class="emil-close" id="script-close" role="button" tabindex="0">X</span>
+                        </div>
                     </div>
 
                     <div class="emil-tabs">
@@ -927,6 +992,10 @@
                         <button class="emil-btn-toggle" id="btn-inf-jump" onclick="toggleScriptBtn('infJump')">БЕСКОНЕЧНЫЙ ПРЫЖОК: ВЫКЛ</button>
                         <button class="emil-btn-toggle" id="btn-noclip" onclick="toggleScriptBtn('noclip')">СКВОЗЬ СТЕНЫ (NOCLIP): ВЫКЛ</button>
                         <button class="emil-btn-toggle" id="btn-fly" onclick="toggleScriptBtn('fly')">ПОЛЕТ (FLY): ВЫКЛ</button>
+                        <div class="emil-group fly-speed-group">
+                            <label class="fly-speed-heading" for="fly-speed-slider"><span id="fly-speed-label">СКОРОСТЬ ПОЛЁТА</span><output id="fly-speed-value">50</output></label>
+                            <input id="fly-speed-slider" type="range" min="10" max="200" value="50" aria-label="Fly speed">
+                        </div>
                         <button class="emil-btn-toggle" id="btn-wall-climb" onclick="toggleScriptBtn('wallClimb')">ПОЛЗАТЬ ПО СТЕНАМ: ВЫКЛ</button>
 
                         <div class="emil-group">
@@ -967,21 +1036,41 @@
                             </div>
                         </div>
 
-                        <button class="emil-btn-blue" id="btn-script-lang" onclick="toggleScriptLanguage()">🌐 ЯЗЫК: РУССКИЙ</button>
+                        <button class="emil-btn-blue" id="btn-script-lang" onclick="openScriptLanguage()">🌐 ВЫБРАТЬ ЯЗЫК</button>
 
-                        <div class="bind-row"><span>FLY (<span class="bind-fly-lbl">ПОЛЕТ</span>)</span><span class="bind-key">КЛАВИША</span></div>
-                        <div class="bind-row"><span>NOCLIP</span><span class="bind-key">КЛАВИША</span></div>
-                        <div class="bind-row"><span>INF JUMP</span><span class="bind-key">КЛАВИША</span></div>
-                        <div class="bind-row"><span>FLING</span><span class="bind-key">КЛАВИША</span></div>
-                        <div class="bind-row"><span>FLING ALL</span><span class="bind-key">КЛАВИША</span></div>
-                        <div class="bind-row"><span>ESP MM2</span><span class="bind-key">КЛАВИША</span></div>
-                        <div class="bind-row"><span>KILL ALL</span><span class="bind-key">КЛАВИША</span></div>
-                        <div class="bind-row"><span>AUTO SHERIFF</span><span class="bind-key">КЛАВИША</span></div>
-                        <div class="bind-row"><span>AUTO FARM COINS</span><span class="bind-key">КЛАВИША</span></div>
+                        <div class="bind-row"><span class="bind-label" data-bind-key="bindFly">FLY (ПОЛЕТ)</span><span class="bind-key">КЛАВИША</span></div>
+                        <div class="bind-row"><span class="bind-label" data-bind-key="bindNoclip">NOCLIP</span><span class="bind-key">КЛАВИША</span></div>
+                        <div class="bind-row"><span class="bind-label" data-bind-key="bindInfJump">INF JUMP</span><span class="bind-key">КЛАВИША</span></div>
+                        <div class="bind-row"><span class="bind-label" data-bind-key="bindFling">FLING</span><span class="bind-key">КЛАВИША</span></div>
+                        <div class="bind-row"><span class="bind-label" data-bind-key="bindFlingAll">FLING ALL</span><span class="bind-key">КЛАВИША</span></div>
+                        <div class="bind-row"><span class="bind-label" data-bind-key="bindEsp">ESP MM2</span><span class="bind-key">КЛАВИША</span></div>
+                        <div class="bind-row"><span class="bind-label" data-bind-key="bindKillAll">KILL ALL</span><span class="bind-key">КЛАВИША</span></div>
+                        <div class="bind-row"><span class="bind-label" data-bind-key="bindAutoSheriff">AUTO SHERIFF</span><span class="bind-key">КЛАВИША</span></div>
+                        <div class="bind-row"><span class="bind-label" data-bind-key="bindAutoFarm">AUTO FARM COINS</span><span class="bind-key">КЛАВИША</span></div>
 
                         <div class="emil-footer-info">
                             TELEGRAM - @EMILL768<br>
                             DISCORD - EMIL768
+                        </div>
+                    </div>
+                    <div class="script-lang-modal" id="script-lang-modal" aria-hidden="true">
+                        <div class="script-lang-card" role="dialog" aria-modal="true" aria-labelledby="script-lang-title">
+                            <div class="script-lang-title" id="script-lang-title">ВЫБЕРИТЕ ЯЗЫК</div>
+                            <div class="script-lang-options">
+                                <button type="button" data-script-language="ru">🇷🇺 RU</button>
+                                <button type="button" data-script-language="en">🇬🇧 EN</button>
+                                <button type="button" data-script-language="ua">🇺🇦 UA</button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="script-confirm" id="script-confirm" aria-hidden="true">
+                        <div class="script-confirm-card" role="dialog" aria-modal="true">
+                            <div class="script-confirm-title" id="script-confirm-title">Закрыть скрипт?</div>
+                            <div class="script-confirm-sub" id="script-confirm-sub">Все функции будут остановлены</div>
+                            <div class="script-confirm-actions">
+                                <button type="button" id="confirm-script-yes">ДА</button>
+                                <button type="button" id="confirm-script-no">НЕТ</button>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -2002,7 +2091,8 @@
                 getBtn: "Получить скрипт",
                 executorsTitle: "Скрипт работает во <span>ВСЕХ</span> roblox инжекторах",
                 projectsBtnLabel: "Мои сайты",
-                toast: "Скрипт скопирован в буфер обмена!"
+                toast: "Скрипт скопирован в буфер обмена!",
+                aiNote: "Перевод выполнен с помощью ИИ"
             },
             en: {
                 title: "EMIL768 SCRIPT<br><span>HUB FOR ROBLOX</span>",
@@ -2010,24 +2100,47 @@
                 getBtn: "Get script",
                 executorsTitle: "Script works in <span>ALL</span> roblox injectors",
                 projectsBtnLabel: "My Websites",
-                toast: "Script copied to clipboard!"
+                toast: "Script copied to clipboard!",
+                aiWarning: "Warning: This interface was translated with AI."
+            },
+            ua: {
+                title: "EMIL768 SCRIPT<br><span>HUB ДЛЯ ROBLOX</span>",
+                desc: "Гарний скрипт для будь-якої гри Roblox без виявлення античитом.",
+                getBtn: "Отримати скрипт",
+                executorsTitle: "Скрипт працює у <span>ВСІХ</span> інжекторах Roblox",
+                projectsBtnLabel: "Мої сайти",
+                toast: "Скрипт скопійовано!",
+                aiWarning: "Увага: інтерфейс перекладено за допомогою ШІ."
             }
         };
 
         const scriptI18n = {
             ru: {
-                langBtn: "🌐 ЯЗЫК: РУССКИЙ", speedInput: "ВВЕДИТЕ СКОРОСТЬ (НАПР. 50)", applySpeed: "ПРИМЕНИТЬ СКОРОСТЬ", resetSpeed: "СБРОСИТЬ СКОРОСТЬ",
+                langBtn: "🌐 ВЫБРАТЬ ЯЗЫК", languageTitle: "ВЫБЕРИТЕ ЯЗЫК", flySpeed: "СКОРОСТЬ ПОЛЁТА",
+                speedInput: "ВВЕДИТЕ СКОРОСТЬ (НАПР. 50)", applySpeed: "ПРИМЕНИТЬ СКОРОСТЬ", resetSpeed: "СБРОСИТЬ СКОРОСТЬ",
                 infJump: "БЕСКОНЕЧНЫЙ ПРЫЖОК", noclip: "СКВОЗЬ СТЕНЫ (NOCLIP)", fly: "ПОЛЕТ (FLY)", wallClimb: "ПОЛЗАТЬ ПО СТЕНАМ", tpInput: "НИКНЕЙМ ИГРОКА ДЛЯ ТП",
                 tpBtn: "ТЕЛЕПОРТИРОВАТЬСЯ", flingInput: "НИКНЕЙМ ИГРОКА ДЛЯ ФЛИНГА", flingBtn: "ЗАПУСТИТЬ ФЛИНГ", flingAll: "FLING EVERYONE (ФЛИНГ ВСЕХ)",
                 esp: "ПОКАЗАТЬ РОЛИ (ESP)", killAll: "KILL EVERYONE (УБИТЬ ВСЕХ)", autoGun: "АВТОТЕЛЕПОРТ И СБОР ПИСТОЛЕТА", autoFarm: "АВТОФАРМ МОНЕТ",
-                settingsTitle: "📌 НАСТРОЙКИ И БИНДЫ", themeTitle: "🎨 ТЕМА ИНТЕРФЕЙСА", bindFly: "ПОЛЕТ", key: "КЛАВИША", off: "ВЫКЛ", on: "ВКЛ"
+                settingsTitle: "📌 НАСТРОЙКИ И БИНДЫ", themeTitle: "🎨 ТЕМА ИНТЕРФЕЙСА", bindFly: "FLY (ПОЛЁТ)", bindNoclip: "NOCLIP", bindInfJump: "INF JUMP", bindFling: "FLING", bindFlingAll: "FLING ALL", bindEsp: "ESP MM2", bindKillAll: "KILL ALL", bindAutoSheriff: "AUTO SHERIFF", bindAutoFarm: "AUTO FARM COINS", key: "КЛАВИША", off: "ВЫКЛ", on: "ВКЛ",
+                closeTitle: "Закрыть скрипт?", closeSub: "Все функции будут остановлены", yes: "ДА", no: "НЕТ"
             },
             en: {
-                langBtn: "🌐 LANGUAGE: ENGLISH", speedInput: "ENTER SPEED (E.G. 50)", applySpeed: "APPLY SPEED", resetSpeed: "RESET SPEED",
+                langBtn: "🌐 CHOOSE LANGUAGE", languageTitle: "CHOOSE LANGUAGE", flySpeed: "FLY SPEED",
+                speedInput: "ENTER SPEED (E.G. 50)", applySpeed: "APPLY SPEED", resetSpeed: "RESET SPEED",
                 infJump: "INFINITE JUMP", noclip: "NOCLIP", fly: "FLY", wallClimb: "WALL CLIMB", tpInput: "PLAYER USERNAME FOR TP",
                 tpBtn: "TELEPORT", flingInput: "PLAYER USERNAME FOR FLING", flingBtn: "START FLING", flingAll: "FLING EVERYONE",
                 esp: "SHOW ROLES (ESP)", killAll: "KILL EVERYONE", autoGun: "AUTOTELEPORT & GRAB GUN", autoFarm: "AUTOFARM COINS",
-                settingsTitle: "📌 SETTINGS & BINDS", themeTitle: "🎨 INTERFACE THEME", bindFly: "FLY", key: "KEY", off: "OFF", on: "ON"
+                settingsTitle: "📌 SETTINGS & BINDS", themeTitle: "🎨 INTERFACE THEME", bindFly: "FLY", bindNoclip: "NOCLIP", bindInfJump: "INF JUMP", bindFling: "FLING", bindFlingAll: "FLING ALL", bindEsp: "ESP MM2", bindKillAll: "KILL ALL", bindAutoSheriff: "AUTO SHERIFF", bindAutoFarm: "AUTO FARM COINS", key: "KEY", off: "OFF", on: "ON",
+                closeTitle: "Close script?", closeSub: "All functions will be stopped", yes: "YES", no: "NO"
+            },
+            ua: {
+                langBtn: "🌐 ОБРАТИ МОВУ", languageTitle: "ОБЕРІТЬ МОВУ", flySpeed: "ШВИДКІСТЬ ПОЛЬОТУ",
+                speedInput: "ВВЕДІТЬ ШВИДКІСТЬ (НАПР. 50)", applySpeed: "ЗАСТОСУВАТИ ШВИДКІСТЬ", resetSpeed: "СКИНУТИ ШВИДКІСТЬ",
+                infJump: "НЕСКІНЧЕННИЙ СТРИБОК", noclip: "КРІЗЬ СТІНИ (NOCLIP)", fly: "ПОЛІТ (FLY)", wallClimb: "ЛАЗИТИ ПО СТІНАХ", tpInput: "НІК ГРАВЦЯ ДЛЯ ТЕЛЕПОРТАЦІЇ",
+                tpBtn: "ТЕЛЕПОРТУВАТИ", flingInput: "НІК ГРАВЦЯ ДЛЯ FLING", flingBtn: "УВІМКНУТИ FLING", flingAll: "FLING УСІХ",
+                esp: "ПОКАЗАТИ РОЛІ (ESP)", killAll: "ПЕРЕМОГТИ ВСІХ", autoGun: "АВТОТЕЛЕПОРТ І ПІДБІР ПІСТОЛЕТА", autoFarm: "АВТОЗБІР МОНЕТ",
+                settingsTitle: "📌 НАЛАШТУВАННЯ ТА КЛАВІШІ", themeTitle: "🎨 ТЕМА ІНТЕРФЕЙСУ", bindFly: "FLY (ПОЛІТ)", bindNoclip: "NOCLIP", bindInfJump: "НЕСКІНЧЕННИЙ СТРИБОК", bindFling: "FLING", bindFlingAll: "FLING УСІХ", bindEsp: "ESP MM2", bindKillAll: "ПЕРЕМОГТИ ВСІХ", bindAutoSheriff: "АВТОШЕРИФ", bindAutoFarm: "АВТОЗБІР МОНЕТ", key: "КЛАВІША", off: "ВИМК.", on: "УВІМК.",
+                closeTitle: "Закрити скрипт?", closeSub: "Усі функції буде зупинено", yes: "ТАК", no: "НІ"
             }
         };
 
@@ -2035,6 +2148,8 @@
             currentLang = lang;
             document.getElementById('site-lang-ru').classList.toggle('active', lang === 'ru');
             document.getElementById('site-lang-en').classList.toggle('active', lang === 'en');
+            document.getElementById('site-lang-ua').classList.toggle('active', lang === 'ua');
+            document.documentElement.lang = lang === 'ua' ? 'uk' : lang;
 
             const st = siteI18n[lang];
             document.getElementById('site-title').innerHTML = st.title;
@@ -2045,10 +2160,32 @@
             document.getElementById('toast').innerText = st.toast;
 
             updateScriptUI();
+            const toast = document.getElementById('toast');
+            if (lang === 'ru') {
+                toast.classList.remove('show', 'ai-warning');
+            } else {
+                showToast(st.aiWarning, true);
+            }
         }
 
-        function toggleScriptLanguage() {
-            setLanguage(currentLang === 'ru' ? 'en' : 'ru');
+        function openScriptLanguage() {
+            const modal = document.getElementById('script-lang-modal');
+            modal.classList.add('show');
+            modal.setAttribute('aria-hidden', 'false');
+            modal.querySelectorAll('[data-script-language]').forEach(button => {
+                button.classList.toggle('active', button.dataset.scriptLanguage === currentLang);
+            });
+        }
+
+        function closeScriptLanguage() {
+            const modal = document.getElementById('script-lang-modal');
+            modal.classList.remove('show');
+            modal.setAttribute('aria-hidden', 'true');
+        }
+
+        function chooseScriptLanguage(lang) {
+            setLanguage(lang);
+            closeScriptLanguage();
         }
 
         function updateScriptUI() {
@@ -2065,8 +2202,14 @@
             document.getElementById('btn-kill-all').innerText = t.killAll;
             document.getElementById('script-settings-title').innerText = t.settingsTitle;
             document.getElementById('script-theme-title').innerText = t.themeTitle;
+            document.getElementById('script-lang-title').innerText = t.languageTitle;
+            document.getElementById('fly-speed-label').innerText = t.flySpeed;
+            document.getElementById('script-confirm-title').innerText = t.closeTitle;
+            document.getElementById('script-confirm-sub').innerText = t.closeSub;
+            document.getElementById('confirm-script-yes').innerText = t.yes;
+            document.getElementById('confirm-script-no').innerText = t.no;
 
-            document.querySelectorAll('.bind-fly-lbl').forEach(el => el.innerText = t.bindFly);
+            document.querySelectorAll('[data-bind-key]').forEach(el => el.innerText = t[el.dataset.bindKey]);
             document.querySelectorAll('.bind-key').forEach(el => el.innerText = t.key);
 
             updateToggleBtn('btn-inf-jump', t.infJump, scriptState.infJump);
@@ -2103,17 +2246,62 @@
             document.documentElement.style.setProperty('--btn-blue', btnColor);
         }
 
+        document.querySelectorAll('[data-script-language]').forEach(button => {
+            button.addEventListener('click', () => chooseScriptLanguage(button.dataset.scriptLanguage));
+        });
+        document.getElementById('script-lang-modal').addEventListener('click', event => {
+            if (event.target.id === 'script-lang-modal') closeScriptLanguage();
+        });
+
+        const flySpeedSlider = document.getElementById('fly-speed-slider');
+        flySpeedSlider.addEventListener('input', () => {
+            document.getElementById('fly-speed-value').value = flySpeedSlider.value;
+        });
+
+        const scriptWindow = document.getElementById('emilWindow');
+        const closeConfirm = document.getElementById('script-confirm');
+        let wasMinimizedForConfirm = false;
+        const minimizeScriptWindow = () => scriptWindow.classList.toggle('is-minimized');
+        document.getElementById('script-minimize').addEventListener('click', minimizeScriptWindow);
+        document.getElementById('script-minimize').addEventListener('keydown', event => {
+            if (event.key === 'Enter' || event.key === ' ') minimizeScriptWindow();
+        });
+        document.getElementById('script-close').addEventListener('click', () => {
+            wasMinimizedForConfirm = scriptWindow.classList.contains('is-minimized');
+            if (wasMinimizedForConfirm) scriptWindow.classList.add('is-confirm-expanded');
+            closeConfirm.classList.add('show');
+            closeConfirm.setAttribute('aria-hidden', 'false');
+        });
+        document.getElementById('confirm-script-no').addEventListener('click', () => {
+            closeConfirm.classList.remove('show');
+            closeConfirm.setAttribute('aria-hidden', 'true');
+            if (wasMinimizedForConfirm) scriptWindow.classList.remove('is-confirm-expanded');
+            wasMinimizedForConfirm = false;
+        });
+        document.getElementById('confirm-script-yes').addEventListener('click', () => {
+            closeConfirm.classList.remove('show');
+            scriptWindow.classList.remove('is-confirm-expanded');
+            scriptWindow.classList.add('is-minimized');
+            scriptWindow.style.opacity = '0.55';
+        });
+
         function copyScript() {
             const script = 'loadstring(game:HttpGet("https://raw.githubusercontent.com/emil768YT/emil768test_script/refs/heads/main/loader_update.luau"))()';
             showToast(scriptI18n[currentLang] ? siteI18n[currentLang].toast : 'Скопировано!');
             navigator.clipboard.writeText(script);
         }
 
-        function showToast(text) {
+        let toastTimeout = null;
+        function showToast(text, isAIWarning = false) {
             const toast = document.getElementById('toast');
             toast.innerText = text;
+            toast.classList.toggle('ai-warning', isAIWarning);
             toast.classList.add('show');
-            setTimeout(() => { toast.classList.remove('show'); }, 3000);
+            if (toastTimeout) clearTimeout(toastTimeout);
+            toastTimeout = setTimeout(() => {
+                toast.classList.remove('show', 'ai-warning');
+                toastTimeout = null;
+            }, 4000);
         }
 
         // --- ЛОГИКА МИРА УТОК ---
@@ -2326,3 +2514,4 @@
     </script>
 </body>
 </html>
+
