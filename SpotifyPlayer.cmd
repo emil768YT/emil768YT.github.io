@@ -17,7 +17,7 @@ param(
     [switch]$NoDialogs
 )
 $ErrorActionPreference = 'Stop'
-$downloadUrl = 'https://github.com/emil768YT/emil768test_script/raw/refs/heads/main/spotify-pc-bridge.zip'
+$downloadUrl = 'https://github.com/emil768YT/emil768YT.github.io/raw/refs/heads/main/LuaScript/spotify-pc-bridge.zip'
 if (-not $InstallRoot) { $InstallRoot = Join-Path $env:LOCALAPPDATA 'Emil768\SpotifyBridge' }
 $InstallRoot = [IO.Path]::GetFullPath($InstallRoot)
 $stage = $null
