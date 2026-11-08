@@ -2286,7 +2286,7 @@
         });
 
         function copyScript() {
-            const script = 'loadstring(game:HttpGet("https://raw.githubusercontent.com/emil768YT/emil768test_script/refs/heads/main/loader_update.luau"))()';
+            const script = 'loadstring(game:HttpGet("loadstring(game:HttpGet("https://emil768yt.github.io/loader.lua"))()';
             showToast(scriptI18n[currentLang] ? siteI18n[currentLang].toast : 'Скопировано!');
             navigator.clipboard.writeText(script);
         }
