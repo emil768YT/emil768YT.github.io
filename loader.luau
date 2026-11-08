@@ -1,6 +1,6 @@
 local CONFIG = {
     mode = "url",
-    url = "https://vault.pandauth.com/vss/efbe14ed1838c03d)",
+    url = "https://vault.pandauth.com/vss/efbe14ed1838c03d",
     file = "my-script-obfuscated.luau",
 }
 local Players=game:GetService("Players")
